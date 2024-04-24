@@ -1,4 +1,4 @@
-﻿/*  Created by: Logan
+﻿/*  Created by:
  *  Project: Brick Breaker
  *  Date: 
  */ 
