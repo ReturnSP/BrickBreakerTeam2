@@ -182,7 +182,7 @@ namespace BrickBreaker
                 }
             }
 
-            //cursorPos
+            //cursorPos -- I made this! yippee
 
             lastCursorX = Cursor.Position.X;
             lastCursorY = Cursor.Position.Y;
