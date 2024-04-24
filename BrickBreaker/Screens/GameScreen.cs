@@ -37,6 +37,10 @@ namespace BrickBreaker
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
 
+        //cursor Pos
+
+        int lastCursorX, lastCursorY;
+
         #endregion
 
         public GameScreen()
@@ -177,6 +181,11 @@ namespace BrickBreaker
                     break;
                 }
             }
+
+            //cursorPos
+
+            lastCursorX = Cursor.Position.X;
+            lastCursorY = Cursor.Position.Y;
 
             //redraw the screen
             Refresh();
