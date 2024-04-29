@@ -82,10 +82,10 @@ namespace BrickBreaker
             int ballY = this.Height - paddle.height - 80;
 
             // Creates a new ball
-            int xSpeed = 5;
-            int ySpeed = 1;
+            float xSpeed = 5;
+            float ySpeed = 1;
             int ballSize = 20;
-            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
+            ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
             
