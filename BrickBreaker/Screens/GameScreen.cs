@@ -45,7 +45,14 @@ namespace BrickBreaker
 
         //cursor Pos
 
-        int lastCursorX, lastCursorY;
+        public static int lastCursorX;
+
+
+        // slow mode (testing)
+
+        bool slow;
+
+
 
         #endregion
 
@@ -75,8 +82,8 @@ namespace BrickBreaker
             int ballY = this.Height - paddle.height - 80;
 
             // Creates a new ball
-            int xSpeed = 6;
-            int ySpeed = 6;
+            int xSpeed = 5;
+            int ySpeed = 1;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
@@ -98,6 +105,8 @@ namespace BrickBreaker
 
             // start the game engine loop
             gameTimer.Enabled = true;
+
+            
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -110,6 +119,9 @@ namespace BrickBreaker
                     break;
                 case Keys.Right:
                     rightArrowDown = true;
+                    break;
+                case Keys.K:
+                    slow = true;
                     break;
                 default:
                     break;
@@ -128,6 +140,12 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = false;
                     break;
+                case Keys.Escape:
+                    Application.Exit();
+                    break;
+                case Keys.K:
+                    slow = false;
+                    break;
                 default:
                     break;
             }
@@ -135,6 +153,8 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+
+            int brickTime = 0;
             // Move the paddle
             if (leftArrowDown && lowerPaddle.x > 0)
             {
@@ -177,24 +197,35 @@ namespace BrickBreaker
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
             {
-                if (ball.BlockCollision(b))
+                if (brickTime == 0)
                 {
-                    blocks.Remove(b);
-
-                    if (blocks.Count == 0)
+                    if (ball.BlockCollision(b))
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                    }
+                        blocks.Remove(b);
 
-                    break;
+                        brickTime = 3;
+
+                        if (blocks.Count == 0)
+                        {
+                            gameTimer.Enabled = false;
+                            OnEnd();
+                        }
+
+                        break;
+                    }
                 }
             }
 
-            //cursorPos -- I made this! yippee
+            if (slow)
+            {
+                gameTimer.Interval = 200;
+            }
+            else
+            {
+                gameTimer.Interval = 1;
+            }
 
-            lastCursorX = Cursor.Position.X;
-            lastCursorY = Cursor.Position.Y;
+            brickTime--;
 
             //redraw the screen
             Refresh();
@@ -246,7 +277,9 @@ namespace BrickBreaker
             }
 
             // Draws ball
-            e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            // test
+            e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
         }
     }
 }
