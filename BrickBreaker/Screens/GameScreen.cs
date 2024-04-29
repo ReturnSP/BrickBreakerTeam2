@@ -1,4 +1,4 @@
-﻿/*  Created by: Logan
+﻿/*  Created by: Team 2!
  *  Project: Brick Breaker
  *  Date: 
  */ 
@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Drawing.Drawing2D;
 
 namespace BrickBreaker
 {
@@ -26,7 +27,8 @@ namespace BrickBreaker
         int lives;
 
         // Paddle and Ball objects
-        Paddle paddle;
+        Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
+        Paddle lowerPaddle;
         Ball ball;
 
         // list of all blocks for current level
@@ -36,6 +38,10 @@ namespace BrickBreaker
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+
+        GraphicsPath paddleCircle = new GraphicsPath();
+        Region leftPaddleRegion = new Region();
+        Region rightPaddleRegion = new Region();
 
         //cursor Pos
 
@@ -59,12 +65,10 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
 
             // setup starting paddle values and create paddle object
-            int paddleWidth = 80;
-            int paddleHeight = 20;
-            int paddleX = ((this.Width / 2) - (paddleWidth / 2));
-            int paddleY = (this.Height - paddleHeight) - 60;
-            int paddleSpeed = 8;
-            paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
+            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 10, 8, Color.White);
+            lowerPaddle = new Paddle(paddle.x - 10, paddle.y + 10, paddle.width + 20, paddle.height, paddle.speed, Color.White);
+
+            updateCurve();
 
             // setup starting ball values
             int ballX = this.Width / 2 - 10;
@@ -112,6 +116,7 @@ namespace BrickBreaker
             }
         }
 
+
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
         {
             //player 1 button releases
@@ -131,13 +136,17 @@ namespace BrickBreaker
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             // Move the paddle
-            if (leftArrowDown && paddle.x > 0)
+            if (leftArrowDown && lowerPaddle.x > 0)
             {
                 paddle.Move("left");
+                lowerPaddle.Move("left");
+                updateCurve();
             }
-            if (rightArrowDown && paddle.x < (this.Width - paddle.width))
+            if (rightArrowDown && paddle.x < (this.Width - lowerPaddle.width))
             {
                 paddle.Move("right");
+                lowerPaddle.Move("right");
+                updateCurve();
             }
 
             // Move ball
@@ -191,6 +200,23 @@ namespace BrickBreaker
             Refresh();
         }
 
+        private void updateCurve()
+        {
+            paddleCircle.Reset();
+            leftPaddleRegion.Dispose();
+            paddleCircle.AddEllipse(lowerPaddle.x, paddle.y, 20, 20);
+            leftPaddleRegion = new Region(paddleCircle);
+            leftPaddleRegion.Exclude(new Rectangle(lowerPaddle.x, lowerPaddle.y, 20, 10));
+            leftPaddleRegion.Exclude(new Rectangle(paddle.x, paddle.y, 10, 10));
+
+            paddleCircle.Reset();
+            rightPaddleRegion.Dispose();
+            paddleCircle.AddEllipse(paddle.x + paddle.width - 10, paddle.y, 20, 20);
+            rightPaddleRegion = new Region(paddleCircle);
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 10, paddle.y + 10, 20, 10));
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 10, paddle.y, 10, 10));
+        }
+
         public void OnEnd()
         {
             // Goes to the game over screen
@@ -208,6 +234,10 @@ namespace BrickBreaker
             // Draws paddle
             paddleBrush.Color = paddle.colour;
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            e.Graphics.FillRectangle(paddleBrush, lowerPaddle.x, lowerPaddle.y, lowerPaddle.width, lowerPaddle.height);
+
+            e.Graphics.FillRegion(paddleBrush, leftPaddleRegion);
+            e.Graphics.FillRegion(paddleBrush, rightPaddleRegion);
 
             // Draws blocks
             foreach (Block b in blocks)
