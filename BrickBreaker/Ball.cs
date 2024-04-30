@@ -34,7 +34,31 @@ namespace BrickBreaker
 
             if (ballRec.IntersectsWith(blockRec))
             {
-                ySpeed *= -1;
+                if ((x < b.x - size + 8 || x > b.x + b.width - 8) && (y > b.y - size || y < b.y + b.width - 8))
+                {
+                    if (xSpeed > 0)
+                    {
+                        x = b.x - size;
+                    }
+                    else
+                    {
+                        x = b.x + b.width;
+                    }
+                    xSpeed *= -1;
+                }
+                else if (x > b.x - size - 8 || x < b.x + b.width - 8)
+                {
+                    if (ySpeed > 0)
+                    {
+                        y = b.y - size;
+                    }
+                    else
+                    {
+                        y = b.y + b.height; 
+                    }
+
+                    ySpeed *= -1;
+                }
             }
 
             return blockRec.IntersectsWith(ballRec);
@@ -48,24 +72,28 @@ namespace BrickBreaker
             if (ballRec.IntersectsWith(paddleRec))
             {
                 ySpeed *= -1;
+                y = p.y - size;
             }
         }
 
         public void WallCollision(UserControl UC)
         {
             // Collision with left wall
-            if (x <= 0)
+            if (x < 0)
             {
+                x = 0;
                 xSpeed *= -1;
             }
             // Collision with right wall
-            if (x >= (UC.Width - size))
+            if (x > (UC.Width - size))
             {
+                x = UC.Width - size;
                 xSpeed *= -1;
             }
             // Collision with top wall
-            if (y <= 2)
+            if (y < 0)
             {
+                y = 0;
                 ySpeed *= -1;
             }
         }
