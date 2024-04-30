@@ -40,8 +40,13 @@ namespace BrickBreaker
         SolidBrush blockBrush = new SolidBrush(Color.Red);
 
         GraphicsPath paddleCircle = new GraphicsPath();
+        GraphicsPath ballCircle = new GraphicsPath();
+        Region ballRegion = new Region();
         Region leftPaddleRegion = new Region();
         Region rightPaddleRegion = new Region();
+
+        Region temp1 = new Region();
+        Region temp2 = new Region();
 
         //cursor Pos
 
@@ -95,6 +100,9 @@ namespace BrickBreaker
             }
 
             #endregion
+
+            ballCircle.AddRectangle(new RectangleF(ball.x, ball.y, ball.size, ball.size));
+            ballRegion = new Region(ballCircle);
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -196,10 +204,45 @@ namespace BrickBreaker
             lastCursorX = Cursor.Position.X;
             lastCursorY = Cursor.Position.Y;
 
+            
             //redraw the screen
             Refresh();
         }
 
+        private float derivitive(PaintEventArgs e)
+        {
+            temp1 = ballRegion;
+            temp2 = leftPaddleRegion;
+            temp1.Intersect(temp2);
+
+            #region left side of paddle
+            if (temp1.IsEmpty(e.Graphics) == false)
+            {
+
+                if (ball.x <= paddle.x - paddle.width / 2)
+                {
+                    float x = ball.x + ball.size - paddle.x;
+
+                    float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 100));
+                    return slope;
+                }
+                #endregion
+
+                #region right side of paddle
+                else if (ball.x > paddle.x - paddle.width / 2)
+                {
+                    float x = ball.x + ball.size - paddle.x;
+
+                    float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 100));
+
+                    return slope;
+                }
+                else return 1;
+            }
+            else return 1;
+
+            #endregion 
+        }
         private void updateCurve()
         {
             paddleCircle.Reset();
@@ -247,6 +290,8 @@ namespace BrickBreaker
 
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+
+            derivitive(e);
         }
     }
 }
