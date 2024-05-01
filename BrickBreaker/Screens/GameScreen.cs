@@ -1,7 +1,7 @@
 ﻿/*  Created by: Team 2!
  *  Project: Brick Breaker
  *  Date: 
- */ 
+ */
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,7 +52,8 @@ namespace BrickBreaker
 
         bool slow;
 
-
+        //mouse move
+        bool mouseMoving = false;
 
         #endregion
 
@@ -65,6 +66,7 @@ namespace BrickBreaker
 
         public void OnStart()
         {
+            Cursor.Hide();
             //set life counter
             lives = 3;
 
@@ -88,9 +90,9 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
-            
+
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
-            
+
             blocks.Clear();
             int x = 10;
 
@@ -106,7 +108,7 @@ namespace BrickBreaker
             // start the game engine loop
             gameTimer.Enabled = true;
 
-            
+
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -153,21 +155,48 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            Point mouse = this.PointToClient(Cursor.Position);
 
             int brickTime = 0;
             // Move the paddle
-            if (leftArrowDown && lowerPaddle.x > 0)
+            if (leftArrowDown && lowerPaddle.x > 1)
             {
                 paddle.Move("left");
                 lowerPaddle.Move("left");
                 updateCurve();
+                mouseMoving = false;
             }
-            if (rightArrowDown && paddle.x < (this.Width - lowerPaddle.width))
+            if (rightArrowDown && paddle.x < (this.Width - lowerPaddle.width + 9))
             {
                 paddle.Move("right");
                 lowerPaddle.Move("right");
                 updateCurve();
+                mouseMoving = false;
             }
+
+
+            if (!mouseMoving)
+            { 
+                Cursor.Position = this.PointToScreen(new Point(paddle.x + (paddle.width / 2), paddle.y + (paddle.height / 2)));
+            }
+            else
+            {
+                paddle.x = mouse.X - (paddle.width / 2);
+                lowerPaddle.x = paddle.x - 10;
+                updateCurve();
+
+                if (mouse.X < 0 + lowerPaddle.width / 2)
+                {
+                    Cursor.Position = this.PointToScreen(new Point(0 + lowerPaddle.width / 2, paddle.y + paddle.height / 2));
+                }
+
+                if (mouse.X > this.Width - lowerPaddle.width / 2)
+                {
+                    Cursor.Position = this.PointToScreen(new Point(this.Width - lowerPaddle.width / 2, paddle.y + paddle.height / 2));
+                }
+            }
+
+
 
             // Move ball
             ball.Move();
@@ -253,11 +282,17 @@ namespace BrickBreaker
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
-            
+
             ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
 
             form.Controls.Add(ps);
             form.Controls.Remove(this);
+
+        }
+
+        private void GameScreen_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseMoving = true;
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
