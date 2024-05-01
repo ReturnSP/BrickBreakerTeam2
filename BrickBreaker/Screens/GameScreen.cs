@@ -40,8 +40,12 @@ namespace BrickBreaker
         SolidBrush blockBrush = new SolidBrush(Color.Red);
 
         GraphicsPath paddleCircle = new GraphicsPath();
+        GraphicsPath ballCircle = new GraphicsPath();
+        Region ballRegion = new Region();
         Region leftPaddleRegion = new Region();
         Region rightPaddleRegion = new Region();
+
+        Region[] checkRegions = new Region[] {null, null, null, null };
 
         //cursor Pos
 
@@ -89,6 +93,8 @@ namespace BrickBreaker
             int ballSize = 20;
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
 
+            updateBallStorage();
+
             #region Creates blocks for generic level. Need to replace with code that loads levels.
 
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
@@ -107,8 +113,6 @@ namespace BrickBreaker
 
             // start the game engine loop
             gameTimer.Enabled = true;
-
-
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -156,6 +160,7 @@ namespace BrickBreaker
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             Point mouse = this.PointToClient(Cursor.Position);
+
 
             int brickTime = 0;
             // Move the paddle
@@ -220,6 +225,9 @@ namespace BrickBreaker
                 }
             }
 
+            updateBallStorage();
+            derivitive();
+
             // Check for collision of ball with paddle, (incl. paddle movement)
             ball.PaddleCollision(paddle);
 
@@ -256,10 +264,48 @@ namespace BrickBreaker
 
             brickTime--;
 
+
             //redraw the screen
             Refresh();
         }
 
+        private float derivitive()
+        {
+            using (Graphics e = this.CreateGraphics())
+            {
+                #region left side of paddle
+                checkRegions[0] = ballRegion;
+                checkRegions[1] = leftPaddleRegion;
+                checkRegions[0].Intersect(checkRegions[1]);
+
+                if (!checkRegions[0].IsEmpty(e))
+                {
+                    float x = ball.x + ball.size - paddle.x;
+
+                    float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 100));
+                    return slope;
+                }
+                #endregion
+                #region right side of paddle
+
+                //right side check doesnt work yet
+
+                checkRegions[0] = ballRegion;
+                checkRegions[1] = rightPaddleRegion;
+                checkRegions[0].Intersect(checkRegions[1]);
+
+                if (!checkRegions[0].IsEmpty(e))
+                {
+                    float x = ball.x - (paddle.x + paddle.width);
+
+                    float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 100));
+                    return slope;
+                }
+                return 1;
+
+                #endregion
+            }
+        }
         private void updateCurve()
         {
             paddleCircle.Reset();
@@ -275,6 +321,15 @@ namespace BrickBreaker
             rightPaddleRegion = new Region(paddleCircle);
             rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 10, paddle.y + 10, 20, 10));
             rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 10, paddle.y, 10, 10));
+        }
+
+        private void updateBallStorage()
+        {
+            ballCircle.Reset();
+            ballRegion.Dispose();
+
+            ballCircle.AddRectangle(new RectangleF(ball.x, ball.y, ball.size, ball.size));
+            ballRegion = new Region(ballCircle);
         }
 
         public void OnEnd()
@@ -302,8 +357,8 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
             e.Graphics.FillRectangle(paddleBrush, lowerPaddle.x, lowerPaddle.y, lowerPaddle.width, lowerPaddle.height);
 
-            e.Graphics.FillRegion(paddleBrush, leftPaddleRegion);
-            e.Graphics.FillRegion(paddleBrush, rightPaddleRegion);
+            e.Graphics.FillRegion(Brushes.Red, leftPaddleRegion);
+            e.Graphics.FillRegion(Brushes.Red, rightPaddleRegion);
 
             // Draws blocks
             foreach (Block b in blocks)
@@ -312,7 +367,8 @@ namespace BrickBreaker
             }
 
             // Draws ball
-            e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
+           // e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
+           e.Graphics.FillRegion(Brushes.LightBlue, ballRegion);
             // test
             e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
         }
