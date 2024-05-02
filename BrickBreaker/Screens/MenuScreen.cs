@@ -24,6 +24,7 @@ namespace BrickBreaker
 
         private void playButton_Click(object sender, EventArgs e)
         {
+            Cursor.Hide();
             // Goes to the game screen
             GameScreen gs = new GameScreen();
             Form form = this.FindForm();
@@ -34,5 +35,9 @@ namespace BrickBreaker
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
         }
 
+        private void MenuScreen_Load(object sender, EventArgs e)
+        {
+            Cursor.Show();
+        }
     }
 }

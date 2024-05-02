@@ -73,6 +73,15 @@ namespace BrickBreaker
             {
                 ySpeed *= -1;
                 y = p.y - size;
+                ySpeed -= (float)0.05;
+                if (xSpeed > 0)
+                {
+                    xSpeed += (float)0.05;
+                }
+                else
+                {
+                    xSpeed -= (float)0.05;
+                }
             }
         }
 

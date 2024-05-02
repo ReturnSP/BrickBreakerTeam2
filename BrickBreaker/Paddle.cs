@@ -28,7 +28,7 @@ namespace BrickBreaker
             {
                 x += speed;
             }
-            
         }
+
     }
 }
