@@ -28,7 +28,6 @@ namespace BrickBreaker
 
         // Paddle and Ball objects
         Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
-        Paddle lowerPaddle;
         Ball ball;
 
         // list of all blocks for current level
@@ -78,8 +77,7 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
 
             // setup starting paddle values and create paddle object
-            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 10, 8, Color.White);
-            lowerPaddle = new Paddle(paddle.x - 10, paddle.y + 10, paddle.width + 20, paddle.height, paddle.speed, Color.White);
+            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 20, 8, Color.White);
 
             updateCurve();
 
@@ -164,17 +162,15 @@ namespace BrickBreaker
 
             int brickTime = 0;
             // Move the paddle
-            if (leftArrowDown && lowerPaddle.x > 1)
+            if (leftArrowDown && paddle.x > 20)
             {
                 paddle.Move("left");
-                lowerPaddle.Move("left");
                 updateCurve();
                 mouseMoving = false;
             }
-            if (rightArrowDown && paddle.x < (this.Width - lowerPaddle.width + 9))
+            if (rightArrowDown && paddle.x < (this.Width - paddle.width - 20))
             {
                 paddle.Move("right");
-                lowerPaddle.Move("right");
                 updateCurve();
                 mouseMoving = false;
             }
@@ -187,17 +183,16 @@ namespace BrickBreaker
             else
             {
                 paddle.x = mouse.X - (paddle.width / 2);
-                lowerPaddle.x = paddle.x - 10;
                 updateCurve();
 
-                if (mouse.X < 0 + lowerPaddle.width / 2)
+                if (mouse.X < paddle.width / 2 + 20)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(0 + lowerPaddle.width / 2, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20, paddle.y + paddle.height / 2));
                 }
 
-                if (mouse.X > this.Width - lowerPaddle.width / 2)
+                if (mouse.X > this.Width - paddle.width / 2 - 20)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(this.Width - lowerPaddle.width / 2, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20, paddle.y + paddle.height / 2));
                 }
             }
 
@@ -310,17 +305,17 @@ namespace BrickBreaker
         {
             paddleCircle.Reset();
             leftPaddleRegion.Dispose();
-            paddleCircle.AddEllipse(lowerPaddle.x, paddle.y, 20, 20);
+            paddleCircle.AddEllipse(paddle.x - 20, paddle.y, 40, 40);
             leftPaddleRegion = new Region(paddleCircle);
-            leftPaddleRegion.Exclude(new Rectangle(lowerPaddle.x, lowerPaddle.y, 20, 10));
-            leftPaddleRegion.Exclude(new Rectangle(paddle.x, paddle.y, 10, 10));
+            leftPaddleRegion.Exclude(new Rectangle(paddle.x - 20, paddle.y + 20, 40, 20));
+            leftPaddleRegion.Exclude(new Rectangle(paddle.x, paddle.y, 20, 20));
 
             paddleCircle.Reset();
             rightPaddleRegion.Dispose();
-            paddleCircle.AddEllipse(paddle.x + paddle.width - 10, paddle.y, 20, 20);
+            paddleCircle.AddEllipse(paddle.x + paddle.width - 20, paddle.y, 40, 40);
             rightPaddleRegion = new Region(paddleCircle);
-            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 10, paddle.y + 10, 20, 10));
-            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 10, paddle.y, 10, 10));
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 20, paddle.y + 20, 40, 20));
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 20, paddle.y, 20, 20));
         }
 
         private void updateBallStorage()
@@ -355,7 +350,6 @@ namespace BrickBreaker
             // Draws paddle
             paddleBrush.Color = paddle.colour;
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
-            e.Graphics.FillRectangle(paddleBrush, lowerPaddle.x, lowerPaddle.y, lowerPaddle.width, lowerPaddle.height);
 
             e.Graphics.FillRegion(Brushes.Red, leftPaddleRegion);
             e.Graphics.FillRegion(Brushes.Red, rightPaddleRegion);
