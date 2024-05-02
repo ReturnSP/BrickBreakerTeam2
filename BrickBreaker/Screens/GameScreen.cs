@@ -268,37 +268,35 @@ namespace BrickBreaker
         {
             using (Graphics e = this.CreateGraphics())
             {
-                #region left side of paddle
-                checkRegions[0] = ballRegion;
-                checkRegions[1] = leftPaddleRegion;
-                checkRegions[0].Intersect(checkRegions[1]);
-
-                if (!checkRegions[0].IsEmpty(e))
+                if (ball.x < paddle.x + (paddle.width / 2))
                 {
-                    float x = ball.x + ball.size - paddle.x;
+                    checkRegions[0] = ballRegion;
+                    checkRegions[1] = leftPaddleRegion;
+                    checkRegions[0].Intersect(checkRegions[1]);
 
-                    float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 100));
-                    return slope;
+                    if (!checkRegions[0].IsEmpty(e))
+                    {
+                        float x = ball.x + ball.size - paddle.x;
+
+                        float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 400));
+                        return slope;
+                    }
                 }
-                #endregion
-                #region right side of paddle
-
-                //right side check doesnt work yet
-
-                checkRegions[0] = ballRegion;
-                checkRegions[1] = rightPaddleRegion;
-                checkRegions[0].Intersect(checkRegions[1]);
-
-                if (!checkRegions[0].IsEmpty(e))
+                else
                 {
-                    float x = ball.x - (paddle.x + paddle.width);
+                    checkRegions[0] = ballRegion;
+                    checkRegions[1] = rightPaddleRegion;
+                    checkRegions[0].Intersect(checkRegions[1]);
 
-                    float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 100));
-                    return slope;
+                    if (!checkRegions[0].IsEmpty(e))
+                    {
+                        float x = ball.x - (paddle.x + paddle.width);
+
+                        float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 400));
+                        return slope;
+                    }
                 }
                 return 1;
-
-                #endregion
             }
         }
         private void updateCurve()
