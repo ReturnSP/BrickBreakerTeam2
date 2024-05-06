@@ -79,6 +79,7 @@ namespace BrickBreaker
                 {
                     textureList.Add(String64ToImage(texture.InnerText));
                 }
+                TextureApendix.Add(textureList);
             }
             return TextureApendix;
         }
@@ -112,7 +113,7 @@ namespace BrickBreaker
             return blockList;
         }
 
-        static void PaintBlocks(Graphics e, List<Block> blockList)
+        public static void PaintBlocks(Graphics e, List<Block> blockList)
         {
             foreach(Block block in blockList)
             {
@@ -130,7 +131,7 @@ namespace BrickBreaker
             }
         }
 
-        static void BlockHealthLoss(Block block)
+        public static void BlockHealthLoss(Block block)
         {
             block.hp --;
             block.currentTexture ++;
