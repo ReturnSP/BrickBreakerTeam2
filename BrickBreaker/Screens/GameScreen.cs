@@ -65,6 +65,7 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
+            blocks = Block.LoadLevel("level0");
             OnStart();
         }
 
@@ -94,22 +95,6 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
 
             updateBallStorage();
-
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
-
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
-
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
-            }
-
-            #endregion
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -367,11 +352,7 @@ namespace BrickBreaker
             e.Graphics.FillRegion(Brushes.Red, leftPaddleRegion);
             e.Graphics.FillRegion(Brushes.Red, rightPaddleRegion);
 
-            // Draws blocks
-            foreach (Block b in blocks)
-            {
-                e.Graphics.FillRectangle(blockBrush, b.hitBox.X, b.hitBox.Y, b.hitBox.Width, b.hitBox.Height);
-            }
+            Block.PaintBlocks(e.Graphics, blocks);
 
             // Draws ball
            e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);

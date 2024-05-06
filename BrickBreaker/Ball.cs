@@ -29,8 +29,8 @@ namespace BrickBreaker
 
         public bool BlockCollision(Block b)
         {
-            Rectangle blockRec = b.hitBox;
-            Rectangle ballRec = new Rectangle(x, y, size, size);
+            RectangleF blockRec = b.hitBox;
+            RectangleF ballRec = new RectangleF(x, y, size, size);
 
             if (ballRec.IntersectsWith(blockRec))
             {

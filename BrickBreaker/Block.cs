@@ -28,9 +28,9 @@ namespace BrickBreaker
 
         public int texturetype { get; set; }
 
-        public Block(int _x, int _y, int _width, int _hight, int _hp, bool _vines, List<Image> _textures)
+        public Block(int _x, int _y, int _width, int _height, int _hp, bool _vines, List<Image> _textures)
         {
-            hitBox = new Rectangle(_x, _y, _width, _hight);
+            hitBox = new Rectangle(_x, _y, _width, _height);
             hp = _hp;
             vines = _vines;
             textures = _textures;
@@ -78,6 +78,7 @@ namespace BrickBreaker
                 {
                     textureList.Add(String64ToImage(texture.InnerText));
                 }
+                TextureApendix.Add(textureList);
             }
             return TextureApendix;
         }
@@ -111,7 +112,7 @@ namespace BrickBreaker
             return blockList;
         }
 
-        static void PaintBlocks(Graphics e, List<Block> blockList)
+        static public void PaintBlocks(Graphics e, List<Block> blockList)
         {
             foreach(Block block in blockList)
             {
