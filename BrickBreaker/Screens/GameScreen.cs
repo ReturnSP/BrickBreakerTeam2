@@ -46,6 +46,8 @@ namespace BrickBreaker
 
         Region[] checkRegions = new Region[] {null, null, null, null };
 
+        bool restartLevel = false;
+
         //cursor Pos
 
         public static int lastCursorX;
@@ -87,7 +89,7 @@ namespace BrickBreaker
 
             // Creates a new ball
             float xSpeed = 5;
-            float ySpeed = 1;
+            float ySpeed = -1;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
 
@@ -127,6 +129,12 @@ namespace BrickBreaker
                 case Keys.K:
                     slow = true;
                     break;
+                case Keys.Space:
+                    if (!restartLevel)
+                    {
+                        restartLevel = true;
+                    }
+                    break;
                 default:
                     break;
             }
@@ -159,8 +167,6 @@ namespace BrickBreaker
         {
             Point mouse = this.PointToClient(Cursor.Position);
 
-
-            int brickTime = 0;
             // Move the paddle
             if (leftArrowDown && paddle.x > 20)
             {
@@ -175,91 +181,100 @@ namespace BrickBreaker
                 mouseMoving = false;
             }
 
-
-            if (!mouseMoving)
-            { 
-                Cursor.Position = this.PointToScreen(new Point(paddle.x + (paddle.width / 2), paddle.y + (paddle.height / 2)));
+            if (!restartLevel)
+            {
+                ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
+                ball.y = paddle.y - 25;
             }
             else
             {
-                paddle.x = mouse.X - (paddle.width / 2);
-                updateCurve();
+                int brickTime = 0;
 
-                if (mouse.X < paddle.width / 2 + 20)
+
+                if (!mouseMoving)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(paddle.x + (paddle.width / 2), paddle.y + (paddle.height / 2)));
                 }
-
-                if (mouse.X > this.Width - paddle.width / 2 - 20)
+                else
                 {
-                    Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20, paddle.y + paddle.height / 2));
-                }
-            }
+                    paddle.x = mouse.X - (paddle.width / 2);
+                    updateCurve();
 
-
-
-            // Move ball
-            ball.Move();
-
-            // Check for collision with top and side walls
-            ball.WallCollision(this);
-
-            // Check for ball hitting bottom of screen
-            if (ball.BottomCollision(this))
-            {
-                lives--;
-
-                // Moves the ball back to origin
-                ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 85;
-
-                if (lives == 0)
-                {
-                    gameTimer.Enabled = false;
-                    OnEnd();
-                }
-            }
-
-            updateBallStorage();
-            derivitive();
-
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle);
-
-            // Check if ball has collided with any blocks
-            foreach (Block b in blocks)
-            {
-                if (brickTime == 0)
-                {
-                    if (ball.BlockCollision(b))
+                    if (mouse.X < paddle.width / 2 + 20)
                     {
-                        blocks.Remove(b);
+                        Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20, paddle.y + paddle.height / 2));
+                    }
 
-                        brickTime = 3;
-
-                        if (blocks.Count == 0)
-                        {
-                            gameTimer.Enabled = false;
-                            OnEnd();
-                        }
-
-                        break;
+                    if (mouse.X > this.Width - paddle.width / 2 - 20)
+                    {
+                        Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20, paddle.y + paddle.height / 2));
                     }
                 }
+
+                // Move ball
+                ball.Move();
+
+                // Check for collision with top and side walls
+                ball.WallCollision(this);
+
+                // Check for ball hitting bottom of screen
+                if (ball.BottomCollision(this))
+                {
+                    ball.ySpeed *= -1;
+                    lives--;
+                    restartLevel = false;
+
+                    // Moves the ball back to origin
+                    ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
+                    ball.y = (this.Height - paddle.height) - 85;
+
+                    if (lives == 0)
+                    {
+                        gameTimer.Enabled = false;
+                        OnEnd();
+                    }
+                }
+
+                updateBallStorage();
+                derivitive();
+
+                // Check for collision of ball with paddle, (incl. paddle movement)
+                ball.PaddleCollision(paddle);
+
+                // Check if ball has collided with any blocks
+                foreach (Block b in blocks)
+                {
+                    if (brickTime == 0)
+                    {
+                        if (ball.BlockCollision(b))
+                        {
+                            blocks.Remove(b);
+
+                            brickTime = 3;
+
+                            if (blocks.Count == 0)
+                            {
+                                gameTimer.Enabled = false;
+                                OnEnd();
+                            }
+
+                            break;
+                        }
+                    }
+                }
+
+                if (slow)
+                {
+                    gameTimer.Interval = 200;
+                }
+                else
+                {
+                    gameTimer.Interval = 1;
+                }
+
+                brickTime--;
             }
-
-            if (slow)
-            {
-                gameTimer.Interval = 200;
-            }
-            else
-            {
-                gameTimer.Interval = 1;
-            }
-
-            brickTime--;
-
-
+           
             //redraw the screen
             Refresh();
         }
@@ -268,7 +283,7 @@ namespace BrickBreaker
         {
             using (Graphics e = this.CreateGraphics())
             {
-                if (ball.x < paddle.x + (paddle.width / 2))
+                if (ball.x < paddle.x + (paddle.width / 2)) //checks for left collision
                 {
                     checkRegions[0] = ballRegion;
                     checkRegions[1] = leftPaddleRegion;
@@ -282,13 +297,13 @@ namespace BrickBreaker
                         return slope;
                     }
                 }
-                else
+                else //checks for right collision
                 {
                     checkRegions[0] = ballRegion;
                     checkRegions[1] = rightPaddleRegion;
                     checkRegions[0].Intersect(checkRegions[1]);
 
-                    if (!checkRegions[0].IsEmpty(e))
+                    if (!checkRegions[0].IsEmpty(e)) 
                     {
                         float x = ball.x - (paddle.x + paddle.width);
 
@@ -359,8 +374,8 @@ namespace BrickBreaker
             }
 
             // Draws ball
-           // e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
-           e.Graphics.FillRegion(Brushes.LightBlue, ballRegion);
+           e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
+           //e.Graphics.FillRegion(Brushes.LightBlue, ballRegion);
             // test
             e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
         }
