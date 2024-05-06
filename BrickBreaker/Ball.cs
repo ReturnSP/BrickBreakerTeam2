@@ -6,7 +6,7 @@ namespace BrickBreaker
 {
     public class Ball
     {
-        public int x, y, xSpeed, ySpeed, size;
+        public float x, y, xSpeed, ySpeed, size;
         public Color colour;
 
         public static Random rand = new Random();
@@ -66,13 +66,22 @@ namespace BrickBreaker
 
         public void PaddleCollision(Paddle p)
         {
-            Rectangle ballRec = new Rectangle(x, y, size, size);
-            Rectangle paddleRec = new Rectangle(p.x, p.y, p.width, p.height);
+            RectangleF ballRec = new RectangleF(x, y, size, size);
+            RectangleF paddleRec = new RectangleF(p.x, p.y, p.width, p.height);
 
             if (ballRec.IntersectsWith(paddleRec))
             {
                 ySpeed *= -1;
                 y = p.y - size;
+                ySpeed -= (float)0.05;
+                if (xSpeed > 0)
+                {
+                    xSpeed += (float)0.05;
+                }
+                else
+                {
+                    xSpeed -= (float)0.05;
+                }
             }
         }
 
