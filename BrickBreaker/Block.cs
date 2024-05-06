@@ -46,7 +46,7 @@ namespace BrickBreaker
             //}
         }
 
-        public List<Block> BlockListCreator (XmlDocument level)
+        static public List<Block> BlockListCreator (XmlDocument level)
         {
             List<Block> bricks = new List<Block>();
             List<List<Image>> textureApendix = TextureApendixCreator(level);
@@ -66,7 +66,7 @@ namespace BrickBreaker
             return bricks;
         }
 
-        public List<List<Image>> TextureApendixCreator (XmlDocument level)
+        static public List<List<Image>> TextureApendixCreator (XmlDocument level)
         {
             List<List<Image>> TextureApendix = new List<List<Image>>();
             XmlNodeList textureNodeListOfLists = level.SelectNodes("//textures");
@@ -82,7 +82,7 @@ namespace BrickBreaker
             return TextureApendix;
         }
 
-        public Image String64ToImage (string imageString64)
+        static public Image String64ToImage (string imageString64)
         {
             byte[] imageBytes = Convert.FromBase64String(imageString64);
             
@@ -97,7 +97,7 @@ namespace BrickBreaker
 
         static public List<Block> LoadLevel(string levelName)
         {
-            XmlDocument loadedLevel;
+            XmlDocument loadedLevel = new XmlDocument();
             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
             string parent1 = Directory.GetParent(currentDirectory).FullName;
@@ -105,7 +105,8 @@ namespace BrickBreaker
             string parent3 = Directory.GetParent(parent2).FullName;
 
             string fullPath = Path.Combine(parent3, "Resources", levelName + ".xml");
-            List<Block> blockList = BlockListCreator(loadedLevel.Load(fullPath));
+            loadedLevel.Load(fullPath);
+            List<Block> blockList = BlockListCreator(loadedLevel);
 
             return blockList;
         }
@@ -114,7 +115,7 @@ namespace BrickBreaker
         {
             foreach(Block block in blockList)
             {
-                e.DrawImage(block.texture);
+                e.DrawImage(block.texture, new PointF(block.hitBox.X, block.hitBox.Y));
             }
         }
     }
