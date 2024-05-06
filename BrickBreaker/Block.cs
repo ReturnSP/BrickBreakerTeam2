@@ -23,19 +23,20 @@ namespace BrickBreaker
         public Rectangle hitBox { get; set;}
         public List<Image> textures { get; set;}
         public Image texture { get; set; }
+        public int currentTexture { get; set; }
 
         public static Random rand = new Random();
 
         public int texturetype { get; set; }
 
-        public Block(int _x, int _y, int _width, int _hight, int _hp, bool _vines, List<Image> _textures)
+        public Block(int _x, int _y, int _width, int _height, int _hp, bool _vines, List<Image> _textures)
         {
-            hitBox = new Rectangle(_x, _y, _width, _hight);
+            hitBox = new Rectangle(_x, _y, _width, _height);
             hp = _hp;
             vines = _vines;
             textures = _textures;
             texture = _textures[0];
-
+            currentTexture = 0;
             //byte[] imageBytes = Convert.FromBase64String(image);
             //
             //// Create a memory stream from the byte array
@@ -46,7 +47,7 @@ namespace BrickBreaker
             //}
         }
 
-        public List<Block> BlockListCreator (XmlDocument level)
+        static public List<Block> BlockListCreator (XmlDocument level)
         {
             List<Block> bricks = new List<Block>();
             List<List<Image>> textureApendix = TextureApendixCreator(level);
@@ -66,7 +67,7 @@ namespace BrickBreaker
             return bricks;
         }
 
-        public List<List<Image>> TextureApendixCreator (XmlDocument level)
+        static public List<List<Image>> TextureApendixCreator (XmlDocument level)
         {
             List<List<Image>> TextureApendix = new List<List<Image>>();
             XmlNodeList textureNodeListOfLists = level.SelectNodes("//textures");
@@ -82,7 +83,7 @@ namespace BrickBreaker
             return TextureApendix;
         }
 
-        public Image String64ToImage (string imageString64)
+        static public Image String64ToImage (string imageString64)
         {
             byte[] imageBytes = Convert.FromBase64String(imageString64);
             
@@ -97,7 +98,7 @@ namespace BrickBreaker
 
         static public List<Block> LoadLevel(string levelName)
         {
-            XmlDocument loadedLevel;
+            XmlDocument loadedLevel = new XmlDocument();
             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
             string parent1 = Directory.GetParent(currentDirectory).FullName;
@@ -105,7 +106,8 @@ namespace BrickBreaker
             string parent3 = Directory.GetParent(parent2).FullName;
 
             string fullPath = Path.Combine(parent3, "Resources", levelName + ".xml");
-            List<Block> blockList = BlockListCreator(loadedLevel.Load(fullPath));
+            loadedLevel.Load(fullPath);
+            List<Block> blockList = BlockListCreator(loadedLevel);
 
             return blockList;
         }
@@ -114,8 +116,25 @@ namespace BrickBreaker
         {
             foreach(Block block in blockList)
             {
-                e.DrawImage(block.texture);
+                Rectangle hitbox = block.hitBox;
+                Bitmap displayImage = new Bitmap(block.texture);
+
+                Bitmap resizedBitmap = new Bitmap(hitbox.Width, hitbox.Height);
+
+                using (Graphics g = Graphics.FromImage(resizedBitmap))
+                {
+                    g.DrawImage(displayImage, new Rectangle(0, 0, hitbox.Width, hitbox.Height));
+                }
+                displayImage = resizedBitmap;
+                e.DrawImage(displayImage, new Point(hitbox.X, hitbox.Y));
             }
+        }
+
+        static void BlockHealthLoss(Block block)
+        {
+            block.hp --;
+            block.currentTexture ++;
+            block.texture = block.textures[block.currentTexture];
         }
     }
 }
