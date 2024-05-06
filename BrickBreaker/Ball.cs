@@ -29,32 +29,32 @@ namespace BrickBreaker
 
         public bool BlockCollision(Block b)
         {
-            RectangleF blockRec = new RectangleF(b.x, b.y, b.width, b.height);
-            RectangleF ballRec = new RectangleF(x, y, size, size);
+            Rectangle blockRec = b.hitBox;
+            Rectangle ballRec = new Rectangle(x, y, size, size);
 
             if (ballRec.IntersectsWith(blockRec))
             {
-                if ((x < b.x - size + 8 || x > b.x + b.width - 8) && (y > b.y - size || y < b.y + b.width - 8))
+                if ((x < b.hitBox.X - size + 8 || x > b.hitBox.X + b.hitBox.Width - 8) && (y > b.hitBox.Y - size || y < b.hitBox.Y + b.hitBox.Width - 8))
                 {
                     if (xSpeed > 0)
                     {
-                        x = b.x - size;
+                        x = b.hitBox.X - size;
                     }
                     else
                     {
-                        x = b.x + b.width;
+                        x = b.hitBox.X + b.hitBox.Width;
                     }
                     xSpeed *= -1;
                 }
-                else if (x > b.x - size - 8 || x < b.x + b.width - 8)
+                else if (x > b.hitBox.X - size - 8 || x < b.hitBox.X + b.hitBox.Width - 8)
                 {
                     if (ySpeed > 0)
                     {
-                        y = b.y - size;
+                        y = b.hitBox.Y - size;
                     }
                     else
                     {
-                        y = b.y + b.height; 
+                        y = b.hitBox.Y + b.hitBox.Height; 
                     }
 
                     ySpeed *= -1;
