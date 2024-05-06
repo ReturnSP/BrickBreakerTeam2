@@ -113,6 +113,7 @@ namespace BrickBreaker
             return blockList;
         }
 
+
         public static void PaintBlocks(Graphics e, List<Block> blockList)
         {
             foreach(Block block in blockList)
