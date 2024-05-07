@@ -54,11 +54,11 @@ namespace BrickBreaker
             XmlNodeList blockStrings = level.SelectNodes("//brick");
             foreach (XmlNode brickInfo in blockStrings)
             {
-                XmlNode brickRecatnagle = brickInfo.SelectSingleNode("//rectangle");
-                int x = Convert.ToInt32(brickRecatnagle.SelectSingleNode("x").InnerText);
-                int y = Convert.ToInt32(brickRecatnagle.SelectSingleNode("y").InnerText);
-                int width = Convert.ToInt32(brickRecatnagle.SelectSingleNode("width").InnerText);
-                int hight = Convert.ToInt32(brickRecatnagle.SelectSingleNode("hight").InnerText);
+                XmlNode brickRectangle = brickInfo.SelectSingleNode("//rectangle");
+                int x = Convert.ToInt32(brickRectangle.SelectSingleNode("x").InnerText);
+                int y = Convert.ToInt32(brickRectangle.SelectSingleNode("y").InnerText);
+                int width = Convert.ToInt32(brickRectangle.SelectSingleNode("width").InnerText);
+                int hight = Convert.ToInt32(brickRectangle.SelectSingleNode("hight").InnerText);
                 int hp = Convert.ToInt32(brickInfo.SelectSingleNode("hp").InnerText);
                 int type = Convert.ToInt32(brickInfo.SelectSingleNode("brickType").InnerText);
                 bool vines = Convert.ToBoolean(brickInfo.SelectSingleNode("vines").InnerText);
