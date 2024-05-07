@@ -166,6 +166,26 @@ namespace BrickBreaker
                 mouseMoving = false;
             }
 
+            if (!mouseMoving)
+            {
+                Cursor.Position = this.PointToScreen(new Point(paddle.x + (paddle.width / 2), paddle.y + (paddle.height / 2)));
+            }
+            else
+            {
+                paddle.x = mouse.X - (paddle.width / 2);
+                updateCurve();
+
+                if (mouse.X < paddle.width / 2 + 20)
+                {
+                    Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20, paddle.y + paddle.height / 2));
+                }
+
+                if (mouse.X > this.Width - paddle.width / 2 - 20)
+                {
+                    Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20, paddle.y + paddle.height / 2));
+                }
+            }
+
             if (!restartLevel)
             {
                 ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
@@ -174,27 +194,6 @@ namespace BrickBreaker
             else
             {
                 int brickTime = 0;
-
-
-                if (!mouseMoving)
-                {
-                    Cursor.Position = this.PointToScreen(new Point(paddle.x + (paddle.width / 2), paddle.y + (paddle.height / 2)));
-                }
-                else
-                {
-                    paddle.x = mouse.X - (paddle.width / 2);
-                    updateCurve();
-
-                    if (mouse.X < paddle.width / 2 + 20)
-                    {
-                        Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20, paddle.y + paddle.height / 2));
-                    }
-
-                    if (mouse.X > this.Width - paddle.width / 2 - 20)
-                    {
-                        Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20, paddle.y + paddle.height / 2));
-                    }
-                }
 
                 // Move ball
                 ball.Move();

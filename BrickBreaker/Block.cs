@@ -52,17 +52,32 @@ namespace BrickBreaker
             List<Block> bricks = new List<Block>();
             List<List<Image>> textureApendix = TextureApendixCreator(level);
             XmlNodeList blockStrings = level.SelectNodes("//brick");
+            XmlNodeList hitboxStrings = level.SelectNodes("//rectangle");
+            List<Rectangle> hitboxes = new List<Rectangle>(); 
+            int x = 0;
+            int y = 0;
+            int width = 0;
+            int height = 0;
+
+            foreach (XmlNode hitboxInfo in hitboxStrings)
+            {
+                x = Convert.ToInt32(hitboxInfo.SelectSingleNode("x").InnerText);
+                y = Convert.ToInt32(hitboxInfo.SelectSingleNode("y").InnerText);
+                width = Convert.ToInt32(hitboxInfo.SelectSingleNode("width").InnerText);
+                height = Convert.ToInt32(hitboxInfo.SelectSingleNode("hight").InnerText);
+
+                hitboxes.Add(new Rectangle (x, y, width, height));
+            }
+
+            int index = 0;
             foreach (XmlNode brickInfo in blockStrings)
             {
-                XmlNode brickRectangle = brickInfo.SelectSingleNode("//rectangle");
-                int x = Convert.ToInt32(brickRectangle.SelectSingleNode("x").InnerText);
-                int y = Convert.ToInt32(brickRectangle.SelectSingleNode("y").InnerText);
-                int width = Convert.ToInt32(brickRectangle.SelectSingleNode("width").InnerText);
-                int hight = Convert.ToInt32(brickRectangle.SelectSingleNode("hight").InnerText);
                 int hp = Convert.ToInt32(brickInfo.SelectSingleNode("hp").InnerText);
                 int type = Convert.ToInt32(brickInfo.SelectSingleNode("brickType").InnerText);
                 bool vines = Convert.ToBoolean(brickInfo.SelectSingleNode("vines").InnerText);
-                bricks.Add(new Block(x, y, width, hight, hp, vines, textureApendix[type]));
+                bricks.Add(new Block(hitboxes[index].X, hitboxes[index].Y, hitboxes[index].Width, 
+                hitboxes[index].Height, hp, vines, textureApendix[type]));
+                index++;
             }
             return bricks;
         }
@@ -129,6 +144,8 @@ namespace BrickBreaker
                 }
                 displayImage = resizedBitmap;
                 e.DrawImage(displayImage, new Point(hitbox.X, hitbox.Y));
+                    displayImage.Dispose();
+                resizedBitmap.Dispose();
             }
         }
 
