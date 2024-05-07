@@ -150,5 +150,30 @@ namespace BrickBreaker
             block.currentTexture ++;
             block.texture = block.textures[block.currentTexture];
         }
+        public static PointF RotatePoint(PointF point, PointF pivot, double radians)
+        {
+            var cosTheta = Math.Cos(radians);
+            var sinTheta = Math.Sin(radians);
+
+            var x = (cosTheta * (point.X - pivot.X) - sinTheta * (point.Y - pivot.Y) + pivot.X);
+            var y = (sinTheta * (point.X - pivot.X) + cosTheta * (point.Y - pivot.Y) + pivot.Y);
+
+            return new PointF((float)x, (float)y);
+        }
+        public static PointF LineScaler(PointF startPoint, PointF endPoint, float fixedLineLength)
+        {
+            float dx = endPoint.X - startPoint.X;
+            float dy = endPoint.Y - startPoint.Y;
+            float length = (float)Math.Sqrt(dx * dx + dy * dy);
+
+            float normalizedDx = dx / length;
+            float normalizedDy = dy / length;
+
+            // Calculate the scaled end point to achieve the fixed line length
+            float scaledEndX = startPoint.X + normalizedDx * fixedLineLength;
+            float scaledEndY = startPoint.Y + normalizedDy * fixedLineLength;
+            return new PointF(scaledEndX, scaledEndY);
+        }
+
     }
 }
