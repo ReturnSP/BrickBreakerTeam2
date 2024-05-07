@@ -136,15 +136,10 @@ namespace BrickBreaker
                 Rectangle hitbox = block.hitBox;
                 Bitmap displayImage = new Bitmap(block.texture);
 
-                Bitmap resizedBitmap = new Bitmap(hitbox.Width, hitbox.Height);
+                Bitmap resizedBitmap = new Bitmap(displayImage, hitbox.Width, hitbox.Height);
 
-                using (Graphics g = Graphics.FromImage(resizedBitmap))
-                {
-                    g.DrawImage(displayImage, new Rectangle(0, 0, hitbox.Width, hitbox.Height));
-                }
-                displayImage = resizedBitmap;
-                e.DrawImage(displayImage, new Point(hitbox.X, hitbox.Y));
-                    displayImage.Dispose();
+                e.DrawImage(resizedBitmap, new Point(hitbox.X, hitbox.Y));
+                displayImage.Dispose();
                 resizedBitmap.Dispose();
             }
         }
