@@ -279,7 +279,7 @@ namespace BrickBreaker
                     {
                         float x = ball.x + ball.size - paddle.x;
 
-                        float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 400));
+                        float slope = (float)(-x / Math.Sqrt(400 - Math.Pow(x, 2)));
                         return slope;
                     }
                 }
