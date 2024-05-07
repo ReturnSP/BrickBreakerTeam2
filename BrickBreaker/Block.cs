@@ -23,6 +23,7 @@ namespace BrickBreaker
         public Rectangle hitBox { get; set;}
         public List<Image> textures { get; set;}
         public Image texture { get; set; }
+        public int currentTexture { get; set; }
 
         public static Random rand = new Random();
 
@@ -35,7 +36,7 @@ namespace BrickBreaker
             vines = _vines;
             textures = _textures;
             texture = _textures[0];
-
+            currentTexture = 0;
             //byte[] imageBytes = Convert.FromBase64String(image);
             //
             //// Create a memory stream from the byte array
@@ -112,12 +113,30 @@ namespace BrickBreaker
             return blockList;
         }
 
-        static public void PaintBlocks(Graphics e, List<Block> blockList)
+
+        public static void PaintBlocks(Graphics e, List<Block> blockList)
         {
             foreach(Block block in blockList)
             {
-                e.DrawImage(block.texture, new PointF(block.hitBox.X, block.hitBox.Y));
+                Rectangle hitbox = block.hitBox;
+                Bitmap displayImage = new Bitmap(block.texture);
+
+                Bitmap resizedBitmap = new Bitmap(hitbox.Width, hitbox.Height);
+
+                using (Graphics g = Graphics.FromImage(resizedBitmap))
+                {
+                    g.DrawImage(displayImage, new Rectangle(0, 0, hitbox.Width, hitbox.Height));
+                }
+                displayImage = resizedBitmap;
+                e.DrawImage(displayImage, new Point(hitbox.X, hitbox.Y));
             }
+        }
+
+        public static void BlockHealthLoss(Block block)
+        {
+            block.hp --;
+            block.currentTexture ++;
+            block.texture = block.textures[block.currentTexture];
         }
     }
 }
