@@ -89,10 +89,12 @@ namespace BrickBreaker
             int ballY = this.Height - paddle.height - 80;
 
             // Creates a new ball
-            float xSpeed = 5;
-            float ySpeed = -1;
+            float xSpeed = 15;
+            float ySpeed = -3;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
+
+            float m;
 
             updateBallStorage();
 
@@ -191,7 +193,7 @@ namespace BrickBreaker
                 ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
                 ball.y = paddle.y - 25;
             }
-            else
+            else //game running loop
             {
                 int brickTime = 0;
 
