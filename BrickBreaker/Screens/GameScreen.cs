@@ -135,6 +135,19 @@ namespace BrickBreaker
             #endregion
 
             // start the game engine loop
+
+
+            if (debuffs.Count != 0)
+            {
+                debuffs.Clear();
+            }
+            dB1 = false;
+            dB2 = false;
+            dB3 = false;
+            dB4 = false;
+            dB5 = false;
+
+
             gameTimer.Enabled = true;
         }
 

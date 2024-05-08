@@ -11,6 +11,7 @@ namespace BrickBreaker
     {
         public int debuff;
         public int x, y;
+        int speedUp;
 
         public Debuff(int _debuff, int _x, int _y)
         {
@@ -22,7 +23,11 @@ namespace BrickBreaker
 
         public void Spawn()
         {
-            y += 6;     
+            speedUp = speedUp + 2;
+            
+            double temp = 0.155 * ( 2 ^ speedUp);
+
+            y += Convert.ToInt16(temp);
         }
 
         public void PaddleCollision(Paddle p, Debuff d)

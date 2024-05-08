@@ -72,7 +72,7 @@ namespace BrickBreaker
                     {
                         o = 2;
                     }
-                    else if (check >= 50 && check < 51)
+                    else if (check == 50)
                     {
                         o = 3;
                     }
