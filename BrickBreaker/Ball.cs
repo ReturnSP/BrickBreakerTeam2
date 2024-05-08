@@ -54,13 +54,42 @@ namespace BrickBreaker
                     }
                     else
                     {
-                        y = b.hitBox.Y + b.hitBox.Height; 
+                        y = b.y + b.height;
                     }
-
                     ySpeed *= -1;
                 }
-            }
+                int chance = 101;
+                if (rand.Next(1, 100)  <= chance)
+                {
+                    int check = rand.Next(1, 100);
+                    int o = 0;
 
+                    if (check > 10 && check < 20)
+                    {
+                        o = 1;
+                    }
+                    else if (check > 20 && check < 50)
+                    {
+                        o = 2;
+                    }
+                    else if (check == 50)
+                    {
+                        o = 3;
+                    }
+                    else if (check > 51 && check < 62)
+                    {
+                        o = 4;
+                    }
+                    else 
+                    {
+                        o = 5;
+                    }
+
+                    Debuff newDebuff = new Debuff(o, b.x + b.width / 2, b.y + b.width);
+
+                    GameScreen.debuffs.Add(newDebuff);
+                }
+            }
             return blockRec.IntersectsWith(ballRec);
         }
 
