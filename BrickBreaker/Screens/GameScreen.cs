@@ -79,7 +79,9 @@ namespace BrickBreaker
 
         int mirroredLowerPaddleX;
 
-        int duration;
+        int duration1,duration2, duration3, duration4, duration5;
+
+        List<Rectangle> debuff1 = new List<Rectangle>();
         #endregion
 
         public GameScreen()
@@ -314,7 +316,32 @@ namespace BrickBreaker
 
             if (dB1)
             {
-
+                duration1++;
+                if(duration1 < 300)
+                {
+                    Random rand = new Random();
+                    Rectangle newRec = new Rectangle(rand.Next(1, this.Width - 20), rand.Next(1, this.Height - 20), 40, 40);
+                    debuff1.Add(newRec);
+                }
+                else if (duration1 < 600)
+                {
+                    try
+                    {
+                        debuff1.RemoveAt(debuff1.Count - 1);
+                    }
+                    catch
+                    {
+                        debuff1.Clear();
+                    }
+                    
+                }
+                else
+                {
+                    duration1 = 0;
+                    dB1 = false;
+                }
+                
+                
             }
 
             if (dB2)
@@ -336,8 +363,8 @@ namespace BrickBreaker
 
             if (dB5)
             {
-                duration++;
-                if (duration < 3000)
+                duration5++;
+                if (duration5 < 3000)
                 {
                     //mirror ball
                     mirroredBallX = this.Width - ball.x - ball.size;
@@ -349,7 +376,7 @@ namespace BrickBreaker
                 else
                 {
                     dB5 = false;
-                    duration = 0;
+                    duration5 = 0;
                 }
                 
             }
@@ -481,7 +508,14 @@ namespace BrickBreaker
                 e.Graphics.FillRegion(paddleBrush, rightPaddleRegion);
             }
             
+            if (dB1)
+            {
+                foreach (Rectangle r in debuff1)
+                {
+                    e.Graphics.FillEllipse(Brushes.White, r.X, r.Y, r.Width, r.Height);
+                }
 
+            }
 
 
            // e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
