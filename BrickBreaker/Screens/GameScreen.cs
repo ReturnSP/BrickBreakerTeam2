@@ -232,10 +232,17 @@ namespace BrickBreaker
                     {
                         if (ball.BlockCollision(b))
                         {
-                            blocks.Remove(b);
-
+                            b.hp--;
+                            if (b.hp == 0)
+                            {
+                                blocks.Remove(b);
+                            }
+                            else
+                            {
+                                b.currentTexture++;
+                                b.texture = b.textures[b.currentTexture];
+                            }
                             brickTime = 3;
-
                             if (blocks.Count == 0)
                             {
                                 gameTimer.Enabled = false;

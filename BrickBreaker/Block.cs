@@ -144,12 +144,23 @@ namespace BrickBreaker
             }
         }
 
-        public static void BlockHealthLoss(Block block)
+        public static void  BlockHealthLoss(Block block, List<Block> blockList)
         {
             block.hp --;
+            if (block.hp == 0)
+            {
+                BreakBlock(blockList);
+            }
             block.currentTexture ++;
             block.texture = block.textures[block.currentTexture];
         }
+        
+        public static void BreakBlock(List<Block> blockList)
+        {
+
+        }
+
+
         public static PointF RotatePoint(PointF point, PointF pivot, double radians)
         {
             var cosTheta = Math.Cos(radians);
