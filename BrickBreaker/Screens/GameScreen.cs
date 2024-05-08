@@ -55,6 +55,27 @@ namespace BrickBreaker
         //mouse move
         bool mouseMoving = false;
 
+        //debuff list
+
+        public static List<Debuff> debuffs = new List<Debuff>();
+
+        // debuff collected
+
+       public static bool debuffCollected = false;
+
+       public static Debuff SDC;
+
+        // debuff? which one
+
+        public static bool dB1, dB2, dB3, dB4, dB5 = false;
+
+        int mirroredBallX;
+
+        int mirroredPaddleX;
+
+        int mirroredLowerPaddleX;
+
+        int duration;
         #endregion
 
         public GameScreen()
@@ -176,7 +197,7 @@ namespace BrickBreaker
 
 
             if (!mouseMoving)
-            { 
+            {
                 Cursor.Position = this.PointToScreen(new Point(paddle.x + (paddle.width / 2), paddle.y + (paddle.height / 2)));
             }
             else
@@ -195,6 +216,16 @@ namespace BrickBreaker
                     Cursor.Position = this.PointToScreen(new Point(this.Width - lowerPaddle.width / 2, paddle.y + paddle.height / 2));
                 }
             }
+
+
+            //funny mode
+            //Random random = new Random();
+
+            //if (random.Next(1, 1000000) == 10)
+            //{
+            //    ball.xSpeed = 30;
+            //    ball.ySpeed = 0;
+            //}
 
 
 
@@ -229,6 +260,7 @@ namespace BrickBreaker
                 if (brickTime == 0)
                 {
                     if (ball.BlockCollision(b))
+
                     {
                         blocks.Remove(b);
 
@@ -245,6 +277,17 @@ namespace BrickBreaker
                 }
             }
 
+            foreach (Debuff d in debuffs)
+            {
+                d.PaddleCollision(paddle, d);
+            }
+            if (debuffCollected)
+            {
+                debuffs.Remove(SDC);
+                debuffCollected = false;
+            }
+
+
             if (slow)
             {
                 gameTimer.Interval = 200;
@@ -255,6 +298,67 @@ namespace BrickBreaker
             }
 
             brickTime--;
+
+            if (debuffs.Count != 0)
+            {
+                foreach (Debuff d in debuffs)
+                {
+                    d.Spawn();
+                }
+                for (int i = 0; i < debuffs.Count; i++)
+                {
+                    if(debuffs[i].y > this.Bottom)
+                    {
+                        debuffs.RemoveAt(i);
+                    }
+                }
+            }
+
+            //debuffs
+
+            if (dB1)
+            {
+
+            }
+
+            if (dB2)
+            {
+
+            }
+
+            if (dB3)
+            {
+                //send to game over screen in future
+                dB3 = false;
+                Application.Exit();
+            }
+
+            if (dB4)
+            {
+
+            }
+
+            if (dB5)
+            {
+                duration++;
+                if (duration < 3000)
+                {
+                    //mirror ball
+                    mirroredBallX = this.Width - ball.x - ball.size;
+                    //mirror paddle
+                    mirroredPaddleX = this.Width - paddle.x - paddle.width;
+
+                    mirroredLowerPaddleX = mirroredPaddleX - 10;
+                }
+                else
+                {
+                    dB5 = false;
+                    duration = 0;
+                }
+                
+            }
+                
+
 
             //redraw the screen
             Refresh();
@@ -311,8 +415,33 @@ namespace BrickBreaker
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
+            foreach (Debuff d in debuffs)
+            {
+                if (d.y < this.Bottom)
+                {
+                    e.Graphics.DrawRectangle(Pens.White, d.x, d.y, 10, 10);
+                }
+            }
+
             // Draws ball
             e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
+
+            if (dB5)
+            {
+                e.Graphics.FillEllipse(ballBrush, mirroredBallX, ball.y, ball.size, ball.size);
+
+                //fix paddle shape
+
+                e.Graphics.FillRectangle(paddleBrush, mirroredPaddleX, paddle.y, paddle.width, paddle.height);
+                e.Graphics.FillRectangle(paddleBrush, mirroredLowerPaddleX, lowerPaddle.y, lowerPaddle.width, lowerPaddle.height);
+
+                e.Graphics.FillRegion(paddleBrush, leftPaddleRegion);
+                e.Graphics.FillRegion(paddleBrush, rightPaddleRegion);
+            }
+            
+
+
+
             // test
             e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
         }
