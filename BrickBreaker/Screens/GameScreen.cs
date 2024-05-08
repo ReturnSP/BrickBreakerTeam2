@@ -73,7 +73,7 @@ namespace BrickBreaker
 
         public static bool dB1, dB2, dB3, dB4, dB5 = false;
 
-        int mirroredBallX;
+        float mirroredBallX;
 
         int mirroredPaddleX;
 

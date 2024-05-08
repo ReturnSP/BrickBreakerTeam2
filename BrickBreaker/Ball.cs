@@ -58,7 +58,8 @@ namespace BrickBreaker
                     }
                     ySpeed *= -1;
                 }
-                if (rand.Next(1, 100)  <= 5)
+                int chance = 101;
+                if (rand.Next(1, 100)  <= chance)
                 {
                     int check = rand.Next(1, 100);
                     int o = 0;
