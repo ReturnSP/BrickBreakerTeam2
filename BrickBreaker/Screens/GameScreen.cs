@@ -201,13 +201,13 @@ namespace BrickBreaker
 
             int brickTime = 0;
             // Move the paddle
-            if (leftArrowDown && paddle.x > 20)
+            if (leftArrowDown && paddle.x > 20 + LBarLabel.Width)
             {
                 paddle.Move("left");
                 updateCurve();
                 mouseMoving = false;
             }
-            if (rightArrowDown && paddle.x < (this.Width - paddle.width - 20))
+            if (rightArrowDown && paddle.x < (this.Width - paddle.width - 20 - RBarLabel.Width))
             {
                 paddle.Move("right");
                 updateCurve();
@@ -223,14 +223,14 @@ namespace BrickBreaker
                 paddle.x = mouse.X - (paddle.width / 2);
                 updateCurve();
 
-                if (mouse.X < paddle.width / 2 + 20)
+                if (mouse.X < paddle.width / 2 + 20 + LBarLabel.Width)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20 + LBarLabel.Width, paddle.y + paddle.height / 2));
                 }
 
-                if (mouse.X > this.Width - paddle.width / 2 - 20)
+                if (mouse.X > this.Width - paddle.width / 2 - 20 - RBarLabel.Width)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20 - RBarLabel.Width, paddle.y + paddle.height / 2));
                 }
             }
 
@@ -247,7 +247,24 @@ namespace BrickBreaker
                 ball.Move();
 
                 // Check for collision with top and side walls
-                ball.WallCollision(this);
+                // Collision with left wall
+                if (ball.x < LBarLabel.Width)
+                {
+                    ball.x = LBarLabel.Width + 2;
+                    ball.xSpeed *= -1;
+                }
+                // Collision with right wall
+                if (ball.x > (this.Width - ball.size - 102))
+                {
+                    ball.x = this.Width - ball.size - RBarLabel.Width - 2;
+                    ball.xSpeed *= -1;
+                }
+                // Collision with top wall
+                if (ball.y < 0)
+                {
+                    ball.y = 0;
+                    ball.ySpeed *= -1;
+                }
 
                 // Check for ball hitting bottom of screen
                 if (ball.BottomCollision(this))
