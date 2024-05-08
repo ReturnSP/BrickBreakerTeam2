@@ -267,6 +267,7 @@ namespace BrickBreaker
 
         private float derivitive()
         {
+            //bounce curve modelled in desmos, which can be found here: "https://www.desmos.com/calculator/emiewzq0xk"
             using (Graphics e = this.CreateGraphics())
             {
                 if (ball.x < paddle.x + (paddle.width / 2)) //checks for left collision
