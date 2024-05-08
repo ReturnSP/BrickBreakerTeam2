@@ -6,7 +6,7 @@ namespace BrickBreaker
 {
     public class Ball
     {
-        public int x, y, xSpeed, ySpeed, size;
+        public float x, y, xSpeed, ySpeed, size;
         public Color colour;
 
         public static Random rand = new Random();
@@ -29,12 +29,36 @@ namespace BrickBreaker
 
         public bool BlockCollision(Block b)
         {
-            Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
-            Rectangle ballRec = new Rectangle(x, y, size, size);
+            RectangleF blockRec = b.hitBox;
+            RectangleF ballRec = new RectangleF(x, y, size, size);
 
             if (ballRec.IntersectsWith(blockRec))
             {
-                ySpeed *= -1;
+                if ((x < b.hitBox.X - size + 8 || x > b.hitBox.X + b.hitBox.Width - 8) && (y > b.hitBox.Y - size || y < b.hitBox.Y + b.hitBox.Width - 8))
+                {
+                    if (xSpeed > 0)
+                    {
+                        x = b.hitBox.X - size;
+                    }
+                    else
+                    {
+                        x = b.hitBox.X + b.hitBox.Width;
+                    }
+                    xSpeed *= -1;
+                }
+                else if (x > b.hitBox.X - size - 8 || x < b.hitBox.X + b.hitBox.Width - 8)
+                {
+                    if (ySpeed > 0)
+                    {
+                        y = b.hitBox.Y - size;
+                    }
+                    else
+                    {
+                        y = b.hitBox.Y + b.hitBox.Height; 
+                    }
+
+                    ySpeed *= -1;
+                }
             }
 
             return blockRec.IntersectsWith(ballRec);
@@ -42,30 +66,43 @@ namespace BrickBreaker
 
         public void PaddleCollision(Paddle p)
         {
-            Rectangle ballRec = new Rectangle(x, y, size, size);
-            Rectangle paddleRec = new Rectangle(p.x, p.y, p.width, p.height);
+            RectangleF ballRec = new RectangleF(x, y, size, size);
+            RectangleF paddleRec = new RectangleF(p.x, p.y, p.width, p.height);
 
             if (ballRec.IntersectsWith(paddleRec))
             {
                 ySpeed *= -1;
+                y = p.y - size;
+                ySpeed -= (float)0.05;
+                if (xSpeed > 0)
+                {
+                    xSpeed += (float)0.05;
+                }
+                else
+                {
+                    xSpeed -= (float)0.05;
+                }
             }
         }
 
         public void WallCollision(UserControl UC)
         {
             // Collision with left wall
-            if (x <= 0)
+            if (x < 0)
             {
+                x = 0;
                 xSpeed *= -1;
             }
             // Collision with right wall
-            if (x >= (UC.Width - size))
+            if (x > (UC.Width - size))
             {
+                x = UC.Width - size;
                 xSpeed *= -1;
             }
             // Collision with top wall
-            if (y <= 2)
+            if (y < 0)
             {
+                y = 0;
                 ySpeed *= -1;
             }
         }
