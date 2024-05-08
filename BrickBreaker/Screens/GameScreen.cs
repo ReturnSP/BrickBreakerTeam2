@@ -42,6 +42,17 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
+
+            LBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            RBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            scoreGSLabel.BackColor = Color.FromArgb(80, 10, 10, 10);
+            scoreGSLabel.ForeColor = Color.FromArgb(100, 70, 70, 70);
+            heartLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            currentLevelLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            comboLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            heartAmountLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+
+
             OnStart();
         }
 
@@ -90,6 +101,7 @@ namespace BrickBreaker
 
             // start the game engine loop
             gameTimer.Enabled = true;
+
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

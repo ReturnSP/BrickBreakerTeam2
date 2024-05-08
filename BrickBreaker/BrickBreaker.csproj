@@ -73,8 +73,20 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Paddle.cs" />
+    <Compile Include="scareScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scareScreen.Designer.cs">
+      <DependentUpon>scareScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="deathScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deathScreen.Designer.cs">
+      <DependentUpon>deathScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -87,8 +99,17 @@
     <Compile Include="Screens\GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShopScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShopScreen.Designer.cs">
+      <DependentUpon>ShopScreen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scareScreen.resx">
+      <DependentUpon>scareScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -100,11 +121,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="deathScreen.resx">
+      <DependentUpon>deathScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShopScreen.resx">
+      <DependentUpon>ShopScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -133,7 +160,85 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\deathPit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\levelBackSet2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\levelBackSet1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sideBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buttons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barrr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barrrr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mainScreenBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scareAssBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\evilFace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unnamed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fire.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
