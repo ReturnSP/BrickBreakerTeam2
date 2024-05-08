@@ -12,6 +12,10 @@ namespace BrickBreaker
     {
         static void Main(string[] args)
         {
+
+            // When you enter a new level
+            // Trigger.function
+
             // Source root for sounds
             var soundsRoot = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\Sound";
             // Create new random
@@ -27,6 +31,42 @@ namespace BrickBreaker
             var active = new WindowsMediaPlayer();
             active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
             Console.ReadLine();
+
+            // While playing
+
+            // If brick is struck, play brickstrike noise
+            // if brick is broken, play brickbroken noise
+            // if paddle is hit, play paddlehit noise
+            // if wall is struck, play wallstrike noise
+            // If life is subtracted
+            // If HP < 2
+
+            //If button clicked
+
+            // If cont button is clicked
+            // If startbutton is clicked
+            // If purchasebutton is clicked
+            // If exit program button is clicked
+
+            // While within location
+
+            // While shop is entered
+            // While deathscreen is entered
+            // While menu screen is entered 
+
+            // Powerups collected
+
+            // If evilassskullmf
+            // If whiteboy
+            // if hindupeace
+            // If freaky
+            // If blessingofwar
+
+            // Moving on
+
+            // If complete level
+            // If beat game
+
 
             // Discarded code to keep for later
             //SoundPlayer player = new SoundPlayer(filePaths[choices]);
