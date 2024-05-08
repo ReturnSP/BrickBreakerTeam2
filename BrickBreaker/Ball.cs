@@ -29,28 +29,28 @@ namespace BrickBreaker
 
         public bool BlockCollision(Block b)
         {
-            RectangleF blockRec = new RectangleF(b.x, b.y, b.width, b.height);
+            RectangleF blockRec = b.hitBox;
             RectangleF ballRec = new RectangleF(x, y, size, size);
 
             if (ballRec.IntersectsWith(blockRec))
             {
-                if ((x < b.x - size + 8 || x > b.x + b.width - 8) && (y > b.y - size || y < b.y + b.width - 8))
+                if ((x < b.hitBox.X - size + 8 || x > b.hitBox.X + b.hitBox.Width - 8) && (y > b.hitBox.Y - size || y < b.hitBox.Y + b.hitBox.Width - 8))
                 {
                     if (xSpeed > 0)
                     {
-                        x = b.x - size;
+                        x = b.hitBox.X - size;
                     }
                     else
                     {
-                        x = b.x + b.width;
+                        x = b.hitBox.X + b.hitBox.Width;
                     }
                     xSpeed *= -1;
                 }
-                else if (x > b.x - size - 8 || x < b.x + b.width - 8)
+                else if (x > b.hitBox.X - size - 8 || x < b.hitBox.X + b.hitBox.Width - 8)
                 {
                     if (ySpeed > 0)
                     {
-                        y = b.y - size;
+                        y = b.hitBox.Y - size;
                     }
                     else
                     {
@@ -111,28 +111,6 @@ namespace BrickBreaker
                 {
                     xSpeed -= (float)0.05;
                 }
-            }
-        }
-
-        public void WallCollision(UserControl UC)
-        {
-            // Collision with left wall
-            if (x < 0)
-            {
-                x = 0;
-                xSpeed *= -1;
-            }
-            // Collision with right wall
-            if (x > (UC.Width - size))
-            {
-                x = UC.Width - size;
-                xSpeed *= -1;
-            }
-            // Collision with top wall
-            if (y < 0)
-            {
-                y = 0;
-                ySpeed *= -1;
             }
         }
 

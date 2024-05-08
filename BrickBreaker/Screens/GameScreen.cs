@@ -28,7 +28,6 @@ namespace BrickBreaker
 
         // Paddle and Ball objects
         Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
-        Paddle lowerPaddle;
         Ball ball;
 
         // list of all blocks for current level
@@ -46,6 +45,8 @@ namespace BrickBreaker
         Region rightPaddleRegion = new Region();
 
         Region[] checkRegions = new Region[] {null, null, null, null };
+
+        bool restartLevel = false;
 
         //cursor Pos
 
@@ -87,6 +88,15 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
+            LBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            RBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            scoreGSLabel.BackColor = Color.FromArgb(80, 10, 10, 10);
+            scoreGSLabel.ForeColor = Color.FromArgb(100, 70, 70, 70);
+            heartLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            currentLevelLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            comboLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            heartAmountLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
+            blocks = Block.LoadLevel("level0");
             OnStart();
         }
 
@@ -101,8 +111,7 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
 
             // setup starting paddle values and create paddle object
-            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 10, 8, Color.White);
-            lowerPaddle = new Paddle(paddle.x - 10, paddle.y + 10, paddle.width + 20, paddle.height, paddle.speed, Color.White);
+            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 20, 8, Color.White);
 
             updateCurve();
 
@@ -111,28 +120,14 @@ namespace BrickBreaker
             int ballY = this.Height - paddle.height - 80;
 
             // Creates a new ball
-            float xSpeed = 5;
-            float ySpeed = 1;
+            float xSpeed = 15;
+            float ySpeed = -3;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
 
+            float m;
+
             updateBallStorage();
-
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
-
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
-
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
-            }
-
-            #endregion
 
             // start the game engine loop
 
@@ -149,6 +144,7 @@ namespace BrickBreaker
 
 
             gameTimer.Enabled = true;
+
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -164,6 +160,12 @@ namespace BrickBreaker
                     break;
                 case Keys.K:
                     slow = true;
+                    break;
+                case Keys.Space:
+                    if (!restartLevel)
+                    {
+                        restartLevel = true;
+                    }
                     break;
                 default:
                     break;
@@ -199,21 +201,18 @@ namespace BrickBreaker
 
             int brickTime = 0;
             // Move the paddle
-            if (leftArrowDown && lowerPaddle.x > 1)
+            if (leftArrowDown && paddle.x > 20 + LBarLabel.Width)
             {
                 paddle.Move("left");
-                lowerPaddle.Move("left");
                 updateCurve();
                 mouseMoving = false;
             }
-            if (rightArrowDown && paddle.x < (this.Width - lowerPaddle.width + 9))
+            if (rightArrowDown && paddle.x < (this.Width - paddle.width - 20 - RBarLabel.Width))
             {
                 paddle.Move("right");
-                lowerPaddle.Move("right");
                 updateCurve();
                 mouseMoving = false;
             }
-
 
             if (!mouseMoving)
             {
@@ -222,68 +221,101 @@ namespace BrickBreaker
             else
             {
                 paddle.x = mouse.X - (paddle.width / 2);
-                lowerPaddle.x = paddle.x - 10;
                 updateCurve();
 
-                if (mouse.X < 0 + lowerPaddle.width / 2)
+                if (mouse.X < paddle.width / 2 + 20 + LBarLabel.Width)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(0 + lowerPaddle.width / 2, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20 + LBarLabel.Width, paddle.y + paddle.height / 2));
                 }
 
-                if (mouse.X > this.Width - lowerPaddle.width / 2)
+                if (mouse.X > this.Width - paddle.width / 2 - 20 - RBarLabel.Width)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(this.Width - lowerPaddle.width / 2, paddle.y + paddle.height / 2));
-                }
-            }
-
-
-
-            // Move ball
-            ball.Move();
-
-            // Check for collision with top and side walls
-            ball.WallCollision(this);
-
-            // Check for ball hitting bottom of screen
-            if (ball.BottomCollision(this))
-            {
-                lives--;
-
-                // Moves the ball back to origin
-                ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 85;
-
-                if (lives == 0)
-                {
-                    gameTimer.Enabled = false;
-                    OnEnd();
+                    Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20 - RBarLabel.Width, paddle.y + paddle.height / 2));
                 }
             }
 
-            updateBallStorage();
-            derivitive();
-
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle);
-
-            // Check if ball has collided with any blocks
-            foreach (Block b in blocks)
+            if (!restartLevel)
             {
-                if (brickTime == 0)
+                ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
+                ball.y = paddle.y - 25;
+            }
+            else //game running loop
+            {
+                int brickTime = 0;
+
+                // Move ball
+                ball.Move();
+
+                // Check for collision with top and side walls
+                // Collision with left wall
+                if (ball.x < LBarLabel.Width)
                 {
-                    if (ball.BlockCollision(b))
+                    ball.x = LBarLabel.Width + 2;
+                    ball.xSpeed *= -1;
+                }
+                // Collision with right wall
+                if (ball.x > (this.Width - ball.size - 102))
+                {
+                    ball.x = this.Width - ball.size - RBarLabel.Width - 2;
+                    ball.xSpeed *= -1;
+                }
+                // Collision with top wall
+                if (ball.y < 0)
+                {
+                    ball.y = 0;
+                    ball.ySpeed *= -1;
+                }
+
+                // Check for ball hitting bottom of screen
+                if (ball.BottomCollision(this))
+                {
+                    ball.ySpeed *= -1;
+                    lives--;
+                    restartLevel = false;
+
+                    // Moves the ball back to origin
+                    ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
+                    ball.y = (this.Height - paddle.height) - 85;
+
+                    if (lives == 0)
                     {
-                        blocks.Remove(b);
+                        gameTimer.Enabled = false;
+                        OnEnd();
+                    }
+                }
 
-                        brickTime = 3;
+                updateBallStorage();
+                derivitive();
 
-                        if (blocks.Count == 0)
+                // Check for collision of ball with paddle, (incl. paddle movement)
+                ball.PaddleCollision(paddle);
+
+                // Check if ball has collided with any blocks
+                foreach (Block b in blocks)
+                {
+                    if (brickTime == 0)
+                    {
+                        if (ball.BlockCollision(b))
                         {
-                            gameTimer.Enabled = false;
-                            OnEnd();
-                        }
+                            b.hp--;
+                            if (b.hp == 0)
+                            {
+                                blocks.Remove(b);
+                            }
+                            else
+                            {
+                                b.currentTexture++;
+                                b.texture = b.textures[b.currentTexture];
+                            }
+                            brickTime = 3;
+                            if (blocks.Count == 0)
+                            {
+                                gameTimer.Enabled = false;
+                                OnEnd();
+                            }
 
-                        break;
+                            break;
+                        }
                     }
                 }
             }
@@ -395,63 +427,64 @@ namespace BrickBreaker
             }
                 
 
-
+                brickTime--;
+            }
+           
             //redraw the screen
             Refresh();
         }
 
         private float derivitive()
         {
+            //bounce curve modelled in desmos, which can be found here: "https://www.desmos.com/calculator/emiewzq0xk"
             using (Graphics e = this.CreateGraphics())
             {
-                #region left side of paddle
-                checkRegions[0] = ballRegion;
-                checkRegions[1] = leftPaddleRegion;
-                checkRegions[0].Intersect(checkRegions[1]);
-
-                if (!checkRegions[0].IsEmpty(e))
+                if (ball.x < paddle.x + (paddle.width / 2)) //checks for left collision
                 {
-                    float x = ball.x + ball.size - paddle.x;
+                    checkRegions[0] = ballRegion;
+                    checkRegions[1] = leftPaddleRegion;
+                    checkRegions[0].Intersect(checkRegions[1]);
 
-                    float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 100));
-                    return slope;
+                    if (!checkRegions[0].IsEmpty(e))
+                    {
+                        float x = ball.x + ball.size - paddle.x;
+
+                        float slope = (float)(-x / Math.Sqrt(400 - Math.Pow(x, 2)));
+                        return slope;
+                    }
                 }
-                #endregion
-                #region right side of paddle
-
-                //right side check doesnt work yet
-
-                checkRegions[0] = ballRegion;
-                checkRegions[1] = rightPaddleRegion;
-                checkRegions[0].Intersect(checkRegions[1]);
-
-                if (!checkRegions[0].IsEmpty(e))
+                else //checks for right collision
                 {
-                    float x = ball.x - (paddle.x + paddle.width);
+                    checkRegions[0] = ballRegion;
+                    checkRegions[1] = rightPaddleRegion;
+                    checkRegions[0].Intersect(checkRegions[1]);
 
-                    float slope = (float)(-x / -Math.Sqrt(Math.Pow(x, 2) - 100));
-                    return slope;
+                    if (!checkRegions[0].IsEmpty(e)) 
+                    {
+                        float x = ball.x - (paddle.x + paddle.width);
+
+                        float slope = (float)(-x / Math.Sqrt(400 - Math.Pow(x, 2)));
+                        return slope;
+                    }
                 }
                 return 1;
-
-                #endregion
             }
         }
         private void updateCurve()
         {
             paddleCircle.Reset();
             leftPaddleRegion.Dispose();
-            paddleCircle.AddEllipse(lowerPaddle.x, paddle.y, 20, 20);
+            paddleCircle.AddEllipse(paddle.x - 20, paddle.y, 40, 40);
             leftPaddleRegion = new Region(paddleCircle);
-            leftPaddleRegion.Exclude(new Rectangle(lowerPaddle.x, lowerPaddle.y, 20, 10));
-            leftPaddleRegion.Exclude(new Rectangle(paddle.x, paddle.y, 10, 10));
+            leftPaddleRegion.Exclude(new Rectangle(paddle.x - 20, paddle.y + 20, 40, 20));
+            leftPaddleRegion.Exclude(new Rectangle(paddle.x, paddle.y, 20, 20));
 
             paddleCircle.Reset();
             rightPaddleRegion.Dispose();
-            paddleCircle.AddEllipse(paddle.x + paddle.width - 10, paddle.y, 20, 20);
+            paddleCircle.AddEllipse(paddle.x + paddle.width - 20, paddle.y, 40, 40);
             rightPaddleRegion = new Region(paddleCircle);
-            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 10, paddle.y + 10, 20, 10));
-            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 10, paddle.y, 10, 10));
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 20, paddle.y + 20, 40, 20));
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 20, paddle.y, 20, 20));
         }
 
         private void updateBallStorage()
@@ -486,16 +519,11 @@ namespace BrickBreaker
             // Draws paddle
             paddleBrush.Color = paddle.colour;
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
-            e.Graphics.FillRectangle(paddleBrush, lowerPaddle.x, lowerPaddle.y, lowerPaddle.width, lowerPaddle.height);
 
             e.Graphics.FillRegion(Brushes.Red, leftPaddleRegion);
             e.Graphics.FillRegion(Brushes.Red, rightPaddleRegion);
 
-            // Draws blocks
-            foreach (Block b in blocks)
-            {
-                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
-            }
+            Block.PaintBlocks(e.Graphics, blocks);
 
             foreach (Debuff d in debuffs)
             {
