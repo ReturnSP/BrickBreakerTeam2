@@ -85,28 +85,6 @@ namespace BrickBreaker
             }
         }
 
-        public void WallCollision(UserControl UC)
-        {
-            // Collision with left wall
-            if (x < 0)
-            {
-                x = 0;
-                xSpeed *= -1;
-            }
-            // Collision with right wall
-            if (x > (UC.Width - size))
-            {
-                x = UC.Width - size;
-                xSpeed *= -1;
-            }
-            // Collision with top wall
-            if (y < 0)
-            {
-                y = 0;
-                ySpeed *= -1;
-            }
-        }
-
         public bool BottomCollision(UserControl UC)
         {
             Boolean didCollide = false;
