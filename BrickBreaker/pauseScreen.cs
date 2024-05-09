@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace BrickBreaker
 {
-    public partial class deathScreen : Form
+    public partial class pauseScreen : Form
     {
-        public deathScreen()
+        public pauseScreen()
         {
             InitializeComponent();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

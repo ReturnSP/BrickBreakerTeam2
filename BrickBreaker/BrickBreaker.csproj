@@ -73,6 +73,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Paddle.cs" />
+    <Compile Include="pauseScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pauseScreen.Designer.cs">
+      <DependentUpon>pauseScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="scareScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pauseScreen.resx">
+      <DependentUpon>pauseScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="scareScreen.resx">
       <DependentUpon>scareScreen.cs</DependentUpon>
@@ -239,6 +248,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pauseScreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
