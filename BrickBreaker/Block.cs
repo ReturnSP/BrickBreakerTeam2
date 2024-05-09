@@ -47,7 +47,7 @@ namespace BrickBreaker
             //}
         }
 
-        static public List<Block> BlockListCreator (XmlDocument level)
+        static public List<Block> BlockListCreator (XmlDocument level, Size screenSize)
         {
             List<Block> bricks = new List<Block>();
             List<List<Image>> textureApendix = TextureApendixCreator(level);
@@ -75,8 +75,10 @@ namespace BrickBreaker
                 int hp = Convert.ToInt32(brickInfo.SelectSingleNode("hp").InnerText);
                 int type = Convert.ToInt32(brickInfo.SelectSingleNode("brickType").InnerText);
                 bool vines = Convert.ToBoolean(brickInfo.SelectSingleNode("vines").InnerText);
-                bricks.Add(new Block(hitboxes[index].X, hitboxes[index].Y, hitboxes[index].Width, 
+                Block scaledBlock = ScaleLevel(screenSize, new Block(hitboxes[index].X, hitboxes[index].Y, hitboxes[index].Width,
                 hitboxes[index].Height, hp, vines, textureApendix[type]));
+
+                bricks.Add(scaledBlock);
                 index++;
             }
             return bricks;
@@ -112,7 +114,7 @@ namespace BrickBreaker
             return (finalImage);
         }
 
-        static public List<Block> LoadLevel(string levelName)
+        static public List<Block> LoadLevel(string levelName, Size screenSize)
         {
             XmlDocument loadedLevel = new XmlDocument();
             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -123,7 +125,7 @@ namespace BrickBreaker
 
             string fullPath = Path.Combine(parent3, "Resources", levelName + ".xml");
             loadedLevel.Load(fullPath);
-            List<Block> blockList = BlockListCreator(loadedLevel);
+            List<Block> blockList = BlockListCreator(loadedLevel, screenSize);
 
             return blockList;
         }
@@ -143,24 +145,22 @@ namespace BrickBreaker
                 resizedBitmap.Dispose();
             }
         }
-
-        public static void  BlockHealthLoss(Block block, List<Block> blockList)
-        {
-            block.hp --;
-            if (block.hp == 0)
-            {
-                BreakBlock(blockList);
-            }
-            block.currentTexture ++;
-            block.texture = block.textures[block.currentTexture];
-        }
         
-        public static void BreakBlock(List<Block> blockList)
+        static public Block ScaleLevel(Size screenSize, Block block)
         {
+            Size ogSize = new Size(1366, 768);
 
+            float percentDiffWidth = (float)block.hitBox.Width / (float)ogSize.Width;
+            float percentDiffHeight = (float)block.hitBox.Height / (float)ogSize.Height;
+            float percentDiffX = (float)block.hitBox.X / (float)ogSize.Width;
+            float percentDiffY = (float)block.hitBox.Y / (float)ogSize.Height;
+
+
+
+            Block scaledBlock = new Block((int)((float)screenSize.Width * percentDiffX), (int)((float)screenSize.Height * percentDiffY), (int)((float)screenSize.Width * percentDiffWidth), (int)((float)screenSize.Height * percentDiffHeight), block.hp, block.vines, block.textures);
+
+            return scaledBlock;
         }
-
-
         public static PointF RotatePoint(PointF point, PointF pivot, double radians)
         {
             var cosTheta = Math.Cos(radians);

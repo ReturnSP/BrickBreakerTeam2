@@ -65,7 +65,7 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
-            blocks = Block.LoadLevel("level0");
+            blocks = Block.LoadLevel("level0", this.Size);
             OnStart();
         }
 
