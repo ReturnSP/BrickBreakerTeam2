@@ -97,7 +97,6 @@ namespace BrickBreaker
             currentLevelLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
             comboLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
             heartAmountLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
-            blocks = Block.LoadLevel("level0");
             OnStart();
         }
 
