@@ -64,12 +64,13 @@
             // playButton
             // 
             this.playButton.BackColor = System.Drawing.Color.White;
+            this.playButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.playButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.playButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.playButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.playButton.Font = new System.Drawing.Font("Chiller", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.ForeColor = System.Drawing.Color.Yellow;
+            this.playButton.ForeColor = System.Drawing.Color.Gold;
             this.playButton.Image = ((System.Drawing.Image)(resources.GetObject("playButton.Image")));
             this.playButton.Location = new System.Drawing.Point(610, 250);
             this.playButton.Name = "playButton";
@@ -82,10 +83,11 @@
             // exitButton
             // 
             this.exitButton.BackColor = System.Drawing.Color.White;
+            this.exitButton.Cursor = System.Windows.Forms.Cursors.No;
             this.exitButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.exitButton.Font = new System.Drawing.Font("Chiller", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitButton.ForeColor = System.Drawing.Color.Yellow;
+            this.exitButton.ForeColor = System.Drawing.Color.Gold;
             this.exitButton.Image = ((System.Drawing.Image)(resources.GetObject("exitButton.Image")));
             this.exitButton.Location = new System.Drawing.Point(610, 547);
             this.exitButton.Name = "exitButton";

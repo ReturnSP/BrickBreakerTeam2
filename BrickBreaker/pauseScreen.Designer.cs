@@ -61,6 +61,7 @@
             // exitButton
             // 
             this.exitButton.BackColor = System.Drawing.Color.Transparent;
+            this.exitButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exitButton.Font = new System.Drawing.Font("Chiller", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.exitButton.Location = new System.Drawing.Point(137, 640);
