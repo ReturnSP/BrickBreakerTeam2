@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Drawing.Drawing2D;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace BrickBreaker
 {
@@ -81,6 +82,11 @@ namespace BrickBreaker
         int mirroredLowerPaddleX;
 
         int duration1,duration2, duration3, duration4, duration5;
+
+        //bouncing off side of paddle
+        float slope;
+        bool leftCircleCollision = false;
+        bool rightCircleCollision = false;
 
         List<Rectangle> debuff1 = new List<Rectangle>();
         #endregion
@@ -261,7 +267,23 @@ namespace BrickBreaker
                 }
 
                 updateBallStorage();
-                derivitive();
+                slope = derivitive();
+
+                if (leftCircleCollision)
+                {
+                    float momentumPercent = 1 - (slope / 100) - (paddle.speed / 2);
+                    float yMultiplier = 1 + momentumPercent;
+                    ball.ySpeed -= -1 * yMultiplier;
+                    ball.xSpeed -= -1 * momentumPercent;
+                }
+                if (rightCircleCollision)
+                {
+                    float momentumPercent = 1 - (slope / 100) - (paddle.speed / 2);
+                    float yMultiplier = 1 - momentumPercent;
+                    ball.ySpeed += -1 * yMultiplier;
+                    ball.xSpeed += -1 * momentumPercent;
+                }
+
 
                 // Check for collision of ball with paddle, (incl. paddle movement)
                 ball.PaddleCollision(paddle);
@@ -421,8 +443,9 @@ namespace BrickBreaker
                     if (!checkRegions[0].IsEmpty(e))
                     {
                         float x = ball.x + ball.size - paddle.x;
+                        leftCircleCollision = true;
 
-                        float slope = (float)(-x / Math.Sqrt(400 - Math.Pow(x, 2)));
+                        slope = (float)(-x / Math.Sqrt(400 - Math.Pow(x, 2)));
                         return slope;
                     }
                 }
@@ -435,11 +458,14 @@ namespace BrickBreaker
                     if (!checkRegions[0].IsEmpty(e)) 
                     {
                         float x = ball.x - (paddle.x + paddle.width);
+                        rightCircleCollision = true;
 
-                        float slope = (float)(-x / Math.Sqrt(400 - Math.Pow(x, 2)));
+                        slope = (float)(-x / Math.Sqrt(400 - Math.Pow(x, 2)));
                         return slope;
                     }
                 }
+                leftCircleCollision = false;
+                rightCircleCollision = false;
                 return 1;
             }
         }
