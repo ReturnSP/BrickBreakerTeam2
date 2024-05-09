@@ -35,14 +35,16 @@ namespace BrickBreaker
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
+  
 
         private void MenuScreen_Load(object sender, EventArgs e)
         {
             Cursor.Show();
+        }
+
+        private void MenuScreen_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

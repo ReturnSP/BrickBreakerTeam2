@@ -92,7 +92,6 @@ namespace BrickBreaker
             
             LBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
             RBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
-            scoreGSLabel.BackColor = Color.FromArgb(80, 10, 10, 10);
             scoreGSLabel.ForeColor = Color.FromArgb(100, 70, 70, 70);
             heartLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
             currentLevelLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
@@ -172,6 +171,7 @@ namespace BrickBreaker
                 default:
                     break;
             }
+
         }
 
 
