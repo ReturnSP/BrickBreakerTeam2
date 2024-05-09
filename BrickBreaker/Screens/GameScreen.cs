@@ -359,7 +359,6 @@ namespace BrickBreaker
             e.Graphics.FillRegion(Brushes.Red, rightPaddleRegion);
 
             Block.PaintBlocks(e.Graphics, blocks);
-
             // Draws ball
            e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
            //e.Graphics.FillRegion(Brushes.LightBlue, ballRegion);
