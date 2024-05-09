@@ -81,7 +81,7 @@
             // 
             this.powerUpLabel.BackColor = System.Drawing.Color.Transparent;
             this.powerUpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.powerUpLabel.Location = new System.Drawing.Point(294, 728);
+            this.powerUpLabel.Location = new System.Drawing.Point(294, 742);
             this.powerUpLabel.Name = "powerUpLabel";
             this.powerUpLabel.Size = new System.Drawing.Size(787, 26);
             this.powerUpLabel.TabIndex = 2;

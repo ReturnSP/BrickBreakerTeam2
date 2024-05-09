@@ -391,6 +391,7 @@
             this.DoubleBuffered = true;
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(1366, 768);
+            this.Load += new System.EventHandler(this.MenuScreen_Load_1);
             this.ResumeLayout(false);
 
         }
