@@ -54,7 +54,7 @@ namespace BrickBreaker
                     }
                     else
                     {
-                        y = b.y + b.height;
+                        y = blockRec.Y + blockRec.Height;
                     }
                     ySpeed *= -1;
                 }
@@ -85,7 +85,7 @@ namespace BrickBreaker
                         o = 5;
                     }
 
-                    Debuff newDebuff = new Debuff(o, b.x + b.width / 2, b.y + b.width);
+                    Debuff newDebuff = new Debuff(o, (int)blockRec.X + (int)blockRec.Width / 2, (int)blockRec.Y + (int)blockRec.Width);
 
                     GameScreen.debuffs.Add(newDebuff);
                 }

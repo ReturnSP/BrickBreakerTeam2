@@ -241,7 +241,7 @@ namespace BrickBreaker
             }
             else //game running loop
             {
-                int brickTime = 0;
+                brickTime = 0;
 
                 // Move ball
                 ball.Move();
@@ -408,12 +408,9 @@ namespace BrickBreaker
                 }
                 
             }
-                
 
+            
                 brickTime--;
-            }
-           
-            //redraw the screen
             Refresh();
         }
 
@@ -470,7 +467,7 @@ namespace BrickBreaker
             rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 20, paddle.y, 20, 20));
         }
 
-        private void updateBallStorage()
+        public void updateBallStorage()
         {
             ballCircle.Reset();
             ballRegion.Dispose();
@@ -526,7 +523,7 @@ namespace BrickBreaker
                 //fix paddle shape
 
                 e.Graphics.FillRectangle(paddleBrush, mirroredPaddleX, paddle.y, paddle.width, paddle.height);
-                e.Graphics.FillRectangle(paddleBrush, mirroredLowerPaddleX, lowerPaddle.y, lowerPaddle.width, lowerPaddle.height);
+                e.Graphics.FillRectangle(paddleBrush, mirroredLowerPaddleX, paddle.y, paddle.width, paddle.height);
 
                 e.Graphics.FillRegion(paddleBrush, leftPaddleRegion);
                 e.Graphics.FillRegion(paddleBrush, rightPaddleRegion);
