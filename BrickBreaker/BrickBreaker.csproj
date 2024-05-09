@@ -100,6 +100,7 @@
     <Compile Include="Screens\GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIPaint.cs" />
     <Compile Include="ShopScreen.cs">
       <SubType>Form</SubType>
     </Compile>

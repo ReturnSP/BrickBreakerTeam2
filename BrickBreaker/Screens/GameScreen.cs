@@ -88,6 +88,8 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
+            blocks = Block.LoadLevel("level0", this.Size);
+            
             LBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
             RBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
             scoreGSLabel.BackColor = Color.FromArgb(80, 10, 10, 10);
