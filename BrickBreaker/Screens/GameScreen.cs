@@ -89,7 +89,6 @@ namespace BrickBreaker
         {
             InitializeComponent();
             blocks = Block.LoadLevel("level0", this.Size);
-
             OnStart();
         }
 
