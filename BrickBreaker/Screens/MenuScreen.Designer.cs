@@ -83,7 +83,7 @@
             // exitButton
             // 
             this.exitButton.BackColor = System.Drawing.Color.White;
-            this.exitButton.Cursor = System.Windows.Forms.Cursors.No;
+            this.exitButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exitButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.exitButton.Font = new System.Drawing.Font("Chiller", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
