@@ -89,16 +89,9 @@ namespace BrickBreaker
         {
             InitializeComponent();
             blocks = Block.LoadLevel("level0", this.Size);
-            
-            LBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
-            RBarLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
-            scoreGSLabel.BackColor = Color.FromArgb(80, 10, 10, 10);
-            scoreGSLabel.ForeColor = Color.FromArgb(100, 70, 70, 70);
-            heartLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
-            currentLevelLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
-            comboLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
-            heartAmountLabel.BackColor = Color.FromArgb(160, 100, 100, 100);
-            blocks = Block.LoadLevel("level0");
+
+
+
             OnStart();
         }
 
@@ -498,6 +491,9 @@ namespace BrickBreaker
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+            UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
+            UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(this.Width - 128, 0, 128, this.Height), 50);
+            
             // Draws paddle
             paddleBrush.Color = paddle.colour;
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
