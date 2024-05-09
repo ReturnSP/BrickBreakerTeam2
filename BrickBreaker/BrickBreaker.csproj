@@ -111,6 +111,7 @@
     <Compile Include="ShopScreen.Designer.cs">
       <DependentUpon>ShopScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vector.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
