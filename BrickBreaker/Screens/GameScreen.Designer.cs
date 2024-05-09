@@ -54,25 +54,28 @@
             // 
             // LBarLabel
             // 
-            this.LBarLabel.Location = new System.Drawing.Point(0, 0);
+            this.LBarLabel.Location = new System.Drawing.Point(30, 0);
+            this.LBarLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBarLabel.Name = "LBarLabel";
-            this.LBarLabel.Size = new System.Drawing.Size(102, 768);
+            this.LBarLabel.Size = new System.Drawing.Size(128, 960);
             this.LBarLabel.TabIndex = 0;
             // 
             // RBarLabel
             // 
-            this.RBarLabel.Location = new System.Drawing.Point(1264, 0);
+            this.RBarLabel.Location = new System.Drawing.Point(1580, 0);
+            this.RBarLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RBarLabel.Name = "RBarLabel";
-            this.RBarLabel.Size = new System.Drawing.Size(102, 768);
+            this.RBarLabel.Size = new System.Drawing.Size(128, 960);
             this.RBarLabel.TabIndex = 1;
             // 
             // scoreGSLabel
             // 
             this.scoreGSLabel.BackColor = System.Drawing.Color.Transparent;
             this.scoreGSLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreGSLabel.Location = new System.Drawing.Point(280, 442);
+            this.scoreGSLabel.Location = new System.Drawing.Point(350, 552);
+            this.scoreGSLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.scoreGSLabel.Name = "scoreGSLabel";
-            this.scoreGSLabel.Size = new System.Drawing.Size(787, 156);
+            this.scoreGSLabel.Size = new System.Drawing.Size(984, 195);
             this.scoreGSLabel.TabIndex = 2;
             this.scoreGSLabel.Text = "10000";
             this.scoreGSLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -81,9 +84,10 @@
             // 
             this.powerUpLabel.BackColor = System.Drawing.Color.Transparent;
             this.powerUpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.powerUpLabel.Location = new System.Drawing.Point(294, 728);
+            this.powerUpLabel.Location = new System.Drawing.Point(368, 910);
+            this.powerUpLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.powerUpLabel.Name = "powerUpLabel";
-            this.powerUpLabel.Size = new System.Drawing.Size(787, 26);
+            this.powerUpLabel.Size = new System.Drawing.Size(984, 32);
             this.powerUpLabel.TabIndex = 2;
             this.powerUpLabel.Text = "power here";
             this.powerUpLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -91,79 +95,88 @@
             // power1Label
             // 
             this.power1Label.BackColor = System.Drawing.Color.Silver;
-            this.power1Label.Location = new System.Drawing.Point(3, 91);
+            this.power1Label.Location = new System.Drawing.Point(4, 114);
+            this.power1Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power1Label.Name = "power1Label";
-            this.power1Label.Size = new System.Drawing.Size(82, 77);
+            this.power1Label.Size = new System.Drawing.Size(102, 96);
             this.power1Label.TabIndex = 6;
             // 
             // power2Label
             // 
             this.power2Label.BackColor = System.Drawing.Color.Silver;
-            this.power2Label.Location = new System.Drawing.Point(3, 211);
+            this.power2Label.Location = new System.Drawing.Point(4, 264);
+            this.power2Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power2Label.Name = "power2Label";
-            this.power2Label.Size = new System.Drawing.Size(82, 77);
+            this.power2Label.Size = new System.Drawing.Size(102, 96);
             this.power2Label.TabIndex = 6;
             // 
             // power3Label
             // 
             this.power3Label.BackColor = System.Drawing.Color.Silver;
-            this.power3Label.Location = new System.Drawing.Point(3, 325);
+            this.power3Label.Location = new System.Drawing.Point(4, 406);
+            this.power3Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power3Label.Name = "power3Label";
-            this.power3Label.Size = new System.Drawing.Size(82, 77);
+            this.power3Label.Size = new System.Drawing.Size(102, 96);
             this.power3Label.TabIndex = 6;
             // 
             // power4Label
             // 
             this.power4Label.BackColor = System.Drawing.Color.Silver;
-            this.power4Label.Location = new System.Drawing.Point(3, 442);
+            this.power4Label.Location = new System.Drawing.Point(4, 552);
+            this.power4Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power4Label.Name = "power4Label";
-            this.power4Label.Size = new System.Drawing.Size(82, 77);
+            this.power4Label.Size = new System.Drawing.Size(102, 96);
             this.power4Label.TabIndex = 6;
             // 
             // power5Label
             // 
             this.power5Label.BackColor = System.Drawing.Color.Silver;
-            this.power5Label.Location = new System.Drawing.Point(3, 562);
+            this.power5Label.Location = new System.Drawing.Point(4, 702);
+            this.power5Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power5Label.Name = "power5Label";
-            this.power5Label.Size = new System.Drawing.Size(82, 77);
+            this.power5Label.Size = new System.Drawing.Size(102, 96);
             this.power5Label.TabIndex = 6;
             // 
             // currentLevelLabel
             // 
             this.currentLevelLabel.BackColor = System.Drawing.Color.Silver;
-            this.currentLevelLabel.Location = new System.Drawing.Point(1281, 722);
+            this.currentLevelLabel.Location = new System.Drawing.Point(1601, 902);
+            this.currentLevelLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.currentLevelLabel.Name = "currentLevelLabel";
-            this.currentLevelLabel.Size = new System.Drawing.Size(82, 32);
+            this.currentLevelLabel.Size = new System.Drawing.Size(102, 40);
             this.currentLevelLabel.TabIndex = 7;
             // 
             // comboLabel
             // 
             this.comboLabel.BackColor = System.Drawing.Color.Silver;
-            this.comboLabel.Location = new System.Drawing.Point(1281, 161);
+            this.comboLabel.Location = new System.Drawing.Point(1601, 201);
+            this.comboLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.comboLabel.Name = "comboLabel";
-            this.comboLabel.Size = new System.Drawing.Size(82, 37);
+            this.comboLabel.Size = new System.Drawing.Size(102, 46);
             this.comboLabel.TabIndex = 7;
             // 
             // heartAmountLabel
             // 
             this.heartAmountLabel.BackColor = System.Drawing.Color.Silver;
-            this.heartAmountLabel.Location = new System.Drawing.Point(1281, 103);
+            this.heartAmountLabel.Location = new System.Drawing.Point(1601, 129);
+            this.heartAmountLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.heartAmountLabel.Name = "heartAmountLabel";
-            this.heartAmountLabel.Size = new System.Drawing.Size(82, 21);
+            this.heartAmountLabel.Size = new System.Drawing.Size(102, 26);
             this.heartAmountLabel.TabIndex = 7;
             // 
             // heartLabel
             // 
             this.heartLabel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.heartLabel.Image = ((System.Drawing.Image)(resources.GetObject("heartLabel.Image")));
-            this.heartLabel.Location = new System.Drawing.Point(1281, 12);
+            this.heartLabel.Location = new System.Drawing.Point(1601, 15);
+            this.heartLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.heartLabel.Name = "heartLabel";
-            this.heartLabel.Size = new System.Drawing.Size(82, 68);
+            this.heartLabel.Size = new System.Drawing.Size(102, 85);
             this.heartLabel.TabIndex = 8;
             // 
             // GameScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
@@ -182,8 +195,9 @@
             this.Controls.Add(this.LBarLabel);
             this.Controls.Add(this.RBarLabel);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "GameScreen";
-            this.Size = new System.Drawing.Size(1366, 768);
+            this.Size = new System.Drawing.Size(1708, 960);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyUp);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GameScreen_MouseDown);
