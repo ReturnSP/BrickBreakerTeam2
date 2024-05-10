@@ -16,6 +16,8 @@ namespace BrickBreaker
             // When you enter a new level
             // Trigger.function
 
+            // Idle music, ambient, mostly Fallout tracks
+
             // Source root for sounds
             var soundsRoot = Properties.Resources.;
             // Create new random
@@ -26,11 +28,30 @@ namespace BrickBreaker
             var playSound = soundFiles[rand.Next(0, soundFiles.Length)];
             // Play sound
             System.Media.SoundPlayer idle = new System.Media.SoundPlayer(playSound);
-         
-            // Create windows media player (2) for active sound
-            var active = new WindowsMediaPlayer();
-            active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
-            Console.ReadLine();
+
+            // Create windows media players for active sound
+            // Can hypothetically play 3 sounds at the same time, unless I should add more?
+            //var active = new WindowsMediaPlayer();
+            //active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
+            //var active2 = new WindowsMediaPlayer();
+            //active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
+            //var active3 = new WindowsMediaPlayer();
+            //active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
+            //var constant = new WindowsMediaPlayer();
+            //active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
+            //Console.ReadLine();
+
+            // Location of file
+            int butthole;
+            //List of files from directory
+            // Source root for sounds
+            var buttholesurfers = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\Sound"+butthole+"";
+            // list of files, by WAV
+            string[] activeFiles = Directory.GetFiles(@"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\", "*.wav");
+            // Something to change the given file to
+
+            var activePlay = soundFiles[butthole];
+            System.Media.SoundPlayer activebutthole = new System.Media.SoundPlayer(activePlay); 
 
             // Create active sound directory
             string[] activesound = Directory.GetFiles(@"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\Sound", "*.wav");
