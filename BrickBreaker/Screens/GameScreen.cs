@@ -26,7 +26,7 @@ namespace BrickBreaker
 
         // Game values
         int lives;
-        int levelNumber = -1;
+        int levelNumber = 0;
 
         // Paddle and Ball objects
         Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
@@ -85,6 +85,8 @@ namespace BrickBreaker
         float slope;
         bool leftCircleCollision = false;
         bool rightCircleCollision = false;
+
+        PointF prevPosition;
 
         List<Rectangle> debuff1 = new List<Rectangle>();
         #endregion
@@ -195,7 +197,7 @@ namespace BrickBreaker
             if (blocks.Count() == 0)
             {
                 levelNumber++;
-                blocks=  Block.LevelChanger(levelNumber, this.Size);
+                blocks =  Block.LevelChanger(levelNumber, this.Size);
             }
             Point mouse = this.PointToClient(Cursor.Position);
 
@@ -271,6 +273,7 @@ namespace BrickBreaker
                 updateBallStorage();
                 slope = derivitive();
 
+                
                 //slope momentum bounces
                 if (leftCircleCollision)
                 {
@@ -286,24 +289,72 @@ namespace BrickBreaker
                     ball.ySpeed += -1 * yMultiplier;
                     ball.xSpeed += -1 * momentumPercent;
                 }
+                //attempt at using angle between vectors to calculate new vector
+                /*
                 //calculates angle between ball vector and derivative using dot product of vectors
-                float theta = (float)Math.Acos((ball.xSpeed - (ball.ySpeed * slope)) / (Math.Sqrt(Math.Pow(ball.xSpeed, 2) + Math.Pow(ball.ySpeed, 2)) * Math.Sqrt(Math.Pow(slope, 2) + 1)));
-
-                if (theta > 90)
+                if (leftCircleCollision || rightCircleCollision)
                 {
-                    theta = 180 - theta;
+                    PointF newDirection = new PointF();
+                    double taco = Math.Acos((ball.xSpeed + (ball.ySpeed * slope)) / (Math.Sqrt(Math.Pow(ball.xSpeed, 2) + Math.Pow(ball.ySpeed, 2)) * Math.Sqrt(Math.Pow(slope, 2) + 1)));
+                    double theta = Math.Atan2(ball.ySpeed - slope, ball.xSpeed - 1);
+
+                    if (theta > 90)
+                    {
+                        theta = 180 - theta;
+                    }
+                    theta *= Math.PI / 180;
+                    float colX = ball.x + ball.size - paddle.x;
+                    float colY = (float)Math.Sqrt(400 - Math.Pow(colX, 2));
+
+                    if (leftCircleCollision) //left collision
+                    {
+                        if (ball.xSpeed > 0 && ball.ySpeed > 0)
+                        {
+                            if (theta < Math.PI / 2)
+                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate cc
+                            else
+                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate ccw
+                        }
+                        else if (ball.xSpeed < 0 && ball.ySpeed > 0)
+                        {
+                            if (theta < Math.PI / 2)
+                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate cc
+                            else
+                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate ccw
+                        }
+                    }
+                    else //rotate clocklwise
+                    {
+                        if (ball.xSpeed < 0 && ball.ySpeed > 0)
+                        {
+                            if (theta < Math.PI / 2)
+                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate cc
+                            else
+                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate ccw
+                        }
+                        else if (ball.xSpeed > 0 && ball.ySpeed > 0)
+                        {
+                            if (theta < Math.PI / 2)
+                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate cc
+                            else
+                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate ccw
+                        }
+                    }
+                    ball.xSpeed = -(newDirection.X - colX);
+                    ball.ySpeed = -(newDirection.Y - colY);
                 }
+                */
 
                 //speed capping code
                 const float MAXSPEED = 18;
-                const float MINSPEED = 5;
+                const float MINSPEED = 4;
 
                 if (Math.Abs(ball.xSpeed) < MINSPEED && Math.Abs(ball.ySpeed) < MINSPEED) //makes really slow balls less slow
                 {
                     while (Math.Abs(ball.xSpeed) < MINSPEED || Math.Abs(ball.ySpeed) < MINSPEED)
                     {
-                        ball.xSpeed *= 2;
-                        ball.ySpeed *= 2;
+                        ball.xSpeed *= (float)1.25;
+                        ball.ySpeed *= (float)1.25;
                     }
                 }
                 while (Math.Abs(ball.xSpeed) > MAXSPEED || Math.Abs(ball.ySpeed) > MAXSPEED) //makes really fast balls less fast
@@ -321,7 +372,7 @@ namespace BrickBreaker
                         ball.ySpeed *= Math.Abs(diff);
                     }
                 }
-
+                
 
                 // Check for collision of ball with paddle, (incl. paddle movement)
                 ball.PaddleCollision(paddle);
@@ -466,6 +517,7 @@ namespace BrickBreaker
             #endregion
 
             brickTime--;
+            prevPosition = new PointF(ball.x, ball.y);
             Refresh();
         }
 
