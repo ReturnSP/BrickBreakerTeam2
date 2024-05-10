@@ -65,7 +65,7 @@ namespace BrickBreaker
             if ()
             {
                 // Set int butthole to file location
-                butthole = "C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\Sound";
+                butthole = $"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\Sound\Bricksmash1\"";
                 // Call/reference back to buttholesurfers, should replace int 'butthole' with the given soundfile location, much like with the weather app
 
             }
