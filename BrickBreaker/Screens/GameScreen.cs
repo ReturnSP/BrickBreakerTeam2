@@ -278,7 +278,7 @@ namespace BrickBreaker
                 if (leftCircleCollision)
                 {
                     float momentumPercent = 1 - (slope / 100) - (paddle.speed / 2);
-                    float yMultiplier = 1 + momentumPercent;
+                    float yMultiplier = 1 - momentumPercent;
                     ball.ySpeed -= -1 * yMultiplier;
                     ball.xSpeed -= -1 * momentumPercent;
                 }
@@ -347,16 +347,17 @@ namespace BrickBreaker
 
                 //speed capping code
                 const float MAXSPEED = 18;
-                const float MINSPEED = 4;
+                const float MINSPEED = 5;
 
                 if (Math.Abs(ball.xSpeed) < MINSPEED && Math.Abs(ball.ySpeed) < MINSPEED) //makes really slow balls less slow
                 {
-                    while (Math.Abs(ball.xSpeed) < MINSPEED || Math.Abs(ball.ySpeed) < MINSPEED)
+                    while (Math.Abs(ball.xSpeed) < MINSPEED|| Math.Abs(ball.ySpeed) < MINSPEED)
                     {
                         ball.xSpeed *= (float)1.25;
                         ball.ySpeed *= (float)1.25;
                     }
                 }
+
                 while (Math.Abs(ball.xSpeed) > MAXSPEED || Math.Abs(ball.ySpeed) > MAXSPEED) //makes really fast balls less fast
                 {
                     if (Math.Abs(ball.xSpeed) > MAXSPEED)
@@ -371,6 +372,12 @@ namespace BrickBreaker
                         ball.xSpeed *= Math.Abs(diff);
                         ball.ySpeed *= Math.Abs(diff);
                     }
+                }
+
+                if (Math.Abs(ball.ySpeed) < MINSPEED)
+                {
+                    float diff = MINSPEED / ball.ySpeed;
+                    ball.ySpeed *= Math.Abs(diff);
                 }
                 
 
