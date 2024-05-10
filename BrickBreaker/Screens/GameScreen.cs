@@ -280,6 +280,13 @@ namespace BrickBreaker
                     ball.ySpeed += -1 * yMultiplier;
                     ball.xSpeed += -1 * momentumPercent;
                 }
+                //calculates angle between ball vector and derivative using dot product of vectors
+                float theta = (float)Math.Acos((ball.xSpeed - (ball.ySpeed * slope)) / (Math.Sqrt(Math.Pow(ball.xSpeed, 2) + Math.Pow(ball.ySpeed, 2)) * Math.Sqrt(Math.Pow(slope, 2) + 1)));
+
+                if (theta > 90)
+                {
+                    theta = 180 - theta;
+                }
 
                 //speed capping code
                 const float MAXSPEED = 18;
