@@ -26,6 +26,7 @@ namespace BrickBreaker
 
         // Game values
         int lives;
+        int levelNumber = -1;
 
         // Paddle and Ball objects
         Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
@@ -91,7 +92,6 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
-            blocks = Block.LoadLevel("level1", this.Size);
             OnStart();
         }
 
@@ -100,7 +100,7 @@ namespace BrickBreaker
         {
             Cursor.Hide();
             //set life counter
-            lives = 3;
+            lives = 4;
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -115,8 +115,9 @@ namespace BrickBreaker
             int ballY = this.Height - paddle.height - 80;
 
             // Creates a new ball
-            float xSpeed = 15;
-            float ySpeed = -3;
+            int speedMod = 2;
+            float xSpeed = 15 * speedMod;
+            float ySpeed = -3 * speedMod;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
 
@@ -191,6 +192,11 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            if (blocks.Count() == 0)
+            {
+                levelNumber++;
+                blocks=  Block.LevelChanger(levelNumber, this.Size);
+            }
             Point mouse = this.PointToClient(Cursor.Position);
 
             int brickTime = 0;
@@ -337,7 +343,7 @@ namespace BrickBreaker
                                 b.currentTexture++;
                                 b.texture = b.textures[b.currentTexture];
                             }
-                            brickTime = 3;
+                            brickTime = 20;
                             if (blocks.Count == 0)
                             {
                                 gameTimer.Enabled = false;
@@ -350,6 +356,8 @@ namespace BrickBreaker
                 }
             }
 
+
+            #region Debuff Area
             foreach (Debuff d in debuffs)
             {
                 d.PaddleCollision(paddle, d);
@@ -455,6 +463,8 @@ namespace BrickBreaker
             }
 
 
+            #endregion
+
             brickTime--;
             Refresh();
         }
@@ -547,6 +557,37 @@ namespace BrickBreaker
         {
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(this.Width - 128, 0, 128, this.Height), 50);
+
+            UIPaint.PaintText(e.Graphics, "Level 1", 24, new Point(this.Width - 120,  90), Color.Goldenrod);
+            Image heartImage = Properties.Resources.heart1;
+            Point lifePos = new Point(this.Width - heartImage.Width -25, 25);
+            switch (lives)
+            {
+                
+                case 1:
+                    e.Graphics.DrawImage(Properties.Resources.heart1, lifePos);
+                    break;
+                case 2:
+                    e.Graphics.DrawImage(Properties.Resources.heart2, lifePos);
+                    break;
+                case 3:
+                    e.Graphics.DrawImage(Properties.Resources.heart3, lifePos);
+                    break;
+                case 4:
+                    e.Graphics.DrawImage(Properties.Resources.heart4, lifePos);
+                    break;
+                case 5:
+                    e.Graphics.DrawImage(Properties.Resources.heart5, lifePos);
+                    break;
+                case 6:
+                    e.Graphics.DrawImage(Properties.Resources.heart6, lifePos);
+                    break;
+                default:
+                    e.Graphics.DrawImage(Properties.Resources.heart6, lifePos);
+                    break;
+            }
+            UIPaint.PaintText(e.Graphics, lives + "", 24, new Point(this.Width - 55, 50), Color.Red);
+
 
             // Draws paddle
             paddleBrush.Color = paddle.colour;

@@ -24,5 +24,14 @@ namespace BrickBreaker
             rectanglePath.Dispose();
             colorBrush.Dispose();
         }
+
+        static public void PaintText(Graphics e, string displayText, int size, Point position, Color color)
+        {
+            Font myFont = new Font("Chiller", size, FontStyle.Bold);
+            SolidBrush brush = new SolidBrush(color);
+            e.DrawString(displayText, myFont, brush, position.X, position.Y );
+            brush.Dispose();
+            myFont.Dispose();
+        }
     }
 }
