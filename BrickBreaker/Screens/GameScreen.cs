@@ -49,7 +49,7 @@ namespace BrickBreaker
         Region mirroredRightPaddleRegion = new Region();
         GraphicsPath mirroredPaddleCircle = new GraphicsPath();
 
-        Region[] checkRegions = new Region[] {null, null, null, null };
+        Region[] checkRegions = new Region[] { null, null, null, null };
 
         bool restartLevel = false;
 
@@ -84,15 +84,18 @@ namespace BrickBreaker
         int mirroredPaddleX;
 
         int duration1, duration2, duration3, duration4, duration5;
+        int vineLocatoin = 150;
+        int grow;
 
         //bouncing off side of paddle
         float slope;
         bool leftCircleCollision = false;
         bool rightCircleCollision = false;
 
-        PointF prevPosition;
+        //RANOM
+        Random rand = new Random();
 
-        List<Rectangle> debuff1 = new List<Rectangle>();
+        List<PictureBox> debuff1 = new List<PictureBox>();
         #endregion
 
         public GameScreen()
@@ -196,7 +199,7 @@ namespace BrickBreaker
                 case Keys.K:
                     slow = false;
                     break;
-                    //testing
+                //testing
                 case Keys.P:
                     gameTimer.Enabled = true;
                     break;
@@ -205,14 +208,14 @@ namespace BrickBreaker
             }
         }
 
-        RectangleF prevPosition;
+        //  RectangleF prevPosition;
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             if (blocks.Count() == 0)
             {
                 levelNumber++;
-                blocks =  Block.LevelChanger(levelNumber, this.Size);
+                blocks = Block.LevelChanger(levelNumber, this.Size);
             }
             Point mouse = this.PointToClient(Cursor.Position);
 
@@ -288,7 +291,7 @@ namespace BrickBreaker
                 updateBallStorage();
                 slope = derivitive();
 
-                
+
                 //slope momentum bounces
                 if (leftCircleCollision)
                 {
@@ -387,7 +390,7 @@ namespace BrickBreaker
                         ball.ySpeed *= Math.Abs(diff);
                     }
                 }
-                
+
 
                 // Check for collision of ball with paddle, (incl. paddle movement)
                 ball.PaddleCollision(paddle);
@@ -396,109 +399,63 @@ namespace BrickBreaker
                 // Check if ball has collided with any blocks
                 foreach (Block b in blocks)
                 {
-                    if (new RectangleF(ball.x, ball.y, ball.size, ball.size).IntersectsWith(b.hitBox))
+                    if (brickTime == 0)
                     {
-                        RectangleF intersect;
-                        Region blockRegion = new Region(b.hitBox);
-                        Region ballRegionLocal = new Region(new RectangleF(ball.x, ball.y, ball.size, ball.size));
-                        blockRegion.Intersect(ballRegionLocal);
-                        using (Graphics graph = this.CreateGraphics())
+                        if (ball.BlockCollision(b))
                         {
-                             intersect = blockRegion.GetBounds(graph);
-                        }
-
-                        if (intersect.Width > intersect.Height)
-                        {
-                            if (ball.ySpeed > 0) //up/down bounce
+                            b.hp--;
+                            if (b.hp == 0)
                             {
-                               ball.y = b.hitBox.Y - ball.size;
+                                blocks.Remove(b);
+                                int chance = 101;
+
+                                if (rand.Next(1, 100) <= chance)
+                                {
+                                    int check = rand.Next(1, 100);
+                                    int o = 0;
+
+                                    if (check > 10 && check < 20)
+                                    {
+                                        o = 1;
+                                    }
+                                    else if (check > 20 && check < 50)
+                                    {
+                                        o = 2;
+                                    }
+                                    else if (check == 50)
+                                    {
+                                        o = 3;
+                                    }
+                                    else if (check > 51 && check < 62)
+                                    {
+                                        o = 4;
+                                    }
+                                    else
+                                    {
+                                        o = 5;
+                                    }
+
+                                    Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width);
+
+                                    debuffs.Add(newDebuff);
+                                }
                             }
                             else
                             {
-                                ball.y = b.hitBox.Y + b.hitBox.Height;
+                                b.currentTexture++;
+                                b.texture = b.textures[b.currentTexture];
                             }
-                            ball.ySpeed *= -1;
-                        }
-                        else if (intersect.Height > intersect.Width)
-                        {
-                            if(ball.xSpeed > 0) //left/right bounce
+                            brickTime = 20;
+
+                            if (blocks.Count == 0)
                             {
-                                ball.x = b.hitBox.X - ball.size;
+                                gameTimer.Enabled = false;
+                                OnEnd();
                             }
-                            else
-                            {
-                                ball.x = b.hitBox.X + b.hitBox.Width;
-                            }
-                            ball.xSpeed *= -1;
+                            break;
                         }
-
-                        if (intersect.Width == intersect.Height)
-                        {
-                            if (ball.x < b.hitBox.X + (b.hitBox.Width / 2)) //left side
-                            {
-                                if (ball.y < b.hitBox.Y + (b.hitBox.Height / 2)) //above
-                                {
-                                    ball.x = b.hitBox.X - ball.size;
-                                    ball.y = b.hitBox.Y - ball.size;
-
-                                    Math.Abs(ball.xSpeed);
-                                    ball.xSpeed *= -1;
-                                    Math.Abs(ball.ySpeed);
-                                    ball.ySpeed *= -1;
-                                }
-                                else //below
-                                {
-                                    ball.x = b.hitBox.X - ball.size;
-                                    ball.y = b.hitBox.Y;
-
-                                    Math.Abs(ball.xSpeed);
-                                    ball.xSpeed *= -1;
-                                    Math.Abs(ball.ySpeed);
-                                }
-                            }
-                            else //right side
-                            {
-                                if (ball.y < b.hitBox.Y + (b.hitBox.Height / 2)) //above
-                                {
-                                    ball.x = b.hitBox.X + b.hitBox.Width;
-                                    ball.y = b.hitBox.Y - ball.size;
-
-                                    Math.Abs(ball.xSpeed);
-                                    Math.Abs(ball.ySpeed);
-                                    ball.ySpeed *= -1;
-                                }
-                                else //below
-                                {
-                                    ball.x = b.hitBox.X + b.hitBox.Width;
-                                    ball.y = b.hitBox.Y + b.hitBox.Height;
-
-                                    Math.Abs(ball.xSpeed);
-                                    Math.Abs(ball.ySpeed);
-                                }
-                            }
-                            ball.xSpeed *= -1;
-                            ball.ySpeed *= -1;
-                        }
-
-                        b.hp--;
-                        if (b.hp == 0)
-                        {
-                            blocks.Remove(b);
-                        }
-                        else
-                        {
-                            b.currentTexture++;
-                            b.texture = b.textures[b.currentTexture];
-                        }
-                        if (blocks.Count == 0)
-                        {
-                            gameTimer.Enabled = false;
-                            OnEnd();
-                        }
-                        
-                        break;
                     }
-                    prevPosition = new RectangleF(ball.x, ball.y, ball.size, ball.size);
+                    
                 }
             }
 
@@ -546,28 +503,40 @@ namespace BrickBreaker
             if (dB1)
             {
                 duration1++;
-                if (duration1 < 300)
+                if (duration1 < 15)
                 {
-                    Random rand = new Random();
-                    Rectangle newRec = new Rectangle(rand.Next(1, this.Width - 20), rand.Next(1, this.Height - 20), 70, 70);
-                    debuff1.Add(newRec);
+                    PictureBox vines = new PictureBox();
+                    vines.Parent = this;
+                    vines.Location = new Point(vineLocatoin, 0);
+                    vines.SizeMode = PictureBoxSizeMode.StretchImage;
+                    vines.Image = Properties.Resources.IvyVine;
+                    vines.BackColor = Color.Transparent;
+                    vines.BringToFront();
+                    debuff1.Add(vines);
+                    vineLocatoin += 100;
                 }
-                else if (duration1 < 600)
+                else if (duration1 < 200)
                 {
-                    try
+                    foreach (PictureBox p in debuff1)
                     {
-                        debuff1.RemoveAt(debuff1.Count - 1);
+                        p.Size = new Size(100, grow);
                     }
-                    catch
+                    grow += 5;
+                }
+                else if (duration1 < 400)
+                {
+                    grow -= 5;
+                    foreach (PictureBox p in debuff1)
                     {
-                        debuff1.Clear();
-                    }
-
+                        p.Size = new Size(100, grow);
+                    }  
                 }
                 else
                 {
                     duration1 = 0;
                     dB1 = false;
+                    debuff1.Clear();
+                    vineLocatoin = 150;
                 }
 
 
@@ -628,7 +597,7 @@ namespace BrickBreaker
             #endregion
 
             brickTime--;
-            prevPosition = new PointF(ball.x, ball.y);
+
             Refresh();
         }
 
@@ -706,6 +675,7 @@ namespace BrickBreaker
 
             ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
 
+            Cursor.Show();
             form.Controls.Add(ps);
             form.Controls.Remove(this);
 
@@ -721,12 +691,12 @@ namespace BrickBreaker
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(this.Width - 128, 0, 128, this.Height), 50);
 
-            UIPaint.PaintText(e.Graphics, "Level 1", 24, new Point(this.Width - 120,  90), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, "Level 1", 24, new Point(this.Width - 120, 90), Color.Goldenrod);
             Image heartImage = Properties.Resources.heart1;
-            Point lifePos = new Point(this.Width - heartImage.Width -25, 25);
+            Point lifePos = new Point(this.Width - heartImage.Width - 25, 25);
             switch (lives)
             {
-                
+
                 case 1:
                     e.Graphics.DrawImage(Properties.Resources.heart1, lifePos);
                     break;
@@ -756,8 +726,8 @@ namespace BrickBreaker
             paddleBrush.Color = paddle.colour;
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
 
-            e.Graphics.FillRegion(Brushes.Red, leftPaddleRegion);
-            e.Graphics.FillRegion(Brushes.Red, rightPaddleRegion);
+            e.Graphics.FillRegion(Brushes.White, leftPaddleRegion);
+            e.Graphics.FillRegion(Brushes.White, rightPaddleRegion);
 
             Block.PaintBlocks(e.Graphics, blocks);
 
@@ -783,38 +753,32 @@ namespace BrickBreaker
                 e.Graphics.FillRegion(paddleBrush, mirroredRightPaddleRegion);
             }
 
-            if (dB1)
-            {
-                foreach (Rectangle r in debuff1)
-                {
-                    e.Graphics.FillEllipse(Brushes.White, r.X, r.Y, r.Width, r.Height);
-                }
-
-            }
+            
+            
 
 
             // e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
             e.Graphics.FillRegion(Brushes.LightBlue, ballRegion);
             // test
-            e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
+           // e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
 
 
             //testing
 
-            foreach (Block block in blocks)
-            {
-                e.Graphics.DrawRectangle(Pens.RoyalBlue, block.hitBox);
-            }
+            //foreach (Block block in blocks)
+            //{
+            //    e.Graphics.DrawRectangle(Pens.RoyalBlue, block.hitBox);
+            //}
 
-            e.Graphics.DrawRectangle(Pens.Red, Convert.ToInt16(ball.x), Convert.ToInt16(ball.y) + 5, 1, Convert.ToInt16(ball.size) - 10);
-            e.Graphics.DrawRectangle(Pens.Red, Convert.ToInt16(ball.x) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.y) + 5, 1, Convert.ToInt16(ball.size) - 10);
-            e.Graphics.DrawRectangle(Pens.Red, Convert.ToInt16(ball.x) + 5, Convert.ToInt16(ball.y), Convert.ToInt16(ball.size) - 10, 1);
-            e.Graphics.DrawRectangle(Pens.Red, Convert.ToInt16(ball.x) + 5, Convert.ToInt16(ball.y) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.size) - 10, 1); 
+            //e.Graphics.DrawRectangle(Pens.Red, Convert.ToInt16(ball.x), Convert.ToInt16(ball.y) + 5, 1, Convert.ToInt16(ball.size) - 10);
+            //e.Graphics.DrawRectangle(Pens.Red, Convert.ToInt16(ball.x) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.y) + 5, 1, Convert.ToInt16(ball.size) - 10);
+            //e.Graphics.DrawRectangle(Pens.Red, Convert.ToInt16(ball.x) + 5, Convert.ToInt16(ball.y), Convert.ToInt16(ball.size) - 10, 1);
+            //e.Graphics.DrawRectangle(Pens.Red, Convert.ToInt16(ball.x) + 5, Convert.ToInt16(ball.y) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.size) - 10, 1);
 
-            //Rectangle bRl = new Rectangle(Convert.ToInt16(ball.x), Convert.ToInt16(ball.y) + 10, 1, Convert.ToInt16(ball.size) - 10);
-            //Rectangle bRr = new Rectangle(Convert.ToInt16(ball.x) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.y) + 10, 1, Convert.ToInt16(ball.size) - 10);
-            //Rectangle bRt = new Rectangle(Convert.ToInt16(ball.x) + 10, Convert.ToInt16(ball.y), Convert.ToInt16(ball.size) - 10, 1);
-            //Rectangle bRb = new Rectangle(Convert.ToInt16(ball.x) + 10, Convert.ToInt16(ball.y) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.size) - 10, 1);
+            ////Rectangle bRl = new Rectangle(Convert.ToInt16(ball.x), Convert.ToInt16(ball.y) + 10, 1, Convert.ToInt16(ball.size) - 10);
+            ////Rectangle bRr = new Rectangle(Convert.ToInt16(ball.x) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.y) + 10, 1, Convert.ToInt16(ball.size) - 10);
+            ////Rectangle bRt = new Rectangle(Convert.ToInt16(ball.x) + 10, Convert.ToInt16(ball.y), Convert.ToInt16(ball.size) - 10, 1);
+            ////Rectangle bRb = new Rectangle(Convert.ToInt16(ball.x) + 10, Convert.ToInt16(ball.y) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.size) - 10, 1);
         }
     }
 }
