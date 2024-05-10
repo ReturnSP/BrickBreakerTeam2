@@ -18,7 +18,6 @@ namespace BrickBreaker
             xSpeed = _xSpeed;
             ySpeed = _ySpeed;
             size = _ballSize;
-
         }
 
         public void Move()
@@ -32,101 +31,146 @@ namespace BrickBreaker
             RectangleF blockRec = b.hitBox;
             RectangleF ballRec = new RectangleF(x, y, size, size);
 
-            if (ballRec.IntersectsWith(b.hitBox))
+            
+
+            if (ballRec.IntersectsWith(blockRec))
             {
-
-                // DOES NOT WORK :(
-                Rectangle bRl = new Rectangle(Convert.ToInt16(ballRec.X), Convert.ToInt16(ballRec.Y) + 5, 1, Convert.ToInt16(size) - 10);
-                Rectangle bRr = new Rectangle(Convert.ToInt16(ballRec.X) + Convert.ToInt16(size), Convert.ToInt16(ballRec.Y) + 5, 1, Convert.ToInt16(size) - 10);
-                Rectangle bRt = new Rectangle(Convert.ToInt16(ballRec.X) + 5, Convert.ToInt16(ballRec.Y), Convert.ToInt16(size) - 10, 1);
-                Rectangle bRb = new Rectangle(Convert.ToInt16(ballRec.X) + 5, Convert.ToInt16(ballRec.Y) + Convert.ToInt16(size), Convert.ToInt16(size) - 10, 1);
-
-
-                if (bRl.IntersectsWith(b.hitBox) || bRr.IntersectsWith(b.hitBox))
-                {
-                    if (xSpeed > 0)
-                    {
-                        x = b.hitBox.X - size;
-                    }
-                    else
-                    {
-                        x = b.hitBox.X + b.hitBox.Width;
-                    }
-                    xSpeed *= -1;
-                }
-
-                if (bRt.IntersectsWith(b.hitBox) || bRb.IntersectsWith(b.hitBox))
+                int[] colEdgesMove;
+                int[] colEdgesBrick;
+                int distX;
+                int distY;
+                double timeX;
+                double timeY;
+                if (xSpeed > 0)
                 {
                     if (ySpeed > 0)
                     {
-                        y = b.hitBox.Y - size;
+                        colEdgesMove = new int[] { (int)ballRec.Right, (int)ballRec.Bottom};
+                        colEdgesBrick = new int[] { (int)blockRec.Left, (int)blockRec.Top};
+                        distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
+                        distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
+                        timeX = Math.Abs((double)distX / xSpeed);
+                        timeY = Math.Abs((double)distY / ySpeed);
+                        if (timeX > timeY)
+                            ySpeed *= -1;
+                        else if (timeY > timeX)
+                            xSpeed *= -1;
+                        else
+                            Console.WriteLine("Collided at a corner");
                     }
                     else
                     {
-                        y = b.hitBox.Y + b.hitBox.Height;
+                        colEdgesMove = new int[] { (int)ballRec.Right, (int)ballRec.Top};
+                        colEdgesBrick = new int[] { (int)blockRec.Left, (int)blockRec.Bottom };
+                        distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
+                        distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
+                        timeX = Math.Abs((double)distX / xSpeed);
+                        timeY = Math.Abs((double)distY / ySpeed);
+                        if (timeX > timeY)
+                            ySpeed *= -1;
+                        else if (timeY > timeX)
+                            xSpeed *= -1;
+                        else
+                            Console.WriteLine("Collided at a corner");
                     }
-                    ySpeed *= -1;
                 }
-                
-
-                //ALSO DOESN'T WORK :(
-                /*
-                if ((x < b.hitBox.X || b.hitBox.X + b.hitBox.Width < x + 5) && (y < b.hitBox.Y + b.hitBox.Height || y - size > b.hitBox.Y))
-                {
-                    if (xSpeed > 0)
-                    {
-                        x = b.hitBox.X - size;
-                    }
-                    else
-                    {
-                        x = b.hitBox.X + b.hitBox.Width;
-                    }
-                    xSpeed *= -1;
-                }
-                else if (x + size > b.hitBox.X || x < b.hitBox.X + b.hitBox.Width - 8)
+                else
                 {
                     if (ySpeed > 0)
                     {
-                        y = b.hitBox.Y - size;
+                        colEdgesMove = new int[] { (int)ballRec.Left, (int)ballRec.Bottom };
+                        colEdgesBrick = new int[] { (int)blockRec.Right, (int)blockRec.Top };
+                        distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
+                        distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
+                        timeX = Math.Abs((double)distX / xSpeed);
+                        timeY = Math.Abs((double)distY / ySpeed);
+                        if (timeX > timeY)
+                            ySpeed *= -1;
+                        else if (timeY > timeX)
+                            xSpeed *= -1;
+                        else
+                            Console.WriteLine("Collided at a corner");
                     }
                     else
                     {
-                        y = b.hitBox.Y + b.hitBox.Height;
+                        colEdgesMove = new int[] { (int)ballRec.Left, (int)ballRec.Top };
+                        colEdgesBrick = new int[] { (int)blockRec.Right, (int)blockRec.Bottom };
+                        distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
+                        distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
+                        timeX = Math.Abs((double)distX / xSpeed);
+                        timeY = Math.Abs((double)distY / ySpeed);
+                        if (timeX > timeY)
+                            ySpeed *= -1;
+                        else if (timeY > timeX)
+                            xSpeed *= -1;
+                        else
+                            Console.WriteLine("Collided at a corner");
                     }
-                    ySpeed *= -1;
-                } */
-                int chance = 101;
-                if (rand.Next(1, 100)  <= chance)
-                {
-                    int check = rand.Next(1, 100);
-                    int o = 0;
-
-                    if (check > 10 && check < 20)
-                    {
-                        o = 1;
-                    }
-                    else if (check > 20 && check < 50)
-                    {
-                        o = 2;
-                    }
-                    else if (check == 50)
-                    {
-                        o = 3;
-                    }
-                    else if (check > 51 && check < 62)
-                    {
-                        o = 4;
-                    }
-                    else 
-                    {
-                        o = 5;
-                    }
-
-                    Debuff newDebuff = new Debuff(o, (int)blockRec.X + (int)blockRec.Width / 2, (int)blockRec.Y + (int)blockRec.Width);
-
-                    GameScreen.debuffs.Add(newDebuff);
                 }
             }
+
+
+
+
+
+            //if (ballRec.IntersectsWith(blockRec))
+            //{
+            //    if ((x < b.hitBox.X - size + 8 || x > b.hitBox.X + b.hitBox.Width - 8) && (y > b.hitBox.Y - size || y < b.hitBox.Y + b.hitBox.Width - 8))
+            //    {
+            //        if (xSpeed > 0)
+            //        {
+            //            x = b.hitBox.X - size;
+            //        }
+            //        else
+            //        {
+            //            x = b.hitBox.X + b.hitBox.Width;
+            //        }
+            //        xSpeed *= -1;
+            //    }
+            //    else if (x > b.hitBox.X - size - 8 || x < b.hitBox.X + b.hitBox.Width - 8)
+            //    {
+            //        if (ySpeed > 0)
+            //        {
+            //            y = b.hitBox.Y - size;
+            //        }
+            //        else
+            //        {
+            //            y = blockRec.Y + blockRec.Height;
+            //        }
+            //        ySpeed *= -1;
+            //    }
+            //    int chance = 101;
+            //    if (rand.Next(1, 100)  <= chance)
+            //    {
+            //        int check = rand.Next(1, 100);
+            //        int o = 0;
+            //
+            //        if (check > 10 && check < 20)
+            //        {
+            //            o = 1;
+            //        }
+            //        else if (check > 20 && check < 50)
+            //        {
+            //            o = 2;
+            //        }
+            //        else if (check == 50)
+            //        {
+            //            o = 3;
+            //        }
+            //        else if (check > 51 && check < 62)
+            //        {
+            //            o = 4;
+            //        }
+            //        else 
+            //        {
+            //            o = 5;
+            //        }
+            //
+            //        Debuff newDebuff = new Debuff(o, (int)blockRec.X + (int)blockRec.Width / 2, (int)blockRec.Y + (int)blockRec.Width);
+            //
+            //        GameScreen.debuffs.Add(newDebuff);
+            //    }
+            //}
             return blockRec.IntersectsWith(ballRec);
         }
 
@@ -184,6 +228,5 @@ namespace BrickBreaker
 
             return didCollide;
         }
-
     }
 }

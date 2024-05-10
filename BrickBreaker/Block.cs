@@ -186,5 +186,10 @@ namespace BrickBreaker
             return new PointF(scaledEndX, scaledEndY);
         }
 
+        public static List<Block> LevelChanger(int levelNumber, Size screenSize)
+        {
+            return LoadLevel("level" + levelNumber, screenSize);
+        }
+
     }
 }
