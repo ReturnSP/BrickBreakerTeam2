@@ -32,9 +32,17 @@ namespace BrickBreaker
             RectangleF blockRec = b.hitBox;
             RectangleF ballRec = new RectangleF(x, y, size, size);
 
-            if (ballRec.IntersectsWith(blockRec))
+            if (ballRec.IntersectsWith(b.hitBox))
             {
-                if ((x < b.hitBox.X - size + 8 || x > b.hitBox.X + b.hitBox.Width - 8) && (y > b.hitBox.Y - size || y < b.hitBox.Y + b.hitBox.Width - 8))
+
+                // DOES NOT WORK :(
+                Rectangle bRl = new Rectangle(Convert.ToInt16(ballRec.X), Convert.ToInt16(ballRec.Y) + 5, 1, Convert.ToInt16(size) - 10);
+                Rectangle bRr = new Rectangle(Convert.ToInt16(ballRec.X) + Convert.ToInt16(size), Convert.ToInt16(ballRec.Y) + 5, 1, Convert.ToInt16(size) - 10);
+                Rectangle bRt = new Rectangle(Convert.ToInt16(ballRec.X) + 5, Convert.ToInt16(ballRec.Y), Convert.ToInt16(size) - 10, 1);
+                Rectangle bRb = new Rectangle(Convert.ToInt16(ballRec.X) + 5, Convert.ToInt16(ballRec.Y) + Convert.ToInt16(size), Convert.ToInt16(size) - 10, 1);
+
+
+                if (bRl.IntersectsWith(b.hitBox) || bRr.IntersectsWith(b.hitBox))
                 {
                     if (xSpeed > 0)
                     {
@@ -46,7 +54,8 @@ namespace BrickBreaker
                     }
                     xSpeed *= -1;
                 }
-                else if (x > b.hitBox.X - size - 8 || x < b.hitBox.X + b.hitBox.Width - 8)
+
+                if (bRt.IntersectsWith(b.hitBox) || bRb.IntersectsWith(b.hitBox))
                 {
                     if (ySpeed > 0)
                     {
@@ -54,10 +63,38 @@ namespace BrickBreaker
                     }
                     else
                     {
-                        y = blockRec.Y + blockRec.Height;
+                        y = b.hitBox.Y + b.hitBox.Height;
                     }
                     ySpeed *= -1;
                 }
+                
+
+                //ALSO DOESN'T WORK :(
+                /*
+                if ((x < b.hitBox.X || b.hitBox.X + b.hitBox.Width < x + 5) && (y < b.hitBox.Y + b.hitBox.Height || y - size > b.hitBox.Y))
+                {
+                    if (xSpeed > 0)
+                    {
+                        x = b.hitBox.X - size;
+                    }
+                    else
+                    {
+                        x = b.hitBox.X + b.hitBox.Width;
+                    }
+                    xSpeed *= -1;
+                }
+                else if (x + size > b.hitBox.X || x < b.hitBox.X + b.hitBox.Width - 8)
+                {
+                    if (ySpeed > 0)
+                    {
+                        y = b.hitBox.Y - size;
+                    }
+                    else
+                    {
+                        y = b.hitBox.Y + b.hitBox.Height;
+                    }
+                    ySpeed *= -1;
+                } */
                 int chance = 101;
                 if (rand.Next(1, 100)  <= chance)
                 {
