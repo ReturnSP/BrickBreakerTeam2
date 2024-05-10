@@ -136,7 +136,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Folder Include="Resources\IdleNoise\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="WMPLib">
