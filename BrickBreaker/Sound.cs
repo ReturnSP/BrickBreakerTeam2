@@ -77,20 +77,20 @@ namespace BrickBreaker
 
         // While within location
 
-        // Not present in this?
-        //public void Shopload(ShopScreen shopScreen)
-        //{
-        //    // While shop is entered
-        //    SoundPlayer shopidle = new SoundPlayer(Properties.Resources.shopidle);
-        //    shopidle.PlayLooping();
-        //}
-        // Not present in this?
-        //public void Scareload(scareScreen scareScreen)
-        //{
-        //    // While deathscreen is entered
-        //    SoundPlayer deathsudden = new SoundPlayer(Properties.Resources.deathsudden);
-        //    deathsudden.Play();
-        //}
+        Not present in this?
+        public void Shopload(ShopScreen shopScreen)
+        {
+            // While shop is entered
+            SoundPlayer shopidle = new SoundPlayer(Properties.Resources.shopidle);
+            shopidle.PlayLooping();
+        }
+        Not present in this?
+        public void Scareload(scareScreen scareScreen)
+        {
+            // While deathscreen is entered
+            SoundPlayer deathsudden = new SoundPlayer(Properties.Resources.deathsudden);
+            deathsudden.Play();
+        }
         public void Menuload(MenuScreen menuScreen)
         {
             // While menu screen is entered 
