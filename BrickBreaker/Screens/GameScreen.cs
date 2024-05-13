@@ -255,9 +255,11 @@ namespace BrickBreaker
                 // Check for ball hitting bottom of screen
                 if (ball.BottomCollision(this))
                 {
+                    SoundPlayer lifesubtracted = new SoundPlayer(Properties.Resources.lifesubtracted);
                     ball.ySpeed *= -1;
                     lives--;
                     restartLevel = false;
+                    lifesubtracted.Play();
 
                     // Moves the ball back to origin
                     ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
@@ -383,6 +385,7 @@ namespace BrickBreaker
 
                 // Check for collision of ball with paddle, (incl. paddle movement)
                 ball.PaddleCollision(paddle);
+                SoundPlayer brickbroken = new SoundPlayer(Properties.Resources.brickbroken);
 
                 // Check if ball has collided with any blocks
                 foreach (Block b in blocks)
