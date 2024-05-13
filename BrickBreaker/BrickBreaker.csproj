@@ -51,7 +51,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Ball.cs" />
     <Compile Include="Block.cs" />
+    <Compile Include="Debuff.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,8 +74,26 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Paddle.cs" />
+    <Compile Include="pauseScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pauseScreen.Designer.cs">
+      <DependentUpon>pauseScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="scareScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scareScreen.Designer.cs">
+      <DependentUpon>scareScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="deathScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deathScreen.Designer.cs">
+      <DependentUpon>deathScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,10 +106,22 @@
     <Compile Include="Screens\GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sound.cs" />
+    <Compile Include="UIPaint.cs" />
+    <Compile Include="ShopScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShopScreen.Designer.cs">
+      <DependentUpon>ShopScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vector.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pauseScreen.resx">
+      <DependentUpon>pauseScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scareScreen.resx">
+      <DependentUpon>scareScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,11 +133,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="deathScreen.resx">
+      <DependentUpon>deathScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShopScreen.resx">
+      <DependentUpon>ShopScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -136,114 +172,88 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\IdleNoise\" />
+    <None Include="Resources\deathPit.png" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="WMPLib">
-      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
+    <None Include="Resources\bar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cartoon Boing %28Spring Sound%29 - Sound Effects for Editing.wav" />
+    <None Include="Resources\levelBackSet2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Pantera - Mouth for War [Lyrics].wav" />
+    <None Include="Resources\levelBackSet1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Aztec Death Whistle.wav" />
+    <None Include="Resources\barr.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Wasteland 2 Soundtrack - Desert Nomads.wav" />
+    <None Include="Resources\sideBar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Brick Break Sound %28Super Mario World%29.wav" />
+    <None Include="Resources\buttons.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Brick impact debris  _ Sound Effect %281%29.wav" />
+    <None Include="Resources\barrr.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Brick impact debris  _ Sound Effect.wav" />
+    <None Include="Resources\barrrr.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Buying Sound Effect.wav" />
+    <None Include="Resources\mainScreenBackground.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Concrete pipe falling sound effect %281%29.wav" />
+    <None Include="Resources\scareAssBackground.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Horror Swirl Sound Effect.wav" />
+    <None Include="Resources\evilFace.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Minecraft Damage %28Oof%29 - Sound Effect %28HD%29.wav" />
+    <None Include="Resources\unnamed.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Pause hit Sound Effect.wav" />
+    <None Include="Resources\6.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Postal 2 - Map Muzak %2810 minutes extended%29.wav" />
+    <None Include="Resources\5.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PS1 Final Doom Hell Knight sound effect %281%29.wav" />
+    <None Include="Resources\4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Smack _ sound effect %284K%29.wav" />
+    <None Include="Resources\3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Thwack Sound Effect.wav" />
+    <None Include="Resources\2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\War of the Worlds_ Tripod Horn.wav" />
+    <None Include="Resources\1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Bricksmash1.wav" />
+    <None Include="Resources\heart3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Concrete pipe falling sound effect.wav" />
+    <None Include="Resources\heart4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic1.wav" />
+    <None Include="Resources\heart5.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic2.wav" />
+    <None Include="Resources\heart6.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic3.wav" />
+    <None Include="Resources\heart1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic4.wav" />
+    <None Include="Resources\heart2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic5.wav" />
+    <None Include="Resources\heart7.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic6.wav" />
+    <None Include="Resources\fire.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic7.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Idlemusic8.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Idlemusic9.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Idlemusic10.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Idlemusic11.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Paddlesound.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Wallhitsound.wav" />
+    <None Include="Resources\pauseScreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

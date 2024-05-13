@@ -61,290 +61,222 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Brick_Break_Sound__Super_Mario_World_ {
+        internal static System.Drawing.Bitmap bar {
             get {
-                return ResourceManager.GetStream("Brick_Break_Sound__Super_Mario_World_", resourceCulture);
+                object obj = ResourceManager.GetObject("bar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Brick_impact_debris____Sound_Effect {
+        internal static System.Drawing.Bitmap barr {
             get {
-                return ResourceManager.GetStream("Brick_impact_debris____Sound_Effect", resourceCulture);
+                object obj = ResourceManager.GetObject("barr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream brickbroken {
+        internal static System.Drawing.Bitmap barrr {
             get {
-                return ResourceManager.GetStream("brickbroken", resourceCulture);
+                object obj = ResourceManager.GetObject("barrr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream bricksmash1 {
+        internal static System.Drawing.Bitmap barrrr {
             get {
-                return ResourceManager.GetStream("bricksmash1", resourceCulture);
+                object obj = ResourceManager.GetObject("barrrr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Buying_Sound_Effect {
+        internal static System.Drawing.Bitmap buttons {
             get {
-                return ResourceManager.GetStream("Buying_Sound_Effect", resourceCulture);
+                object obj = ResourceManager.GetObject("buttons", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Concrete_pipe_falling_sound_effect {
+        internal static System.Drawing.Bitmap deathPit {
             get {
-                return ResourceManager.GetStream("Concrete_pipe_falling_sound_effect", resourceCulture);
+                object obj = ResourceManager.GetObject("deathPit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Concrete_pipe_falling_sound_effect__1_ {
+        internal static System.Drawing.Bitmap evilFace {
             get {
-                return ResourceManager.GetStream("Concrete_pipe_falling_sound_effect__1_", resourceCulture);
+                object obj = ResourceManager.GetObject("evilFace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream crakka {
+        internal static System.Drawing.Bitmap fire {
             get {
-                return ResourceManager.GetStream("crakka", resourceCulture);
+                object obj = ResourceManager.GetObject("fire", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream deathsudden {
+        internal static System.Drawing.Bitmap heart1 {
             get {
-                return ResourceManager.GetStream("deathsudden", resourceCulture);
+                object obj = ResourceManager.GetObject("heart1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream freaky {
+        internal static System.Drawing.Bitmap heart2 {
             get {
-                return ResourceManager.GetStream("freaky", resourceCulture);
+                object obj = ResourceManager.GetObject("heart2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream genericidle {
+        internal static System.Drawing.Bitmap heart3 {
             get {
-                return ResourceManager.GetStream("genericidle", resourceCulture);
+                object obj = ResourceManager.GetObject("heart3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic1 {
+        internal static System.Drawing.Bitmap heart4 {
             get {
-                return ResourceManager.GetStream("Idlemusic1", resourceCulture);
+                object obj = ResourceManager.GetObject("heart4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic10 {
+        internal static System.Drawing.Bitmap heart5 {
             get {
-                return ResourceManager.GetStream("Idlemusic10", resourceCulture);
+                object obj = ResourceManager.GetObject("heart5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic11 {
+        internal static System.Drawing.Bitmap heart6 {
             get {
-                return ResourceManager.GetStream("Idlemusic11", resourceCulture);
+                object obj = ResourceManager.GetObject("heart6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic2 {
+        internal static System.Drawing.Bitmap heart7 {
             get {
-                return ResourceManager.GetStream("Idlemusic2", resourceCulture);
+                object obj = ResourceManager.GetObject("heart7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic3 {
+        internal static System.Drawing.Bitmap levelBackSet1 {
             get {
-                return ResourceManager.GetStream("Idlemusic3", resourceCulture);
+                object obj = ResourceManager.GetObject("levelBackSet1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic4 {
+        internal static System.Drawing.Bitmap levelBackSet2 {
             get {
-                return ResourceManager.GetStream("Idlemusic4", resourceCulture);
+                object obj = ResourceManager.GetObject("levelBackSet2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic5 {
+        internal static System.Drawing.Bitmap mainScreenBackground {
             get {
-                return ResourceManager.GetStream("Idlemusic5", resourceCulture);
+                object obj = ResourceManager.GetObject("mainScreenBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic6 {
+        internal static System.Drawing.Bitmap pauseScreen {
             get {
-                return ResourceManager.GetStream("Idlemusic6", resourceCulture);
+                object obj = ResourceManager.GetObject("pauseScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic7 {
+        internal static System.Drawing.Bitmap scareAssBackground {
             get {
-                return ResourceManager.GetStream("Idlemusic7", resourceCulture);
+                object obj = ResourceManager.GetObject("scareAssBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic8 {
+        internal static System.Drawing.Bitmap scareScreen {
             get {
-                return ResourceManager.GetStream("Idlemusic8", resourceCulture);
+                object obj = ResourceManager.GetObject("scareScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Idlemusic9 {
+        internal static System.Drawing.Bitmap sideBar {
             get {
-                return ResourceManager.GetStream("Idlemusic9", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream lifesubtracted {
-            get {
-                return ResourceManager.GetStream("lifesubtracted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Paddlesound {
-            get {
-                return ResourceManager.GetStream("Paddlesound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream pantera {
-            get {
-                return ResourceManager.GetStream("pantera", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Pause_hit_Sound_Effect {
-            get {
-                return ResourceManager.GetStream("Pause_hit_Sound_Effect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream PS1_Final_Doom_Hell_Knight_sound_effect__1_ {
-            get {
-                return ResourceManager.GetStream("PS1_Final_Doom_Hell_Knight_sound_effect__1_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream shopidle {
-            get {
-                return ResourceManager.GetStream("shopidle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Smack___sound_effect__4K_ {
-            get {
-                return ResourceManager.GetStream("Smack___sound_effect__4K_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream swirleffect {
-            get {
-                return ResourceManager.GetStream("swirleffect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Thwack_Sound_Effect {
-            get {
-                return ResourceManager.GetStream("Thwack_Sound_Effect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream wallstrike {
-            get {
-                return ResourceManager.GetStream("wallstrike", resourceCulture);
+                object obj = ResourceManager.GetObject("sideBar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
