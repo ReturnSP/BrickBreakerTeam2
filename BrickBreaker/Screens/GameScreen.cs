@@ -84,7 +84,7 @@ namespace BrickBreaker
         int mirroredPaddleX;
 
         int duration1, duration2, duration3, duration4, duration5;
-        int vineLocatoin = 150;
+        int vineLocatoin = 130;
         int grow;
 
         //bouncing off side of paddle
@@ -407,7 +407,7 @@ namespace BrickBreaker
                             if (b.hp == 0)
                             {
                                 blocks.Remove(b);
-                                int chance = 101;
+                                int chance = 6;
 
                                 if (rand.Next(1, 100) <= chance)
                                 {
@@ -418,18 +418,18 @@ namespace BrickBreaker
                                     {
                                         o = 1;
                                     }
-                                    else if (check > 20 && check < 50)
-                                    {
-                                        o = 2;
-                                    }
+                                   // else if (check > 20 && check < 50)
+                                    //{
+                                      //  o = 2;
+                                    //}
                                     else if (check == 50)
                                     {
                                         o = 3;
                                     }
-                                    else if (check > 51 && check < 62)
-                                    {
-                                        o = 4;
-                                    }
+                                   // else if (check > 51 && check < 62)
+                                   // {
+                                       // o = 4;
+                                    //}
                                     else
                                     {
                                         o = 5;
@@ -503,7 +503,7 @@ namespace BrickBreaker
             if (dB1)
             {
                 duration1++;
-                if (duration1 < 15)
+                if (duration1 < 12)
                 {
                     PictureBox vines = new PictureBox();
                     vines.Parent = this;
@@ -536,7 +536,7 @@ namespace BrickBreaker
                     duration1 = 0;
                     dB1 = false;
                     debuff1.Clear();
-                    vineLocatoin = 150;
+                    vineLocatoin = 130;
                 }
 
 
