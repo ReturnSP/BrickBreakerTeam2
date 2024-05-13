@@ -5,149 +5,132 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WMPLib;
+using System.Media;
+using BrickBreaker.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
+using System.Xml;
+using System.Diagnostics;
 
 namespace BrickBreaker
 {
-    internal class Sound
+    public class Sound
     {
-        static void Main(string[] args)
+        public void Main(string[] args, object sender, Block b, Paddle p, Ball ball, List<Block> blocks)
         {
 
-            // When you enter a new level
-            // Trigger.function
+            // Create a list to hold audio clips
+            List<SoundPlayer> audioClips = new List<SoundPlayer>();
 
-            // Idle music, ambient, mostly Fallout tracks
-
-            // Source root for sounds
-            var soundsRoot = Properties.Resources.;
-            // Create new random
-            var rand = new Random();
-            // List of files from directory
-            string[] soundFiles = Directory.GetFiles(@"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\Sound", "*.wav");
-            // Create playsound variable, plays a random sound from established directory
-            var playSound = soundFiles[rand.Next(0, soundFiles.Length)];
-            // Play sound
-            System.Media.SoundPlayer idle = new System.Media.SoundPlayer(playSound);
-
-            // Create windows media players for active sound
-            // Can hypothetically play 3 sounds at the same time, unless I should add more?
-            //var active = new WindowsMediaPlayer();
-            //active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
-            //var active2 = new WindowsMediaPlayer();
-            //active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
-            //var active3 = new WindowsMediaPlayer();
-            //active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
-            //var constant = new WindowsMediaPlayer();
-            //active.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\";
-            //Console.ReadLine();
-
-            // Location of file
-            int butthole;
-            //List of files from directory
-            // Source root for sounds
-            var buttholesurfers = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\Sound"+butthole+"";
-            // list of files, by WAV
-            string[] activeFiles = Directory.GetFiles(@"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\", "*.wav");
-            // Something to change the given file to
-
-            var activePlay = soundFiles[butthole];
-            System.Media.SoundPlayer activebutthole = new System.Media.SoundPlayer(activePlay); 
-
-            // Create active sound directory
-            string[] activesound = Directory.GetFiles(@"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\Sound", "*.wav");
+            // Added audioclips
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic1));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic2));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic3));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic4));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic5));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic6));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic7));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic8));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic9));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic10));
+            audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic11));
 
 
+            // When booting up a new level
+            if (blocks.Count == 0)
+            {
+                // Create randgen
+                Random rnd = new Random();
+                int idlesounds = rnd.Next(audioClips.Count);
+                SoundPlayer idle = audioClips[idlesounds];
+
+                idle.Stop();
+                idle.Play();
+            }
 
             // While playing
-
-            // If brick is struck, play brickstrike noise
-            if ()
+            foreach (Block block in blocks)
             {
-            System.Media.SoundPlayer brickstrike = new System.Media.SoundPlayer();
-            brickstrike.Play();
+                // If brick is struck, play brickstrike noise
+                if (ball.BlockCollision(b))
+                {
+                    SoundPlayer brickstrike = new SoundPlayer(Properties.Resources.brickbroken);
+                    brickstrike.Play();
+                }
             }
-            // if brick is broken, play brickbroken noise
-            System.Media.SoundPlayer brickbroke = new System.Media.SoundPlayer();
-            brickbroke.Play();
-            // if paddle is hit, play paddlehit noise
-            System.Media.SoundPlayer paddlehit = new System.Media.SoundPlayer();
-            brickbroke.Play();
-            // if wall is struck, play wallstrike noise
-            System.Media.SoundPlayer wallstrike = new System.Media.SoundPlayer();
-            brickbroke.Play();
-            // If life is subtracted
-            System.Media.SoundPlayer lifesub = new System.Media.SoundPlayer();
-            brickbroke.Play();
-            // If HP < 2
-            System.Media.SoundPlayer smallerthan2 = new System.Media.SoundPlayer();
-            brickbroke.Play();
 
             //If button clicked
 
             // If cont button is clicked
-            System.Media.SoundPlayer contbutt = new System.Media.SoundPlayer();
-            brickbroke.Play();
+            //SoundPlayer cont = new SoundPlayer(Properties.Resources.bttn);
+            //cont.Play();
             // If startbutton is clicked
-            System.Media.SoundPlayer startbutt = new System.Media.SoundPlayer();
-            brickbroke.Play();
+            //SoundPlayer strt = new SoundPlayer(Properties.Resources.bttn);
+            //strt.Play();
             // If purchasebutton is clicked
-            System.Media.SoundPlayer buybutt = new System.Media.SoundPlayer();
-            brickbroke.Play();
-            // If exit program button is clicked
-            System.Media.SoundPlayer leavebutt = new System.Media.SoundPlayer();
-            brickbroke.Play();
-
-            // While within location
-
-            // While shop is entered
-            System.Media.SoundPlayer shop = new System.Media.SoundPlayer();
-            brickbroke.Play();
-
-            // While deathscreen is entered
-            System.Media.SoundPlayer deathscreen = new System.Media.SoundPlayer();
-            brickbroke.Play();
-
-            // While menu screen is entered 
-            System.Media.SoundPlayer menuscreen = new System.Media.SoundPlayer();
-            brickbroke.Play();
-
-
-            // Powerups collected
-
-            // If evilassskullmf
-            System.Media.SoundPlayer kil = new System.Media.SoundPlayer();
-            brickbroke.Play();
-
-            // If whiteboy
-            System.Media.SoundPlayer crakka = new System.Media.SoundPlayer();
-            brickbroke.Play();
-
-            // if hindupeace
-            System.Media.SoundPlayer heil = new System.Media.SoundPlayer();
-            brickbroke.Play();
-
-            // If freaky
-            System.Media.SoundPlayer tongue = new System.Media.SoundPlayer();
-            brickbroke.Play();
-
-            // If blessingofwar
-            System.Media.SoundPlayer pantera = new System.Media.SoundPlayer();
-            brickbroke.Play();
-
-            // Moving on
-
-            // If complete level
-            var completelvl = new WindowsMediaPlayer();
-
-            // If beat game
-            var beaten = new WindowsMediaPlayer();
-
-            // Discarded code to keep for later
-            //SoundPlayer player = new SoundPlayer(filePaths[choices]);
-            //player.Play();
-            //var idle = new WindowsMediaPlayer();
-            //idle.URL = @"C:\Users\Attihasl487\Source\Repos\BrickBreakerTeam2\BrickBreaker\Resources\"+idleselected+"";
+            //SoundPlayer HvaNgla = new SoundPlayer(Properties.Resources.HvaNgla);
+            //HvaNgla.Play();
 
         }
+
+        // While within location
+
+        // Not present in this?
+        //public void Shopload(ShopScreen shopScreen)
+        //{
+        //    // While shop is entered
+        //    SoundPlayer shopidle = new SoundPlayer(Properties.Resources.shopidle);
+        //    shopidle.PlayLooping();
+        //}
+        // Not present in this?
+        //public void Scareload(scareScreen scareScreen)
+        //{
+        //    // While deathscreen is entered
+        //    SoundPlayer deathsudden = new SoundPlayer(Properties.Resources.deathsudden);
+        //    deathsudden.Play();
+        //}
+        public void Menuload(MenuScreen menuScreen)
+        {
+            // While menu screen is entered 
+            SoundPlayer menuidle = new SoundPlayer(Properties.Resources.genericidle);
+            // Play after deathscream, and during menu
+            menuidle.Play();
+        }
+
+        // Powerups collected
+
+        // Ask Logan - why is the Debuff not present?
+        void Powerups(Paddle p, Debuff d)
+        {
+            // If whiteboy
+            if (d.debuff == 1)
+            {
+                SoundPlayer crakka = new SoundPlayer(Properties.Resources.crakka);
+                crakka.Play();
+            }
+            // if hindupeace
+            if (d.debuff == 1)
+            {
+                SoundPlayer swirleffect = new SoundPlayer(Properties.Resources.swirleffect);
+                swirleffect.Play();
+            }
+            // If freaky
+            if (d.debuff == 1)
+            {
+                SoundPlayer freaky = new SoundPlayer(Properties.Resources.freaky);
+                freaky.Play();
+            }
+            // If blessingofwar (Use it for what it's for)
+            if (d.debuff == 1)
+            {
+                SoundPlayer pantera = new SoundPlayer(Properties.Resources.pantera);
+                pantera.Play();
+            }
+        }
+
     }
 }
+
+
