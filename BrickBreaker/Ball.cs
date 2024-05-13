@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 
 namespace BrickBreaker
@@ -129,28 +130,37 @@ namespace BrickBreaker
                 {
                     xSpeed -= (float)0.05;
                 }
+                SoundPlayer paddlehit = new SoundPlayer(Properties.Resources.Paddlesound);
+                paddlehit.Play();
             }
         }
 
         public void WallCollision(UserControl UC)
         {
+            SoundPlayer wallstrike = new SoundPlayer(Properties.Resources.wallstrike);
             // Collision with left wall
             if (x < 0)
             {
                 x = 0;
                 xSpeed *= -1;
+                wallstrike.Play();
+
             }
             // Collision with right wall
             if (x > (UC.Width - size))
             {
                 x = UC.Width - size;
                 xSpeed *= -1;
+                wallstrike.Play();
+
             }
             // Collision with top wall
             if (y < 0)
             {
                 y = 0;
                 ySpeed *= -1;
+                wallstrike.Play();
+
             }
         }
 
