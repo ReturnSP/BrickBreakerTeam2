@@ -131,7 +131,7 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
 
             // setup starting paddle values and create paddle object
-            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 20, 8, Color.White);
+            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 20, 30, Color.White);
 
             updateCurve();
 
@@ -911,9 +911,6 @@ namespace BrickBreaker
 
 
 
-
-            // e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
-            e.Graphics.FillRegion(Brushes.LightBlue, ballRegion);
             // test
             // e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
 

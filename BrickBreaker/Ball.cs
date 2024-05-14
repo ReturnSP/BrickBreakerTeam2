@@ -137,13 +137,13 @@ namespace BrickBreaker
 
         public void WallCollision(UserControl UC)
         {
-          //  SoundPlayer wallstrike = new SoundPlayer(Properties.Resources.wallstrike);
+            SoundPlayer Wallhitsound = new SoundPlayer(Properties.Resources.Wallhitsound);
             // Collision with left wall
             if (x < 0)
             {
                 x = 0;
                 xSpeed *= -1;
-                //wallstrike.Play();
+                Wallhitsound.Play();
 
             }
             // Collision with right wall
@@ -151,7 +151,7 @@ namespace BrickBreaker
             {
                 x = UC.Width - size;
                 xSpeed *= -1;
-              //  wallstrike.Play();
+                Wallhitsound.Play();
 
             }
             // Collision with top wall
@@ -159,7 +159,7 @@ namespace BrickBreaker
             {
                 y = 0;
                 ySpeed *= -1;
-              //  wallstrike.Play();
+                Wallhitsound.Play();
 
             }
         }
