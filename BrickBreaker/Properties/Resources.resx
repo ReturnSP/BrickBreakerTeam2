@@ -130,17 +130,50 @@
   <data name="barrrr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barrrr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="brickbroken" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Brick impact debris  _ Sound Effect.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bricksmash1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bricksmash1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Brick_Break_Sound__Super_Mario_World_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Brick Break Sound (Super Mario World).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Brick_impact_debris____Sound_Effect__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Brick impact debris  _ Sound Effect (1).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="buttons" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buttons.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Buying_Sound_Effect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Buying Sound Effect.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Concrete_pipe_falling_sound_effect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Concrete pipe falling sound effect.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Concrete_pipe_falling_sound_effect__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Concrete pipe falling sound effect (1).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="crakka" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cartoon Boing (Spring Sound) - Sound Effects for Editing.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="deathPit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deathPit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="deathsudden" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Aztec Death Whistle.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="evilFace" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\evilFace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fire" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="freaky" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PS1 Final Doom Hell Knight sound effect (1).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="genericidle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Wasteland 2 Soundtrack - Desert Nomads.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="heart1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\heart1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,17 +196,62 @@
   <data name="heart7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\heart7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Idlemusic1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic10.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic11.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic5.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic6.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic7.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic8.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Idlemusic9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Idlemusic9.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="levelBackSet1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\levelBackSet1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="levelBackSet2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\levelBackSet2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="lifesubtracted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minecraft Damage (Oof) - Sound Effect (HD).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="mainScreenBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mainScreenBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Paddlesound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paddlesound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pantera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pantera - Mouth for War [Lyrics].wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="pauseScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pauseScreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pause_hit_Sound_Effect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pause hit Sound Effect.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="scareAssBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\scareAssBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,7 +259,25 @@
   <data name="scareScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unnamed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="shopidle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Postal 2 - Map Muzak (10 minutes extended).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="sideBar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sideBar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Smack___sound_effect__4K_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Smack _ sound effect (4K).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="swirleffect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Horror Swirl Sound Effect.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Wallhitsound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Wallhitsound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="wallstrike" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Thwack Sound Effect.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="War_of_the_Worlds__Tripod_Horn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\War of the Worlds_ Tripod Horn.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

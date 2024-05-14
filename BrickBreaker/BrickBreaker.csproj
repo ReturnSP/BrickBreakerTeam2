@@ -106,6 +106,7 @@
     <Compile Include="Screens\GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sound.cs" />
     <Compile Include="UIPaint.cs" />
     <Compile Include="ShopScreen.cs">
       <SubType>Form</SubType>
@@ -254,6 +255,113 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pauseScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aztec Death Whistle.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Brick Break Sound %28Super Mario World%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Brick impact debris  _ Sound Effect %281%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Brick impact debris  _ Sound Effect.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bricksmash1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Buying Sound Effect.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cartoon Boing %28Spring Sound%29 - Sound Effects for Editing.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Concrete pipe falling sound effect %281%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Concrete pipe falling sound effect.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Horror Swirl Sound Effect.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic8.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic9.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic10.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idlemusic11.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minecraft Damage %28Oof%29 - Sound Effect %28HD%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Paddlesound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pantera - Mouth for War [Lyrics].wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause hit Sound Effect.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Postal 2 - Map Muzak %2810 minutes extended%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS1 Final Doom Hell Knight sound effect %281%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Smack _ sound effect %284K%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thwack Sound Effect.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wallhitsound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\War of the Worlds_ Tripod Horn.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wasteland 2 Soundtrack - Desert Nomads.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
