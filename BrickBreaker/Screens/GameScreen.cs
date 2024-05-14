@@ -95,7 +95,22 @@ namespace BrickBreaker
         //RANOM
         Random rand = new Random();
 
+        //whiteboy
+        PictureBox whiteBoy = new PictureBox();
+
         List<PictureBox> debuff1 = new List<PictureBox>();
+
+        // list of balls
+
+        List<Ball> freakyBalls = new List<Ball>();
+
+        int drawBall;
+
+        bool drawTheBall;
+
+        Color debuffColor;
+
+    
         #endregion
 
         public GameScreen()
@@ -130,7 +145,6 @@ namespace BrickBreaker
             float ySpeed = -3 * speedMod;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
-
             updateBallStorage();
 
             // start the game engine loop
@@ -265,19 +279,33 @@ namespace BrickBreaker
                 brickTime = 0;
 
                 // Move ball
+                foreach (Ball b in freakyBalls)
+                {
+                    b.Move();
+                }
+
                 ball.Move();
 
+
                 // Check for collision with top and side walls
+                foreach (Ball b in freakyBalls)
+                {
+                    b.WallCollision(this);
+                }
+
                 ball.WallCollision(this);
 
                 // Check for ball hitting bottom of screen
+
                 if (ball.BottomCollision(this))
                 {
-                    SoundPlayer lifesubtracted = new SoundPlayer(Properties.Resources.lifesubtracted);
+                    // SoundPlayer lifesubtracted = new SoundPlayer(Properties.Resources.lifesubtracted);
                     ball.ySpeed *= -1;
                     lives--;
                     restartLevel = false;
-                    lifesubtracted.Play();
+                    //lifesubtracted.Play();
+
+                    freakyBalls.Clear();
 
                     // Moves the ball back to origin
                     ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
@@ -288,7 +316,26 @@ namespace BrickBreaker
                         gameTimer.Enabled = false;
                         OnEnd();
                     }
+
+
                 }
+
+                for (int i = freakyBalls.Count; i > 0; i--)
+                {
+                    if (freakyBalls[i - 1].y > this.Height)
+                    {
+                        freakyBalls.RemoveAt(i - 1);
+                        lives--;
+
+                        if (lives == 0)
+                        {
+                            gameTimer.Enabled = false;
+                            OnEnd();
+                        }
+                    }
+                }
+
+
 
                 updateBallStorage();
                 slope = derivitive();
@@ -371,7 +418,7 @@ namespace BrickBreaker
 
                 if (Math.Abs(ball.xSpeed) < MINSPEED && Math.Abs(ball.ySpeed) < MINSPEED) //makes really slow balls less slow
                 {
-                    while (Math.Abs(ball.xSpeed) < MINSPEED|| Math.Abs(ball.ySpeed) < MINSPEED)
+                    while (Math.Abs(ball.xSpeed) < MINSPEED || Math.Abs(ball.ySpeed) < MINSPEED)
                     {
                         ball.xSpeed *= (float)1.25;
                         ball.ySpeed *= (float)1.25;
@@ -402,8 +449,14 @@ namespace BrickBreaker
 
 
                 // Check for collision of ball with paddle, (incl. paddle movement)
+                foreach (Ball b in freakyBalls)
+                {
+                    b.PaddleCollision(paddle);
+                }
+
                 ball.PaddleCollision(paddle);
-                SoundPlayer brickbroken = new SoundPlayer(Properties.Resources.brickbroken);
+
+                // SoundPlayer brickbroken = new SoundPlayer(Properties.Resources.brickbroken);
 
 
                 // Check if ball has collided with any blocks
@@ -417,7 +470,7 @@ namespace BrickBreaker
                             if (b.hp == 0)
                             {
                                 blocks.Remove(b);
-                                int chance = 6;
+                                int chance = 40;
 
                                 if (rand.Next(1, 100) <= chance)
                                 {
@@ -427,25 +480,30 @@ namespace BrickBreaker
                                     if (check > 10 && check < 20)
                                     {
                                         o = 1;
+                                        debuffColor = Color.Green;
                                     }
-                                   // else if (check > 20 && check < 50)
-                                    //{
-                                      //  o = 2;
-                                    //}
+                                    else if (check > 20 && check < 50)
+                                    {
+                                        o = 2;
+                                        debuffColor = Color.Pink;
+                                    }
                                     else if (check == 50)
                                     {
                                         o = 3;
+                                        debuffColor = Color.Black;
                                     }
-                                   // else if (check > 51 && check < 62)
-                                   // {
-                                       // o = 4;
-                                    //}
+                                    else if (check > 51 && check < 62)
+                                    {
+                                        o = 4;
+                                        debuffColor = Color.White;
+                                    }
                                     else
                                     {
                                         o = 5;
+                                        debuffColor = Color.Silver;
                                     }
 
-                                    Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width);
+                                    Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
 
                                     debuffs.Add(newDebuff);
                                 }
@@ -464,8 +522,10 @@ namespace BrickBreaker
                             }
                             break;
                         }
+
+
                     }
-                    
+
                 }
             }
 
@@ -495,6 +555,7 @@ namespace BrickBreaker
 
             if (debuffs.Count != 0)
             {
+
                 foreach (Debuff d in debuffs)
                 {
                     d.Spawn();
@@ -520,26 +581,26 @@ namespace BrickBreaker
                     vines.Location = new Point(vineLocatoin, 0);
                     vines.SizeMode = PictureBoxSizeMode.StretchImage;
                     vines.Image = Properties.Resources.IvyVine;
-                    vines.BackColor = Color.Transparent;
+                    //vines.BackColor = Color.Transparent;
                     vines.BringToFront();
                     debuff1.Add(vines);
                     vineLocatoin += 100;
                 }
-                else if (duration1 < 200)
+                else if (duration1 < 100)
                 {
                     foreach (PictureBox p in debuff1)
                     {
                         p.Size = new Size(100, grow);
                     }
-                    grow += 5;
+                    grow += 10;
                 }
-                else if (duration1 < 400)
+                else if (duration1 < 200)
                 {
-                    grow -= 5;
+                    grow -= 10;
                     foreach (PictureBox p in debuff1)
                     {
                         p.Size = new Size(100, grow);
-                    }  
+                    }
                 }
                 else
                 {
@@ -554,6 +615,35 @@ namespace BrickBreaker
 
             if (dB2)
             {
+                duration2++;
+                if (duration2 < 2)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Ball newBall = new Ball(ball.x, ball.y, rand.Next(-18, 18), rand.Next(-18, 18), ball.size);
+                        freakyBalls.Add(newBall);
+                    }
+
+                }
+
+                if (duration2 > 200)
+                {
+                    freakyBalls.Clear();
+                    dB2 = false;
+                    duration2 = 0;
+                }
+
+                if (duration2 % 5 == 0 && drawBall == 1)
+                {
+                    drawTheBall = false;
+                    drawBall = 0;
+                }
+                else if (duration2 % 5 == 0 && drawBall == 0)
+                {
+                    drawTheBall = true;
+                    drawBall = 1;
+                }
+
 
             }
 
@@ -566,6 +656,49 @@ namespace BrickBreaker
 
             if (dB4)
             {
+                duration4++;
+                if (duration4 < 3)
+                {
+
+                    whiteBoy.Parent = this;
+                    whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
+                    whiteBoy.SizeMode = PictureBoxSizeMode.StretchImage;
+                    whiteBoy.Image = Properties.Resources.WhiteBoy;
+                    whiteBoy.BringToFront();
+                    //play sound
+                }
+                else if (duration4 < 40 && duration4 > 20)
+                {
+                    whiteBoy.Visible = true;
+                    whiteBoy.Size = new Size(100, 100);
+                    whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
+                    //play sound
+                }
+                else if (duration4 < 200 && duration4 > 180)
+                {
+                    whiteBoy.Visible = true;
+                    whiteBoy.Size = new Size(200, 200);
+                    whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
+                    //play sound
+                }
+                else if (duration4 < 400 && duration4 > 380)
+                {
+                    whiteBoy.Visible = true;
+                    whiteBoy.Size = new Size(700, 700);
+                    whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
+                    //play sound
+                }
+                else
+                {
+                    whiteBoy.Visible = false;
+                }
+
+                if (duration4 > 400)
+                {
+                    dB4 = false;
+                    duration4 = 0;
+                }
+
 
             }
 
@@ -746,10 +879,22 @@ namespace BrickBreaker
                 if (d.y < this.Bottom)
                 {
                     e.Graphics.DrawRectangle(Pens.White, d.x, d.y, 10, 10);
+                    Brush brush = new SolidBrush(d.color);
+                    e.Graphics.FillRectangle(brush, d.x, d.y, 10, 10);
                 }
             }
 
             // Draws ball
+
+            if (drawTheBall)
+            {
+                foreach (Ball b in freakyBalls)
+                {
+                    e.Graphics.FillEllipse(ballBrush, b.x, b.y, b.size, b.size);
+                }
+            }
+
+
             e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
             if (dB5)
@@ -763,14 +908,14 @@ namespace BrickBreaker
                 e.Graphics.FillRegion(paddleBrush, mirroredRightPaddleRegion);
             }
 
-            
-            
+
+
 
 
             // e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
             e.Graphics.FillRegion(Brushes.LightBlue, ballRegion);
             // test
-           // e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
+            // e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
 
 
             //testing

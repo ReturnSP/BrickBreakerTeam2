@@ -12,7 +12,7 @@ namespace BrickBreaker
 
         public static Random rand = new Random();
 
-        public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize)
+        public Ball(float _x, float _y, float _xSpeed, float _ySpeed, float _ballSize)
         {
             x = _x;
             y = _y;
@@ -130,20 +130,20 @@ namespace BrickBreaker
                 {
                     xSpeed -= (float)0.05;
                 }
-                SoundPlayer paddlehit = new SoundPlayer(Properties.Resources.Paddlesound);
-                paddlehit.Play();
+                //SoundPlayer paddlehit = new SoundPlayer(Properties.Resources.Paddlesound);
+                //paddlehit.Play();
             }
         }
 
         public void WallCollision(UserControl UC)
         {
-            SoundPlayer wallstrike = new SoundPlayer(Properties.Resources.wallstrike);
+          //  SoundPlayer wallstrike = new SoundPlayer(Properties.Resources.wallstrike);
             // Collision with left wall
             if (x < 0)
             {
                 x = 0;
                 xSpeed *= -1;
-                wallstrike.Play();
+                //wallstrike.Play();
 
             }
             // Collision with right wall
@@ -151,7 +151,7 @@ namespace BrickBreaker
             {
                 x = UC.Width - size;
                 xSpeed *= -1;
-                wallstrike.Play();
+              //  wallstrike.Play();
 
             }
             // Collision with top wall
@@ -159,7 +159,7 @@ namespace BrickBreaker
             {
                 y = 0;
                 ySpeed *= -1;
-                wallstrike.Play();
+              //  wallstrike.Play();
 
             }
         }
