@@ -13,7 +13,7 @@ namespace BrickBreaker
 
         public static Random rand = new Random();
 
-        public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize)
+        public Ball(float _x, float _y, float _xSpeed, float _ySpeed, float _ballSize)
         {
             x = _x;
             y = _y;
