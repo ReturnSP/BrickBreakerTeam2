@@ -26,7 +26,7 @@ namespace BrickBreaker
 
         // Game values
         int lives;
-        int levelNumber = 0;
+        int levelNumber = 1;
         Score score;
         List<string> comboAdds = new List<string>();
         int scoreAngle = 0;
@@ -121,7 +121,7 @@ namespace BrickBreaker
 
 
 
-    
+
         #endregion
 
         public GameScreen()
@@ -522,7 +522,7 @@ namespace BrickBreaker
                                         debuffColor = Color.Silver;
                                     }
 
-                                    Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
+                                    Debuff newDebuff = new Debuff(4, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
 
                                     debuffs.Add(newDebuff);
                                 }
@@ -589,7 +589,9 @@ namespace BrickBreaker
             }
 
             //debuffs
-
+            float widthScale = (float)Screen.PrimaryScreen.Bounds.Width / 1448;
+            float heightScale = (float)Screen.PrimaryScreen.Bounds.Height / 700;
+            float initalSize = 100 * widthScale;
             if (dB1)
             {
                 duration1++;
@@ -603,13 +605,13 @@ namespace BrickBreaker
                     //vines.BackColor = Color.Transparent;
                     vines.BringToFront();
                     debuff1.Add(vines);
-                    vineLocatoin += 100;
+                    vineLocatoin += (int)initalSize;
                 }
                 else if (duration1 < 100)
                 {
                     foreach (PictureBox p in debuff1)
                     {
-                        p.Size = new Size(100, grow);
+                        p.Size = new Size((int)initalSize, grow);
                     }
                     grow += 10;
                 }
@@ -618,7 +620,7 @@ namespace BrickBreaker
                     grow -= 10;
                     foreach (PictureBox p in debuff1)
                     {
-                        p.Size = new Size(100, grow);
+                        p.Size = new Size((int)initalSize, grow);
                     }
                 }
                 else
@@ -670,14 +672,14 @@ namespace BrickBreaker
             {
                 //send to game over screen in future
                 duration3++;
-                
+
                 if (duration3 > 60 && duration3 < 100)
                 {
                     evilSkullMan.Parent = this;
                     evilSkullMan.Location = new Point((this.Width - evilSkullMan.Width) / 2, (this.Height - evilSkullMan.Height) / 2);
                     evilSkullMan.SizeMode = PictureBoxSizeMode.StretchImage;
                     evilSkullMan.Image = Properties.Resources.evilFace;
-                    evilSkullMan.Size = new Size(700, 700);
+                    evilSkullMan.Size = new Size((int)(700 * widthScale), (int)(700 * heightScale));
                     evilSkullMan.BringToFront();
                 }
                 else if (duration3 > 100)
@@ -686,7 +688,7 @@ namespace BrickBreaker
                     dB3 = false;
                     Application.Exit();
                 }
-                
+
             }
 
             if (dB4)
@@ -705,21 +707,21 @@ namespace BrickBreaker
                 else if (duration4 < 40 && duration4 > 20)
                 {
                     whiteBoy.Visible = true;
-                    whiteBoy.Size = new Size(100, 100);
+                    whiteBoy.Size = new Size((int)(100 * widthScale), (int)(100 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
                 }
                 else if (duration4 < 200 && duration4 > 180)
                 {
                     whiteBoy.Visible = true;
-                    whiteBoy.Size = new Size(200, 200);
+                    whiteBoy.Size = new Size((int)(200 * widthScale), (int)(200 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
                 }
                 else if (duration4 < 400 && duration4 > 380)
                 {
                     whiteBoy.Visible = true;
-                    whiteBoy.Size = new Size(700, 700);
+                    whiteBoy.Size = new Size((int)(700 * widthScale), (int)(700 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
                 }
