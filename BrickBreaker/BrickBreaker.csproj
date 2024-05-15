@@ -51,6 +51,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,6 +63,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
@@ -257,100 +259,164 @@
     <None Include="Resources\pauseScreen.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Aztec Death Whistle.wav" />
+    <None Include="Resources\Aztec Death Whistle.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Brick Break Sound %28Super Mario World%29.wav" />
+    <None Include="Resources\Brick Break Sound %28Super Mario World%29.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Brick impact debris  _ Sound Effect %281%29.wav" />
+    <None Include="Resources\Brick impact debris  _ Sound Effect %281%29.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Brick impact debris  _ Sound Effect.wav" />
+    <None Include="Resources\Brick impact debris  _ Sound Effect.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Bricksmash1.wav" />
+    <None Include="Resources\Bricksmash1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Buying Sound Effect.wav" />
+    <None Include="Resources\Buying Sound Effect.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cartoon Boing %28Spring Sound%29 - Sound Effects for Editing.wav" />
+    <None Include="Resources\Cartoon Boing %28Spring Sound%29 - Sound Effects for Editing.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Concrete pipe falling sound effect %281%29.wav" />
+    <None Include="Resources\Concrete pipe falling sound effect %281%29.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Concrete pipe falling sound effect.wav" />
+    <None Include="Resources\Concrete pipe falling sound effect.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Horror Swirl Sound Effect.wav" />
+    <None Include="Resources\Horror Swirl Sound Effect.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic1.wav" />
+    <None Include="Resources\Idlemusic1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic2.wav" />
+    <None Include="Resources\Idlemusic2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic3.wav" />
+    <None Include="Resources\Idlemusic3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic4.wav" />
+    <None Include="Resources\Idlemusic4.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic5.wav" />
+    <None Include="Resources\Idlemusic5.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic6.wav" />
+    <None Include="Resources\Idlemusic6.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic7.wav" />
+    <None Include="Resources\Idlemusic7.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic8.wav" />
+    <None Include="Resources\Idlemusic8.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic9.wav" />
+    <None Include="Resources\Idlemusic9.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic10.wav" />
+    <None Include="Resources\Idlemusic10.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Idlemusic11.wav" />
+    <None Include="Resources\Idlemusic11.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Minecraft Damage %28Oof%29 - Sound Effect %28HD%29.wav" />
+    <None Include="Resources\Minecraft Damage %28Oof%29 - Sound Effect %28HD%29.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Paddlesound.wav" />
+    <None Include="Resources\Paddlesound.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Pantera - Mouth for War [Lyrics].wav" />
+    <None Include="Resources\Pantera - Mouth for War [Lyrics].wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Pause hit Sound Effect.wav" />
+    <None Include="Resources\Pause hit Sound Effect.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Postal 2 - Map Muzak %2810 minutes extended%29.wav" />
+    <None Include="Resources\Postal 2 - Map Muzak %2810 minutes extended%29.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PS1 Final Doom Hell Knight sound effect %281%29.wav" />
+    <None Include="Resources\PS1 Final Doom Hell Knight sound effect %281%29.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Smack _ sound effect %284K%29.wav" />
+    <None Include="Resources\Smack _ sound effect %284K%29.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Thwack Sound Effect.wav" />
+    <None Include="Resources\Thwack Sound Effect.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Wallhitsound.wav" />
+    <None Include="Resources\Wallhitsound.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\War of the Worlds_ Tripod Horn.wav" />
+    <None Include="Resources\War of the Worlds_ Tripod Horn.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Wasteland 2 Soundtrack - Desert Nomads.wav" />
+    <None Include="Resources\Wasteland 2 Soundtrack - Desert Nomads.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="WMPLib">
