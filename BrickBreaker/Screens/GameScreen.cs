@@ -136,7 +136,24 @@ namespace BrickBreaker
         //powerup durations 
 
         int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5;
+        List<Rectangle> debuff1 = new List<Rectangle>();
 
+        //Grady
+        System.Windows.Media.MediaPlayer[] music =
+        {
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer()
+        };
+        List<System.Windows.Media.MediaPlayer> sounds = new List<System.Windows.Media.MediaPlayer>();
         #endregion
 
         public GameScreen()
@@ -144,8 +161,137 @@ namespace BrickBreaker
             InitializeComponent();
             blocks = Block.LevelChanger(levelNumber, new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height));
             OnStart();
+
+            music[0].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic1.wav"));
+            music[1].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic2.wav"));
+            music[2].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic3.wav"));
+            music[3].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic4.wav"));
+            music[4].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic5.wav"));
+            music[5].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic6.wav"));
+            music[6].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic7.wav"));
+            music[7].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic8.wav"));
+            music[8].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic9.wav"));
+            music[9].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic10.wav"));
+            music[10].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic11.wav"));
+
+            music[0].MediaEnded += new EventHandler(music0);
+            music[1].MediaEnded += new EventHandler(music1);
+            music[2].MediaEnded += new EventHandler(music2);
+            music[3].MediaEnded += new EventHandler(music3);
+            music[4].MediaEnded += new EventHandler(music4);
+            music[5].MediaEnded += new EventHandler(music5);
+            music[6].MediaEnded += new EventHandler(music6);
+            music[7].MediaEnded += new EventHandler(music7);
+            music[8].MediaEnded += new EventHandler(music8);
+            music[9].MediaEnded += new EventHandler(music9);
+            music[10].MediaEnded += new EventHandler(music10);
         }
 
+        private void music0(object sender, EventArgs e)
+        {
+            music[0].Stop();
+
+
+            music[0].Play();
+        }
+        private void music1(object sender, EventArgs e)
+        {
+            music[1].Stop();
+
+
+            music[1].Play();
+        }
+        private void music2(object sender, EventArgs e)
+        {
+            music[2].Stop();
+
+
+            music[2].Play();
+        }
+        private void music3(object sender, EventArgs e)
+        {
+            music[3].Stop();
+
+
+            music[3].Play();
+        }
+        private void music4(object sender, EventArgs e)
+        {
+            music[4].Stop();
+
+
+            music[4].Play();
+        }
+        private void music5(object sender, EventArgs e)
+        {
+            music[5].Stop();
+
+
+            music[5].Play();
+        }
+        private void music6(object sender, EventArgs e)
+        {
+            music[6].Stop();
+
+
+            music[6].Play();
+        }
+        private void music7(object sender, EventArgs e)
+        {
+            music[7].Stop();
+
+
+            music[7].Play();
+        }
+        private void music8(object sender, EventArgs e)
+        {
+            music[8].Stop();
+
+
+            music[8].Play();
+        }
+        private void music9(object sender, EventArgs e)
+        {
+            music[9].Stop();
+
+
+            music[9].Play();
+        }
+        private void music10(object sender, EventArgs e)
+        {
+            music[10].Stop();
+
+
+            music[10].Play();
+        }
+        void PlayMusic()
+        {
+            //Hi Mr. T! Private Contractor Grady Here!
+            TurnMusicOff();
+            int indexer = levelNumber % 10;
+            music[indexer].Play();
+        }
+
+        void TurnMusicOff()
+        {
+            for (int i = 0; i < music.Length; i++)
+            {
+                music[i].Stop();
+            }
+        }
+
+        public void PlaySound(String startUp)
+        {
+
+            var sound = new System.Windows.Media.MediaPlayer();
+
+            sound.Open(new Uri(Application.StartupPath + startUp));
+
+            sounds.Add(sound);
+
+            sounds[sounds.Count - 1].Play();
+
+        }
 
         public void OnStart()
         {
@@ -191,6 +337,7 @@ namespace BrickBreaker
             dB4 = false;
             dB5 = false;
 
+            PlayMusic();
             gameTimer.Enabled = true;
 
         }
@@ -263,7 +410,10 @@ namespace BrickBreaker
             if (blocks.Count() == 0)
             {
                 levelNumber++;
-                blocks = Block.LevelChanger(levelNumber, this.Size);
+                blocks =  Block.LevelChanger(levelNumber, this.Size);
+                TurnMusicOff();
+                PlayMusic();
+                sounds.Clear();
             }
             Point mouse = this.PointToClient(Cursor.Position);
 
@@ -323,6 +473,12 @@ namespace BrickBreaker
 
 
                 // Check for collision with top and side walls
+                String check = ball.WallCollision(this);
+                if (check != "")
+                {
+                    PlaySound(check);
+                }
+                
                 foreach (Ball b in freakyBalls)
                 {
                     b.WallCollision(this);
@@ -334,6 +490,10 @@ namespace BrickBreaker
 
                 if (ball.BottomCollision(this))
                 {
+                    ball.ySpeed *= -1;
+                    lives--;
+                    restartLevel = false;
+                    PlaySound("\\Resources\\Minecraft Damage (Oof) - Sound Effect (HD).wav");
                     // SoundPlayer lifesubtracted = new SoundPlayer(Properties.Resources.lifesubtracted);
                     score.RemoveCombo();
                     scoreSize = 50;
@@ -433,6 +593,12 @@ namespace BrickBreaker
 
 
                 // Check for collision of ball with paddle, (incl. paddle movement)
+                 check = ball.PaddleCollision(paddle);
+                if (check != "")
+                {
+                    PlaySound(check);
+                }
+             
                 foreach (Ball b in freakyBalls)
                 {
                     b.PaddleCollision(paddle);
@@ -441,8 +607,6 @@ namespace BrickBreaker
                 ball.PaddleCollision(paddle);
 
                 // SoundPlayer brickbroken = new SoundPlayer(Properties.Resources.brickbroken);
-
-
                 // Check if ball has collided with any blocks
                 foreach (Block b in blocks)
                 {
@@ -450,10 +614,10 @@ namespace BrickBreaker
                     {
                         if (ball.BlockCollision(b))
                         {
+                            PlaySound("\\Resources\\Brick impact debris  _ Sound Effect.wav");
                             comboAdds.Add(100 * score.comboCounter + "");
                             score.AddToScore(100);
                             scoreSize += 1;
-
                             b.hp--;
                             if (b.hp == 0)
                             {
@@ -887,6 +1051,7 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            TurnMusicOff();
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
