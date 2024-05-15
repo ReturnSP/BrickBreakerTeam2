@@ -27,6 +27,11 @@ namespace BrickBreaker
         // Game values
         int lives;
         int levelNumber = 0;
+        Score score;
+        List<string> comboAdds = new List<string>();
+        int scoreAngle = 0;
+        int scoreDirection = 1;
+        int scoreSize = 50;
 
         // Paddle and Ball objects
         Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
@@ -122,7 +127,7 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
-            blocks = Block.LoadLevel("level1", this.Size);
+            blocks = Block.LevelChanger(levelNumber, new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height));
             OnStart();
         }
 
@@ -132,6 +137,7 @@ namespace BrickBreaker
             Cursor.Hide();
             //set life counter
             lives = 4;
+            score = new Score(0, 1);
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -306,6 +312,9 @@ namespace BrickBreaker
                 if (ball.BottomCollision(this))
                 {
                     // SoundPlayer lifesubtracted = new SoundPlayer(Properties.Resources.lifesubtracted);
+                    score.RemoveCombo();
+                    scoreSize = 50;
+
                     ball.ySpeed *= -1;
                     lives--;
                     restartLevel = false;
@@ -419,7 +428,7 @@ namespace BrickBreaker
                 */
 
                 //speed capping code
-                const float MAXSPEED = 18;
+                const float MAXSPEED = 15;
                 const float MINSPEED = 5;
 
                 if (Math.Abs(ball.xSpeed) < MINSPEED && Math.Abs(ball.ySpeed) < MINSPEED) //makes really slow balls less slow
@@ -472,6 +481,10 @@ namespace BrickBreaker
                     {
                         if (ball.BlockCollision(b))
                         {
+                            comboAdds.Add(100 * score.comboCounter + "");
+                            score.AddToScore(100);
+                            scoreSize += 1;
+
                             b.hp--;
                             if (b.hp == 0)
                             {
@@ -554,7 +567,7 @@ namespace BrickBreaker
             }
             else
             {
-                gameTimer.Interval = 1;
+                gameTimer.Interval = 10;
             }
 
             brickTime--;
@@ -856,7 +869,7 @@ namespace BrickBreaker
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(this.Width - 128, 0, 128, this.Height), 50);
 
-            UIPaint.PaintText(e.Graphics, "Level 1", 24, new Point(this.Width - 120, 90), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, "Level 0", 24, new Point(this.Width - 120, 90), Color.Goldenrod);
             Image heartImage = Properties.Resources.heart1;
             Point lifePos = new Point(this.Width - heartImage.Width - 25, 25);
             switch (lives)
@@ -885,6 +898,28 @@ namespace BrickBreaker
                     break;
             }
             UIPaint.PaintText(e.Graphics, lives + "", 24, new Point(this.Width - 55, 50), Color.Red);
+            Font myFont = new Font("Chiller", scoreSize, FontStyle.Bold);
+            SizeF textSize = e.Graphics.MeasureString(score.score + "", myFont);
+            foreach (string i in comboAdds)
+            {
+
+            }
+            if (scoreDirection == 1)
+            {
+                scoreAngle++;
+            }
+            else
+            {
+                scoreAngle--;
+            }
+            if (scoreAngle > 10)
+            {
+                scoreDirection *= -1;
+            }
+            if (scoreAngle < -10)
+            {
+                scoreDirection *= -1;
+            }
 
 
             // Draws paddle
@@ -930,7 +965,7 @@ namespace BrickBreaker
                 e.Graphics.FillRegion(paddleBrush, mirroredRightPaddleRegion);
             }
 
-
+            UIPaint.PaintTextRotate(e.Graphics, score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width / 2, (int)textSize.Height / 2));
 
 
             // test

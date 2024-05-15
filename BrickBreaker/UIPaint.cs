@@ -33,5 +33,35 @@ namespace BrickBreaker
             brush.Dispose();
             myFont.Dispose();
         }
+
+        static public void PaintTextTrans(Graphics e, string displayText, int size, Point position, Color color, int transparencyPercent)
+        {
+            Font myFont = new Font("Chiller", size, FontStyle.Bold);
+            Color transparentColor = Color.FromArgb(Convert.ToInt32(transparencyPercent), color);
+            SolidBrush brush = new SolidBrush(transparentColor);
+            e.DrawString(displayText, myFont, brush, position.X, position.Y);
+            brush.Dispose();
+            myFont.Dispose();
+        }
+
+        static public void PaintTextRotate(Graphics e, string displayText, int size, Point position, Color color, double angle, Point offset)
+        {
+            Font myFont = new Font("Chiller", size, FontStyle.Bold);
+            GraphicsPath path = new GraphicsPath();
+            SolidBrush brush = new SolidBrush(color);
+            path.AddString(displayText, myFont.FontFamily, (int)myFont.Style, myFont.Size, new Point(position.X - offset.X / 2, position.Y - offset.Y / 2), StringFormat.GenericDefault);
+
+            Matrix matrix = new Matrix();
+            matrix.RotateAt((float)angle, position);
+            //matrix.Translate(-position.X, -position.Y);
+            // Transform the GraphicsPath
+            path.Transform(matrix);
+            e.FillPath(brush, path);
+
+            matrix.Dispose();
+            path.Dispose();
+            brush.Dispose();
+            myFont.Dispose();
+        }
     }
 }
