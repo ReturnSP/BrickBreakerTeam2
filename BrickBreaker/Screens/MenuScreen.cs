@@ -15,6 +15,7 @@ namespace BrickBreaker
         public MenuScreen()
         {
             InitializeComponent();
+            Cursor.Show();
         }
 
         private void exitButton_Click(object sender, EventArgs e)

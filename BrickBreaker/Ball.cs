@@ -42,70 +42,73 @@ namespace BrickBreaker
                 int distY;
                 double timeX;
                 double timeY;
-                if (xSpeed > 0)
+                if (GameScreen.pU2 == false)
                 {
-                    if (ySpeed > 0)
+                    if (xSpeed > 0)
                     {
-                        colEdgesMove = new int[] { (int)ballRec.Right, (int)ballRec.Bottom };
-                        colEdgesBrick = new int[] { (int)blockRec.Left, (int)blockRec.Top };
-                        distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
-                        distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
-                        timeX = Math.Abs((double)distX / xSpeed);
-                        timeY = Math.Abs((double)distY / ySpeed);
-                        if (timeX > timeY)
-                            ySpeed *= -1;
-                        else if (timeY > timeX)
-                            xSpeed *= -1;
+                        if (ySpeed > 0)
+                        {
+                            colEdgesMove = new int[] { (int)ballRec.Right, (int)ballRec.Bottom };
+                            colEdgesBrick = new int[] { (int)blockRec.Left, (int)blockRec.Top };
+                            distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
+                            distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
+                            timeX = Math.Abs((double)distX / xSpeed);
+                            timeY = Math.Abs((double)distY / ySpeed);
+                            if (timeX > timeY)
+                                ySpeed *= -1;
+                            else if (timeY > timeX)
+                                xSpeed *= -1;
+                            else
+                                Console.WriteLine("Collided at a corner");
+                        }
                         else
-                            Console.WriteLine("Collided at a corner");
+                        {
+                            colEdgesMove = new int[] { (int)ballRec.Right, (int)ballRec.Top };
+                            colEdgesBrick = new int[] { (int)blockRec.Left, (int)blockRec.Bottom };
+                            distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
+                            distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
+                            timeX = Math.Abs((double)distX / xSpeed);
+                            timeY = Math.Abs((double)distY / ySpeed);
+                            if (timeX > timeY)
+                                ySpeed *= -1;
+                            else if (timeY > timeX)
+                                xSpeed *= -1;
+                            else
+                                Console.WriteLine("Collided at a corner");
+                        }
                     }
                     else
                     {
-                        colEdgesMove = new int[] { (int)ballRec.Right, (int)ballRec.Top };
-                        colEdgesBrick = new int[] { (int)blockRec.Left, (int)blockRec.Bottom };
-                        distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
-                        distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
-                        timeX = Math.Abs((double)distX / xSpeed);
-                        timeY = Math.Abs((double)distY / ySpeed);
-                        if (timeX > timeY)
-                            ySpeed *= -1;
-                        else if (timeY > timeX)
-                            xSpeed *= -1;
+                        if (ySpeed > 0)
+                        {
+                            colEdgesMove = new int[] { (int)ballRec.Left, (int)ballRec.Bottom };
+                            colEdgesBrick = new int[] { (int)blockRec.Right, (int)blockRec.Top };
+                            distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
+                            distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
+                            timeX = Math.Abs((double)distX / xSpeed);
+                            timeY = Math.Abs((double)distY / ySpeed);
+                            if (timeX > timeY)
+                                ySpeed *= -1;
+                            else if (timeY > timeX)
+                                xSpeed *= -1;
+                            else
+                                Console.WriteLine("Collided at a corner");
+                        }
                         else
-                            Console.WriteLine("Collided at a corner");
-                    }
-                }
-                else
-                {
-                    if (ySpeed > 0)
-                    {
-                        colEdgesMove = new int[] { (int)ballRec.Left, (int)ballRec.Bottom };
-                        colEdgesBrick = new int[] { (int)blockRec.Right, (int)blockRec.Top };
-                        distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
-                        distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
-                        timeX = Math.Abs((double)distX / xSpeed);
-                        timeY = Math.Abs((double)distY / ySpeed);
-                        if (timeX > timeY)
-                            ySpeed *= -1;
-                        else if (timeY > timeX)
-                            xSpeed *= -1;
-                        else
-                            Console.WriteLine("Collided at a corner");
-                    }
-                    else
-                    {
-                        colEdgesMove = new int[] { (int)ballRec.Left, (int)ballRec.Top };
-                        colEdgesBrick = new int[] { (int)blockRec.Right, (int)blockRec.Bottom };
-                        distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
-                        distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
-                        timeX = Math.Abs((double)distX / xSpeed);
-                        timeY = Math.Abs((double)distY / ySpeed);
-                        if (timeX > timeY)
-                            ySpeed *= -1;
-                        else if (timeY > timeX)
-                            xSpeed *= -1;
-                        else
-                            Console.WriteLine("Collided at a corner");
+                        {
+                            colEdgesMove = new int[] { (int)ballRec.Left, (int)ballRec.Top };
+                            colEdgesBrick = new int[] { (int)blockRec.Right, (int)blockRec.Bottom };
+                            distX = Math.Abs(colEdgesBrick[0] - colEdgesMove[0]);
+                            distY = Math.Abs(colEdgesBrick[1] - colEdgesMove[1]);
+                            timeX = Math.Abs((double)distX / xSpeed);
+                            timeY = Math.Abs((double)distY / ySpeed);
+                            if (timeX > timeY)
+                                ySpeed *= -1;
+                            else if (timeY > timeX)
+                                xSpeed *= -1;
+                            else
+                                Console.WriteLine("Collided at a corner");
+                        }
                     }
                 }
             }
