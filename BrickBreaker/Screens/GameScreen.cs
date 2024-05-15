@@ -56,7 +56,7 @@ namespace BrickBreaker
 
         Region[] checkRegions = new Region[] { null, null, null, null };
 
-        bool restartLevel = false;
+        bool isCaught = true;
 
         //cursor Pos
 
@@ -66,11 +66,6 @@ namespace BrickBreaker
         //slow mode (testing)
 
         bool slow;
-        
-
-        //Catch ability
-        bool catchDown;
-        bool throwDown;
 
         int TopXPos = 0;
         int turnCount = 0;
@@ -78,7 +73,7 @@ namespace BrickBreaker
         bool moveRight = false;
         bool moveLeft = false;
 
-        bool trackPos = false;
+        bool trackPos = true;
 
 
         //mouse move
@@ -133,7 +128,7 @@ namespace BrickBreaker
 
         PictureBox evilSkullMan = new PictureBox();
 
-
+        int catchDistance = 100;
 
 
         #endregion
@@ -186,7 +181,6 @@ namespace BrickBreaker
             dB4 = false;
             dB5 = false;
 
-
             gameTimer.Enabled = true;
 
         }
@@ -206,15 +200,13 @@ namespace BrickBreaker
                     slow = true;
                     break;
                 case Keys.C:
-                    catchDown = true;
-                    break;
-                case Keys.T:
-                    throwDown = true;
+                    catchMove();
                     break;
                 case Keys.Space:
-                    if (!restartLevel)
+                    if (isCaught)
                     {
-                        restartLevel = true;
+                        throwMove();
+                        isCaught = false;
                     }
                     break;
                 //testing
@@ -245,11 +237,6 @@ namespace BrickBreaker
                 case Keys.K:
                     slow = false;
                     break;
-                case Keys.C:
-                    catchDown = false;
-                    break;
-                case Keys.T:
-                    throwDown = false;
                 //testing
                 case Keys.P:
                     gameTimer.Enabled = true;
@@ -284,14 +271,6 @@ namespace BrickBreaker
                 updateCurve();
                 mouseMoving = false;
             }
-            if (catchDown == true)
-            {
-                catchMove();
-            }
-            if (throwDown == true)
-            {
-                throwMove();
-            }
 
             //mouse movement
             if (!mouseMoving)
@@ -314,7 +293,7 @@ namespace BrickBreaker
                 }
             }
 
-            if (!restartLevel)
+            if (isCaught)
             {
                 ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
                 ball.y = paddle.y - 25;
@@ -351,8 +330,8 @@ namespace BrickBreaker
 
                     ball.ySpeed *= -1;
                     lives--;
-                    restartLevel = false;
-                    trackPos = false;
+                    isCaught = true;
+                    trackPos = true;
                     //lifesubtracted.Play();
 
                     freakyBalls.Clear();
@@ -847,38 +826,30 @@ namespace BrickBreaker
 
         public void catchMove()
         {
-            int yComponent = (int)Math.Abs(Math.Abs(paddle.y) - Math.Abs(ball.y));
-            int xComponent = (int)Math.Abs(Math.Abs(paddle.x) - Math.Abs(ball.x));
+            int yComponent = (int)Math.Abs(paddle.y - ball.y);
+            int xComponent = (int)Math.Abs(paddle.x - ball.x);
 
-            int magnitude = (int)Math.Abs(Math.Sqrt(Math.Pow( yComponent, 2) + Math.Pow(xComponent, 2)));
+            int magnitude = (int)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
 
-            if (magnitude < 50)
+            if (magnitude < catchDistance || isCaught)
             {
                 ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
                 ball.y = paddle.y - 25;
                 ball.xSpeed = paddle.x;
                 ball.ySpeed = paddle.y;
+                isCaught = true;
                 trackPos = true;
-                
-            }
-            else
-            {
-                trackPos = false;
             }
         }
         public void throwMove()
         {
-            if(catchDown == false)
-            {
-                
-                restartLevel = true;
                 float yComponent = (float)Math.Abs(Math.Abs(0) - Math.Abs(ball.y));
                 float xComponent = (float)Math.Abs(Math.Abs(TopXPos) - Math.Abs(ball.x));
 
                 float magnitude = (float)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
                 float scale = (yComponent + xComponent);
                 float scaleX = (xComponent / magnitude) / scale;
-                float scaleY = (yComponent/ magnitude) / scale;
+                float scaleY = (yComponent / magnitude) / scale;
                 if (TopXPos < ball.x)
                 {
                     ball.xSpeed = (magnitude * scaleX + 9) * -1;
@@ -891,8 +862,7 @@ namespace BrickBreaker
                 }
 
                 trackPos = false;
-            }
-
+            isCaught = false;
         }
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
@@ -1000,22 +970,23 @@ namespace BrickBreaker
             //Tracking position of ball when caught
             if (trackPos)
             {
-                if(turnCount % 2 == 0)
+                if (turnCount % 2 == 0)
                 {
                     moveRight = true;
                 }
-                if(moveRight == true)
+                if (moveRight == true)
                 {
                     TopXPos += 40;
-                    if(TopXPos > this.Width)
+                    if (TopXPos > this.Width)
                     {
                         turnCount += 1;
                         moveRight = false;
                     }
                 }
-                else{
+                else
+                {
                     TopXPos -= 40;
-                    if(TopXPos < 0)
+                    if (TopXPos < 0)
                     {
                         turnCount += 1;
                         moveRight = true;
@@ -1023,7 +994,7 @@ namespace BrickBreaker
 
                 }
 
-                e.Graphics.DrawLine(Pens.Red, ball.x + (ball.size/2), ball.y + (ball.size/2), TopXPos, 0);
+                e.Graphics.DrawLine(Pens.Red, ball.x + (ball.size / 2), ball.y + (ball.size / 2), TopXPos, 0);
             }
 
             // test
