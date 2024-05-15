@@ -36,6 +36,7 @@ namespace BrickBreaker
         // Paddle and Ball objects
         Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
         Ball ball;
+        float paddleWidth = 80;
 
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
@@ -130,6 +131,11 @@ namespace BrickBreaker
 
         int catchDistance = 100;
 
+       public static bool pU1, pU2, pU3, pU4, pU5;
+
+        //powerup durations 
+
+        int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5;
 
         #endregion
 
@@ -143,6 +149,10 @@ namespace BrickBreaker
 
         public void OnStart()
         {
+            //pU2 = true;
+            //pU1 = true;
+            //pU3 = true;
+            pU4 = true;
             Cursor.Hide();
             //set life counter
             lives = 4;
@@ -152,7 +162,7 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
 
             // setup starting paddle values and create paddle object
-            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 20, 30, Color.White);
+            paddle = new Paddle((this.Width / 2) - ((int)paddle.width / 2), this.Height - paddle.height - 60, paddleWidth, 20, 30, Color.White);
 
             updateCurve();
 
@@ -275,21 +285,21 @@ namespace BrickBreaker
             //mouse movement
             if (!mouseMoving)
             {
-                Cursor.Position = this.PointToScreen(new Point(paddle.x + (paddle.width / 2), paddle.y + (paddle.height / 2)));
+                Cursor.Position = this.PointToScreen(new Point(paddle.x + ((int)paddle.width / 2), paddle.y + (paddle.height / 2)));
             }
             else
             {
-                paddle.x = mouse.X - (paddle.width / 2);
+                paddle.x = mouse.X - ((int)paddle.width / 2);
                 updateCurve();
 
                 if (mouse.X < paddle.width / 2 + 20)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(0 + (int)paddle.width / 2 + 20, paddle.y + paddle.height / 2));
                 }
 
                 if (mouse.X > this.Width - paddle.width / 2 - 20)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(this.Width - (int)paddle.width / 2 - 20, paddle.y + paddle.height / 2));
                 }
             }
 
@@ -448,6 +458,12 @@ namespace BrickBreaker
                             if (b.hp == 0)
                             {
                                 blocks.Remove(b);
+
+                                if(pU3)
+                                {
+                                    blocks.RemoveAll(Block => b.hitBox.Y == Block.hitBox.Y);
+                                }
+                                
                                 int chance = 40;
 
                                 if (rand.Next(1, 100) <= chance)
@@ -491,6 +507,7 @@ namespace BrickBreaker
                                 b.currentTexture++;
                                 b.texture = b.textures[b.currentTexture];
                             }
+
                             brickTime = 20;
 
                             if (blocks.Count == 0)
@@ -706,7 +723,7 @@ namespace BrickBreaker
                     //mirror ball
                     mirroredBallX = this.Width - ball.x - ball.size;
                     //mirror paddle
-                    mirroredPaddleX = this.Width - paddle.x - paddle.width;
+                    mirroredPaddleX = this.Width - paddle.x - (int)paddle.width;
 
                     #region regions
                     mirroredPaddleCircle.Reset();
@@ -720,8 +737,8 @@ namespace BrickBreaker
                     mirroredRightPaddleRegion.Dispose();
                     mirroredPaddleCircle.AddEllipse(mirroredPaddleX + paddle.width - 20, paddle.y, 40, 40);
                     mirroredRightPaddleRegion = new Region(mirroredPaddleCircle);
-                    mirroredRightPaddleRegion.Exclude(new Rectangle(mirroredPaddleX + paddle.width - 20, paddle.y + 20, 40, 20));
-                    mirroredRightPaddleRegion.Exclude(new Rectangle(mirroredPaddleX + paddle.width - 20, paddle.y, 20, 20));
+                    mirroredRightPaddleRegion.Exclude(new Rectangle(mirroredPaddleX + (int)paddle.width - 20, paddle.y + 20, 40, 20));
+                    mirroredRightPaddleRegion.Exclude(new Rectangle(mirroredPaddleX + (int)paddle.width - 20, paddle.y, 20, 20));
                     #endregion
                 }
                 else
@@ -734,6 +751,68 @@ namespace BrickBreaker
 
 
             #endregion
+
+            #region Power Up Area
+
+            if(pU1)
+            {
+                pDuration1++;
+                if (pDuration1 < 2)
+                {
+                    paddle.width = paddleWidth * 3;
+                }
+                else if (pDuration1 < 500)
+                {
+                    paddle.width -= (float)160/500;
+                }
+                else
+                {
+                    paddle.width = paddleWidth;
+                    pU1 = false;
+                    pDuration1 = 0;
+                }
+            }
+            
+            if(pU2)
+            {
+                pDuration2++;
+                if(pDuration2 > 250)
+                {
+                    pU2 = false;
+                    pDuration2 = 0;
+                }
+            }
+
+            if (pU3)
+            {
+                pDuration3++;
+                if (pDuration3 > 250)
+                {
+                    pU3 = false;
+                    pDuration3 = 0;
+                }
+            }
+
+            if (pU4)
+            {
+                pDuration4++;
+                if (pDuration4 < 250)
+                {
+                    ball.size = 30;
+                }
+                else
+                {
+                    ball.size = 20;
+                    pU4 = false;
+                    pDuration4= 0;
+                }
+            }
+
+
+
+            #endregion
+
+
 
             brickTime--;
 
@@ -793,8 +872,8 @@ namespace BrickBreaker
             rightPaddleRegion.Dispose();
             paddleCircle.AddEllipse(paddle.x + paddle.width - 20, paddle.y, 40, 40);
             rightPaddleRegion = new Region(paddleCircle);
-            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 20, paddle.y + 20, 40, 20));
-            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 20, paddle.y, 20, 20));
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + (int)paddle.width - 20, paddle.y + 20, 40, 20));
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + (int)paddle.width - 20, paddle.y, 20, 20));
         }
 
         public void updateBallStorage()
@@ -935,7 +1014,8 @@ namespace BrickBreaker
             {
                 if (d.y < this.Bottom)
                 {
-                    e.Graphics.DrawRectangle(Pens.White, d.x, d.y, 10, 10);
+                    Pen whitePen = new Pen(Color.White, 3);
+                    e.Graphics.DrawRectangle(whitePen, d.x, d.y, 10, 10);
                     Brush brush = new SolidBrush(d.color);
                     e.Graphics.FillRectangle(brush, d.x, d.y, 10, 10);
                 }
