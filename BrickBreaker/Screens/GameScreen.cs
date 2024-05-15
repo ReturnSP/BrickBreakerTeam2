@@ -522,7 +522,7 @@ namespace BrickBreaker
                                         debuffColor = Color.Silver;
                                     }
 
-                                    Debuff newDebuff = new Debuff(4, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
+                                    Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
 
                                     debuffs.Add(newDebuff);
                                 }

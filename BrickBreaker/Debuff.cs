@@ -35,7 +35,7 @@ namespace BrickBreaker
         public void PaddleCollision(Paddle p, Debuff d)
         {
             Rectangle DebuffRec = new Rectangle(d.x, d.y, 10, 10);
-            Rectangle paddleRec = new Rectangle(p.x, p.y, p.width, p.height);
+            Rectangle paddleRec = new Rectangle(p.x - 20, p.y, p.width + 40, p.height);
 
             if (DebuffRec.IntersectsWith(paddleRec))
             {
