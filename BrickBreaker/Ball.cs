@@ -139,17 +139,17 @@ namespace BrickBreaker
         {
             SoundPlayer Wallhitsound = new SoundPlayer(Properties.Resources.Wallhitsound);
             // Collision with left wall
-            if (x < 0)
+            if (x < 0+130)
             {
-                x = 0;
+                x = 0+130;
                 xSpeed *= -1;
                 Wallhitsound.Play();
 
             }
             // Collision with right wall
-            if (x > (UC.Width - size))
+            if (x > (UC.Width - size - 130))
             {
-                x = UC.Width - size;
+                x = UC.Width - size - 130;
                 xSpeed *= -1;
                 Wallhitsound.Play();
 
