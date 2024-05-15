@@ -63,9 +63,23 @@ namespace BrickBreaker
         public static int lastCursorX;
 
 
-        // slow mode (testing)
+        //slow mode (testing)
 
         bool slow;
+        
+
+        //Catch ability
+        bool catchDown;
+        bool throwDown;
+
+        int TopXPos = 0;
+        int turnCount = 0;
+
+        bool moveRight = false;
+        bool moveLeft = false;
+
+        bool trackPos = false;
+
 
         //mouse move
         bool mouseMoving = false;
@@ -191,6 +205,12 @@ namespace BrickBreaker
                 case Keys.K:
                     slow = true;
                     break;
+                case Keys.C:
+                    catchDown = true;
+                    break;
+                case Keys.T:
+                    throwDown = true;
+                    break;
                 case Keys.Space:
                     if (!restartLevel)
                     {
@@ -225,6 +245,11 @@ namespace BrickBreaker
                 case Keys.K:
                     slow = false;
                     break;
+                case Keys.C:
+                    catchDown = false;
+                    break;
+                case Keys.T:
+                    throwDown = false;
                 //testing
                 case Keys.P:
                     gameTimer.Enabled = true;
@@ -259,6 +284,14 @@ namespace BrickBreaker
                 updateCurve();
                 mouseMoving = false;
             }
+            if (catchDown == true)
+            {
+                catchMove();
+            }
+            if (throwDown == true)
+            {
+                throwMove();
+            }
 
             //mouse movement
             if (!mouseMoving)
@@ -285,6 +318,7 @@ namespace BrickBreaker
             {
                 ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
                 ball.y = paddle.y - 25;
+
             }
             else //game running loop
             {
@@ -318,6 +352,7 @@ namespace BrickBreaker
                     ball.ySpeed *= -1;
                     lives--;
                     restartLevel = false;
+                    trackPos = false;
                     //lifesubtracted.Play();
 
                     freakyBalls.Clear();
@@ -366,66 +401,11 @@ namespace BrickBreaker
                 }
                 if (rightCircleCollision)
                 {
-                    float momentumPercent = 1 - (slope / 100) - (paddle.speed / 2);
+                    float momentumPercent = 1 + (slope / 100) - (paddle.speed / 2);
                     float yMultiplier = 1 - momentumPercent;
                     ball.ySpeed += -1 * yMultiplier;
                     ball.xSpeed += -1 * momentumPercent;
                 }
-                //attempt at using angle between vectors to calculate new vector
-                /*
-                //calculates angle between ball vector and derivative using dot product of vectors
-                if (leftCircleCollision || rightCircleCollision)
-                {
-                    PointF newDirection = new PointF();
-                    double taco = Math.Acos((ball.xSpeed + (ball.ySpeed * slope)) / (Math.Sqrt(Math.Pow(ball.xSpeed, 2) + Math.Pow(ball.ySpeed, 2)) * Math.Sqrt(Math.Pow(slope, 2) + 1)));
-                    double theta = Math.Atan2(ball.ySpeed - slope, ball.xSpeed - 1);
-
-                    if (theta > 90)
-                    {
-                        theta = 180 - theta;
-                    }
-                    theta *= Math.PI / 180;
-                    float colX = ball.x + ball.size - paddle.x;
-                    float colY = (float)Math.Sqrt(400 - Math.Pow(colX, 2));
-
-                    if (leftCircleCollision) //left collision
-                    {
-                        if (ball.xSpeed > 0 && ball.ySpeed > 0)
-                        {
-                            if (theta < Math.PI / 2)
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate cc
-                            else
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate ccw
-                        }
-                        else if (ball.xSpeed < 0 && ball.ySpeed > 0)
-                        {
-                            if (theta < Math.PI / 2)
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate cc
-                            else
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate ccw
-                        }
-                    }
-                    else //rotate clocklwise
-                    {
-                        if (ball.xSpeed < 0 && ball.ySpeed > 0)
-                        {
-                            if (theta < Math.PI / 2)
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate cc
-                            else
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate ccw
-                        }
-                        else if (ball.xSpeed > 0 && ball.ySpeed > 0)
-                        {
-                            if (theta < Math.PI / 2)
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate cc
-                            else
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate ccw
-                        }
-                    }
-                    ball.xSpeed = -(newDirection.X - colX);
-                    ball.ySpeed = -(newDirection.Y - colY);
-                }
-                */
 
                 //speed capping code
                 const float MAXSPEED = 15;
@@ -858,7 +838,6 @@ namespace BrickBreaker
             Cursor.Show();
             form.Controls.Add(ps);
             form.Controls.Remove(this);
-
         }
 
         private void GameScreen_MouseDown(object sender, MouseEventArgs e)
@@ -866,6 +845,55 @@ namespace BrickBreaker
             mouseMoving = true;
         }
 
+        public void catchMove()
+        {
+            int yComponent = (int)Math.Abs(Math.Abs(paddle.y) - Math.Abs(ball.y));
+            int xComponent = (int)Math.Abs(Math.Abs(paddle.x) - Math.Abs(ball.x));
+
+            int magnitude = (int)Math.Abs(Math.Sqrt(Math.Pow( yComponent, 2) + Math.Pow(xComponent, 2)));
+
+            if (magnitude < 50)
+            {
+                ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
+                ball.y = paddle.y - 25;
+                ball.xSpeed = paddle.x;
+                ball.ySpeed = paddle.y;
+                trackPos = true;
+                
+            }
+            else
+            {
+                trackPos = false;
+            }
+        }
+        public void throwMove()
+        {
+            if(catchDown == false)
+            {
+                
+                restartLevel = true;
+                float yComponent = (float)Math.Abs(Math.Abs(0) - Math.Abs(ball.y));
+                float xComponent = (float)Math.Abs(Math.Abs(TopXPos) - Math.Abs(ball.x));
+
+                float magnitude = (float)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
+                float scale = (yComponent + xComponent);
+                float scaleX = (xComponent / magnitude) / scale;
+                float scaleY = (yComponent/ magnitude) / scale;
+                if (TopXPos < ball.x)
+                {
+                    ball.xSpeed = (magnitude * scaleX + 9) * -1;
+                    ball.ySpeed = (magnitude * scaleY + 9) * -1;
+                }
+                else
+                {
+                    ball.xSpeed = (magnitude * scaleX + 9);
+                    ball.ySpeed = (magnitude * scaleY + 9) * -1;
+                }
+
+                trackPos = false;
+            }
+
+        }
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
@@ -969,13 +997,37 @@ namespace BrickBreaker
 
             UIPaint.PaintTextRotate(e.Graphics, score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width / 2, (int)textSize.Height / 2));
 
+            //Tracking position of ball when caught
+            if (trackPos)
+            {
+                if(turnCount % 2 == 0)
+                {
+                    moveRight = true;
+                }
+                if(moveRight == true)
+                {
+                    TopXPos += 40;
+                    if(TopXPos > this.Width)
+                    {
+                        turnCount += 1;
+                        moveRight = false;
+                    }
+                }
+                else{
+                    TopXPos -= 40;
+                    if(TopXPos < 0)
+                    {
+                        turnCount += 1;
+                        moveRight = true;
+                    }
+
+                }
+
+                e.Graphics.DrawLine(Pens.Red, ball.x + (ball.size/2), ball.y + (ball.size/2), TopXPos, 0);
+            }
 
             // test
-            // e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
-
-
-            //testing
-
+            e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
             //foreach (Block block in blocks)
             //{
             //    e.Graphics.DrawRectangle(Pens.RoyalBlue, block.hitBox);
