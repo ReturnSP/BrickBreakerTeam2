@@ -26,7 +26,12 @@ namespace BrickBreaker
 
         // Game values
         int lives;
-        int levelNumber = 0;
+        int levelNumber = 1;
+        Score score;
+        List<string> comboAdds = new List<string>();
+        int scoreAngle = 0;
+        int scoreDirection = 1;
+        int scoreSize = 50;
 
         // Paddle and Ball objects
         Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
@@ -52,16 +57,25 @@ namespace BrickBreaker
 
         Region[] checkRegions = new Region[] { null, null, null, null };
 
-        bool restartLevel = false;
+        bool isCaught = true;
 
         //cursor Pos
 
         public static int lastCursorX;
 
 
-        // slow mode (testing)
+        //slow mode (testing)
 
         bool slow;
+
+        int TopXPos = 0;
+        int turnCount = 0;
+
+        bool moveRight = false;
+        bool moveLeft = false;
+
+        bool trackPos = true;
+
 
         //mouse move
         bool mouseMoving = false;
@@ -115,7 +129,7 @@ namespace BrickBreaker
 
         PictureBox evilSkullMan = new PictureBox();
 
-        //powerups
+        int catchDistance = 100;
 
        public static bool pU1, pU2, pU3, pU4, pU5;
 
@@ -123,13 +137,12 @@ namespace BrickBreaker
 
         int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5;
 
-    
         #endregion
 
         public GameScreen()
         {
             InitializeComponent();
-            blocks = Block.LoadLevel("level1", this.Size);
+            blocks = Block.LevelChanger(levelNumber, new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height));
             OnStart();
         }
 
@@ -143,6 +156,7 @@ namespace BrickBreaker
             Cursor.Hide();
             //set life counter
             lives = 4;
+            score = new Score(0, 1);
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -177,7 +191,6 @@ namespace BrickBreaker
             dB4 = false;
             dB5 = false;
 
-
             gameTimer.Enabled = true;
 
         }
@@ -196,10 +209,14 @@ namespace BrickBreaker
                 case Keys.K:
                     slow = true;
                     break;
+                case Keys.C:
+                    catchMove();
+                    break;
                 case Keys.Space:
-                    if (!restartLevel)
+                    if (isCaught)
                     {
-                        restartLevel = true;
+                        throwMove();
+                        isCaught = false;
                     }
                     break;
                 //testing
@@ -286,10 +303,11 @@ namespace BrickBreaker
                 }
             }
 
-            if (!restartLevel)
+            if (isCaught)
             {
                 ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
                 ball.y = paddle.y - 25;
+
             }
             else //game running loop
             {
@@ -317,9 +335,13 @@ namespace BrickBreaker
                 if (ball.BottomCollision(this))
                 {
                     // SoundPlayer lifesubtracted = new SoundPlayer(Properties.Resources.lifesubtracted);
+                    score.RemoveCombo();
+                    scoreSize = 50;
+
                     ball.ySpeed *= -1;
                     lives--;
-                    restartLevel = false;
+                    isCaught = true;
+                    trackPos = true;
                     //lifesubtracted.Play();
 
                     freakyBalls.Clear();
@@ -368,15 +390,14 @@ namespace BrickBreaker
                 }
                 if (rightCircleCollision)
                 {
-                    float momentumPercent = 1 - (slope / 100) - (paddle.speed / 2);
+                    float momentumPercent = 1 + (slope / 100) - (paddle.speed / 2);
                     float yMultiplier = 1 - momentumPercent;
                     ball.ySpeed += -1 * yMultiplier;
                     ball.xSpeed += -1 * momentumPercent;
                 }
-                
 
                 //speed capping code
-                const float MAXSPEED = 18;
+                const float MAXSPEED = 15;
                 const float MINSPEED = 5;
 
                 if (Math.Abs(ball.xSpeed) < MINSPEED && Math.Abs(ball.ySpeed) < MINSPEED) //makes really slow balls less slow
@@ -429,6 +450,10 @@ namespace BrickBreaker
                     {
                         if (ball.BlockCollision(b))
                         {
+                            comboAdds.Add(100 * score.comboCounter + "");
+                            score.AddToScore(100);
+                            scoreSize += 1;
+
                             b.hp--;
                             if (b.hp == 0)
                             {
@@ -518,7 +543,7 @@ namespace BrickBreaker
             }
             else
             {
-                gameTimer.Interval = 1;
+                gameTimer.Interval = 10;
             }
 
             brickTime--;
@@ -540,7 +565,9 @@ namespace BrickBreaker
             }
 
             //debuffs
-
+            float widthScale = (float)Screen.PrimaryScreen.Bounds.Width / 1448;
+            float heightScale = (float)Screen.PrimaryScreen.Bounds.Height / 700;
+            float initalSize = 100 * widthScale;
             if (dB1)
             {
                 duration1++;
@@ -554,13 +581,13 @@ namespace BrickBreaker
                     //vines.BackColor = Color.Transparent;
                     vines.BringToFront();
                     debuff1.Add(vines);
-                    vineLocatoin += 100;
+                    vineLocatoin += (int)initalSize;
                 }
                 else if (duration1 < 100)
                 {
                     foreach (PictureBox p in debuff1)
                     {
-                        p.Size = new Size(100, grow);
+                        p.Size = new Size((int)initalSize, grow);
                     }
                     grow += 10;
                 }
@@ -569,7 +596,7 @@ namespace BrickBreaker
                     grow -= 10;
                     foreach (PictureBox p in debuff1)
                     {
-                        p.Size = new Size(100, grow);
+                        p.Size = new Size((int)initalSize, grow);
                     }
                 }
                 else
@@ -621,14 +648,14 @@ namespace BrickBreaker
             {
                 //send to game over screen in future
                 duration3++;
-                
+
                 if (duration3 > 60 && duration3 < 100)
                 {
                     evilSkullMan.Parent = this;
                     evilSkullMan.Location = new Point((this.Width - evilSkullMan.Width) / 2, (this.Height - evilSkullMan.Height) / 2);
                     evilSkullMan.SizeMode = PictureBoxSizeMode.StretchImage;
                     evilSkullMan.Image = Properties.Resources.evilFace;
-                    evilSkullMan.Size = new Size(700, 700);
+                    evilSkullMan.Size = new Size((int)(700 * widthScale), (int)(700 * heightScale));
                     evilSkullMan.BringToFront();
                 }
                 else if (duration3 > 100)
@@ -637,7 +664,7 @@ namespace BrickBreaker
                     dB3 = false;
                     Application.Exit();
                 }
-                
+
             }
 
             if (dB4)
@@ -656,21 +683,21 @@ namespace BrickBreaker
                 else if (duration4 < 40 && duration4 > 20)
                 {
                     whiteBoy.Visible = true;
-                    whiteBoy.Size = new Size(100, 100);
+                    whiteBoy.Size = new Size((int)(100 * widthScale), (int)(100 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
                 }
                 else if (duration4 < 200 && duration4 > 180)
                 {
                     whiteBoy.Visible = true;
-                    whiteBoy.Size = new Size(200, 200);
+                    whiteBoy.Size = new Size((int)(200 * widthScale), (int)(200 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
                 }
                 else if (duration4 < 400 && duration4 > 380)
                 {
                     whiteBoy.Visible = true;
-                    whiteBoy.Size = new Size(700, 700);
+                    whiteBoy.Size = new Size((int)(700 * widthScale), (int)(700 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
                 }
@@ -869,7 +896,6 @@ namespace BrickBreaker
             Cursor.Show();
             form.Controls.Add(ps);
             form.Controls.Remove(this);
-
         }
 
         private void GameScreen_MouseDown(object sender, MouseEventArgs e)
@@ -877,12 +903,52 @@ namespace BrickBreaker
             mouseMoving = true;
         }
 
+        public void catchMove()
+        {
+            int yComponent = (int)Math.Abs(paddle.y - ball.y);
+            int xComponent = (int)Math.Abs(paddle.x - ball.x);
+
+            int magnitude = (int)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
+
+            if (magnitude < catchDistance || isCaught)
+            {
+                ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
+                ball.y = paddle.y - 25;
+                ball.xSpeed = paddle.x;
+                ball.ySpeed = paddle.y;
+                isCaught = true;
+                trackPos = true;
+            }
+        }
+        public void throwMove()
+        {
+                float yComponent = (float)Math.Abs(Math.Abs(0) - Math.Abs(ball.y));
+                float xComponent = (float)Math.Abs(Math.Abs(TopXPos) - Math.Abs(ball.x));
+
+                float magnitude = (float)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
+                float scale = (yComponent + xComponent);
+                float scaleX = (xComponent / magnitude) / scale;
+                float scaleY = (yComponent / magnitude) / scale;
+                if (TopXPos < ball.x)
+                {
+                    ball.xSpeed = (magnitude * scaleX + 9) * -1;
+                    ball.ySpeed = (magnitude * scaleY + 9) * -1;
+                }
+                else
+                {
+                    ball.xSpeed = (magnitude * scaleX + 9);
+                    ball.ySpeed = (magnitude * scaleY + 9) * -1;
+                }
+
+                trackPos = false;
+            isCaught = false;
+        }
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(this.Width - 128, 0, 128, this.Height), 50);
 
-            UIPaint.PaintText(e.Graphics, "Level 1", 24, new Point(this.Width - 120, 90), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, "Level 0", 24, new Point(this.Width - 120, 90), Color.Goldenrod);
             Image heartImage = Properties.Resources.heart1;
             Point lifePos = new Point(this.Width - heartImage.Width - 25, 25);
             switch (lives)
@@ -911,6 +977,28 @@ namespace BrickBreaker
                     break;
             }
             UIPaint.PaintText(e.Graphics, lives + "", 24, new Point(this.Width - 55, 50), Color.Red);
+            Font myFont = new Font("Chiller", scoreSize, FontStyle.Bold);
+            SizeF textSize = e.Graphics.MeasureString(score.score + "", myFont);
+            foreach (string i in comboAdds)
+            {
+
+            }
+            if (scoreDirection == 1)
+            {
+                scoreAngle++;
+            }
+            else
+            {
+                scoreAngle--;
+            }
+            if (scoreAngle > 10)
+            {
+                scoreDirection *= -1;
+            }
+            if (scoreAngle < -10)
+            {
+                scoreDirection *= -1;
+            }
 
 
             // Draws paddle
@@ -957,15 +1045,40 @@ namespace BrickBreaker
                 e.Graphics.FillRegion(paddleBrush, mirroredRightPaddleRegion);
             }
 
+            UIPaint.PaintTextRotate(e.Graphics, score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width / 2, (int)textSize.Height / 2));
 
+            //Tracking position of ball when caught
+            if (trackPos)
+            {
+                if (turnCount % 2 == 0)
+                {
+                    moveRight = true;
+                }
+                if (moveRight == true)
+                {
+                    TopXPos += 40;
+                    if (TopXPos > this.Width)
+                    {
+                        turnCount += 1;
+                        moveRight = false;
+                    }
+                }
+                else
+                {
+                    TopXPos -= 40;
+                    if (TopXPos < 0)
+                    {
+                        turnCount += 1;
+                        moveRight = true;
+                    }
 
+                }
+
+                e.Graphics.DrawLine(Pens.Red, ball.x + (ball.size / 2), ball.y + (ball.size / 2), TopXPos, 0);
+            }
 
             // test
-            // e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
-
-
-            //testing
-
+            e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
             //foreach (Block block in blocks)
             //{
             //    e.Graphics.DrawRectangle(Pens.RoyalBlue, block.hitBox);

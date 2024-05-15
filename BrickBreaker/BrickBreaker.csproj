@@ -94,6 +94,7 @@
     <Compile Include="deathScreen.Designer.cs">
       <DependentUpon>deathScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Score.cs" />
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
