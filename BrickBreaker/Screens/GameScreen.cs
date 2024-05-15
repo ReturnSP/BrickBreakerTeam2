@@ -110,6 +110,12 @@ namespace BrickBreaker
 
         Color debuffColor;
 
+        //Evil Skull Man
+
+        PictureBox evilSkullMan = new PictureBox();
+
+
+
     
         #endregion
 
@@ -650,8 +656,24 @@ namespace BrickBreaker
             if (dB3)
             {
                 //send to game over screen in future
-                dB3 = false;
-                Application.Exit();
+                duration3++;
+                
+                if (duration3 > 60 && duration3 < 100)
+                {
+                    evilSkullMan.Parent = this;
+                    evilSkullMan.Location = new Point((this.Width - evilSkullMan.Width) / 2, (this.Height - evilSkullMan.Height) / 2);
+                    evilSkullMan.SizeMode = PictureBoxSizeMode.StretchImage;
+                    evilSkullMan.Image = Properties.Resources.evilFace;
+                    evilSkullMan.Size = new Size(700, 700);
+                    evilSkullMan.BringToFront();
+                }
+                else if (duration3 > 100)
+                {
+                    duration3 = 0;
+                    dB3 = false;
+                    Application.Exit();
+                }
+                
             }
 
             if (dB4)
