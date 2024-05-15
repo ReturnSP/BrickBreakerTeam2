@@ -16,7 +16,6 @@ namespace BrickBreaker
         public MenuScreen()
         {
             InitializeComponent();
-
             menuMusic.Open(new Uri(Application.StartupPath + "\\Resources\\Wasteland 2 Soundtrack - Desert Nomads.wav"));
             menuMusic.MediaEnded += new EventHandler(menuMusicEnded);
             menuMusic.Play();
@@ -25,8 +24,8 @@ namespace BrickBreaker
         private void menuMusicEnded(object sender, EventArgs e)
         {
             menuMusic.Stop();
-
             menuMusic.Play();
+            Cursor.Show();
         }
 
         private void exitButton_Click(object sender, EventArgs e)

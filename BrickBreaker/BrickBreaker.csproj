@@ -96,6 +96,7 @@
     <Compile Include="deathScreen.Designer.cs">
       <DependentUpon>deathScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Score.cs" />
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -428,6 +429,18 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IvyVine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhiteBoy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FreakyMode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mirrorMode.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
