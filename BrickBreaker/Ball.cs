@@ -12,7 +12,7 @@ namespace BrickBreaker
 
         public static Random rand = new Random();
 
-        public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize)
+        public Ball(float _x, float _y, float _xSpeed, float _ySpeed, float _ballSize)
         {
             x = _x;
             y = _y;
@@ -200,15 +200,15 @@ namespace BrickBreaker
         public void WallCollision(UserControl UC)
         {
             // Collision with left wall
-            if (x < 0)
+            if (x < 0+130)
             {
-                x = 0;
+                x = 0+130;
                 xSpeed *= -1;
             }
             // Collision with right wall
-            if (x > (UC.Width - size))
+            if (x > (UC.Width - size - 130))
             {
-                x = UC.Width - size;
+                x = UC.Width - size - 130;
                 xSpeed *= -1;
             }
             // Collision with top wall
