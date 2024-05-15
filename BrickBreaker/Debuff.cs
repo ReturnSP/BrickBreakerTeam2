@@ -11,14 +11,16 @@ namespace BrickBreaker
     {
         public int debuff;
         public int x, y;
+        public Color color;
         int speedUp;
 
-        public Debuff(int _debuff, int _x, int _y)
+
+        public Debuff(int _debuff, int _x, int _y, Color _color)
         {
             debuff = _debuff;
             x = _x;
             y = _y;
-
+            color = _color;
         }
 
         public void Spawn()
