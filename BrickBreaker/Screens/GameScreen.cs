@@ -26,12 +26,13 @@ namespace BrickBreaker
 
         // Game values
         int lives;
-        int levelNumber = 1;
+        int levelNumber = 0;
         Score score;
         List<string> comboAdds = new List<string>();
         int scoreAngle = 0;
         int scoreDirection = 1;
         int scoreSize = 50;
+        int ballSize;
 
         // Paddle and Ball objects
         Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
@@ -98,7 +99,7 @@ namespace BrickBreaker
 
         int mirroredPaddleX;
 
-        int duration1, duration2, duration3, duration4, duration5;
+       public static int duration1, duration2, duration3, duration4, duration5;
         int vineLocatoin = 130;
         int grow;
 
@@ -131,11 +132,28 @@ namespace BrickBreaker
 
         int catchDistance = 100;
 
-       public static bool pU1, pU2, pU3, pU4, pU5;
+        public static bool pU1, pU2, pU3, pU4, pU5, pU6, pU7;
 
         //powerup durations 
 
-        int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5;
+       public static int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5, pDuration6, pDuration7;
+
+        //bottom rectangle
+
+        Rectangle bottomRec;
+        RectangleF ballRec;
+        RectangleF freakyball;
+
+        //shrink;
+
+        int shrink;
+
+        //ball X speed / y Speed
+
+        float xSpeed, ySpeed;
+
+
+
 
         #endregion
 
@@ -149,10 +167,13 @@ namespace BrickBreaker
 
         public void OnStart()
         {
-            //pU2 = true;
             //pU1 = true;
+            //pU2 = true;
             //pU3 = true;
-            pU4 = true;
+            //pU4 = true;
+            //pU5 = true;
+            //pU6 = true;
+            //pU7 = true;
             Cursor.Hide();
             //set life counter
             lives = 4;
@@ -172,9 +193,9 @@ namespace BrickBreaker
 
             // Creates a new ball
             int speedMod = 2;
-            float xSpeed = 15 * speedMod;
-            float ySpeed = -3 * speedMod;
-            int ballSize = 20;
+            xSpeed = 15 * speedMod;
+            ySpeed = -3 * speedMod;
+             ballSize = 20;
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
             updateBallStorage();
 
@@ -185,11 +206,38 @@ namespace BrickBreaker
             {
                 debuffs.Clear();
             }
-            dB1 = false;
-            dB2 = false;
-            dB3 = false;
-            dB4 = false;
-            dB5 = false;
+
+            #region debuffs / powerups
+            GameScreen.dB1 = false;
+            GameScreen.dB2 = false;
+            GameScreen.dB3 = false;
+            GameScreen.dB4 = false;
+            GameScreen.dB5 = false;
+
+            GameScreen.duration1 = 0;
+            GameScreen.duration2 = 0;
+            GameScreen.duration3 = 0;
+            GameScreen.duration4 = 0;
+            GameScreen.duration5 = 0;
+
+
+
+
+            GameScreen.pU1 = false;
+            GameScreen.pU2 = false;
+            GameScreen.pU3 = false;
+            GameScreen.pU4 = false;
+            GameScreen.pU5 = false;
+
+            GameScreen.pDuration1 = 0;
+            GameScreen.pDuration2 = 0;
+            GameScreen.pDuration3 = 0;
+            GameScreen.pDuration4 = 0;
+            GameScreen.pDuration5 = 0;
+            GameScreen.pDuration6 = 0;
+            GameScreen.pDuration7 = 0;
+            #endregion
+
 
             gameTimer.Enabled = true;
 
@@ -223,6 +271,9 @@ namespace BrickBreaker
                 case Keys.P:
                     gameTimer.Enabled = false;
                     break;
+                case Keys.G:
+                    pU7 = true;
+                    break;
                 default:
                     break;
             }
@@ -251,6 +302,9 @@ namespace BrickBreaker
                 case Keys.P:
                     gameTimer.Enabled = true;
                     break;
+                case Keys.G:
+                    pU7 = false;
+                    break;
                 default:
                     break;
             }
@@ -269,13 +323,13 @@ namespace BrickBreaker
 
             int brickTime = 0;
             // Arrow key movements
-            if (leftArrowDown && paddle.x > 20)
+            if (leftArrowDown && paddle.x > 40 + 128)
             {
                 paddle.Move("left");
                 updateCurve();
                 mouseMoving = false;
             }
-            if (rightArrowDown && paddle.x < (this.Width - paddle.width - 20))
+            if (rightArrowDown && paddle.x < (this.Width - paddle.width - 128 - 40))
             {
                 paddle.Move("right");
                 updateCurve();
@@ -292,14 +346,14 @@ namespace BrickBreaker
                 paddle.x = mouse.X - ((int)paddle.width / 2);
                 updateCurve();
 
-                if (mouse.X < paddle.width / 2 + 20)
+                if (mouse.X < paddle.width / 2 + 128 + 20)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(0 + (int)paddle.width / 2 + 20, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(0 + (int)paddle.width / 2 + 128 + 20, paddle.y + paddle.height / 2));
                 }
 
-                if (mouse.X > this.Width - paddle.width / 2 - 20)
+                if (mouse.X > this.Width - paddle.width / 2 - 128)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(this.Width - (int)paddle.width / 2 - 20, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(this.Width - (int)paddle.width / 2 - 128 - 20, paddle.y + paddle.height / 2));
                 }
             }
 
@@ -459,11 +513,11 @@ namespace BrickBreaker
                             {
                                 blocks.Remove(b);
 
-                                if(pU3)
+                                if (pU3)
                                 {
                                     blocks.RemoveAll(Block => b.hitBox.Y == Block.hitBox.Y);
                                 }
-                                
+
                                 int chance = 40;
 
                                 if (rand.Next(1, 100) <= chance)
@@ -754,16 +808,16 @@ namespace BrickBreaker
 
             #region Power Up Area
 
-            if(pU1)
+            if (pU1)
             {
                 pDuration1++;
                 if (pDuration1 < 2)
                 {
-                    paddle.width = paddleWidth * 3;
+                    paddle.width = paddleWidth * 5;
                 }
                 else if (pDuration1 < 500)
                 {
-                    paddle.width -= (float)160/500;
+                    paddle.width -= (float)320 / 500;
                 }
                 else
                 {
@@ -772,11 +826,11 @@ namespace BrickBreaker
                     pDuration1 = 0;
                 }
             }
-            
-            if(pU2)
+
+            if (pU2)
             {
                 pDuration2++;
-                if(pDuration2 > 250)
+                if (pDuration2 > 250)
                 {
                     pU2 = false;
                     pDuration2 = 0;
@@ -804,14 +858,130 @@ namespace BrickBreaker
                 {
                     ball.size = 20;
                     pU4 = false;
-                    pDuration4= 0;
+                    pDuration4 = 0;
                 }
             }
 
+            if (pU5)
+            {
+                pDuration5++;
+                if (pDuration5 > 500)
+                {
+                    pU5 = false;
+                    pDuration5 = 0;
+                }
+            }
 
+            if (pU6)
+            {
+                pDuration6++;
+                bottomRec = new Rectangle(0, this.Height - 20, this.Width, 20);
+                ballRec = new RectangleF(ball.x, ball.y, ball.size, ball.size);
+                if (pDuration6 < 800)
+                {
+                    ball.xSpeed *= 2;
+                    ball.ySpeed *= 2;
+                    if (ballRec.IntersectsWith(bottomRec))
+                    {
+                        ball.y = bottomRec.Y - ball.size;
+                        ball.ySpeed *= -1;
+                    }
+                    foreach (Ball b in freakyBalls)
+                    {
+                        freakyball = new RectangleF(b.x, b.y, b.size, b.size);
+                        if (freakyball.IntersectsWith(bottomRec))
+                        {
+                            b.y = bottomRec.Y - b.size;
+                            b.ySpeed *= -1;
+                        }
+                    }
+                }
+                else if (pDuration6 < 1500)
+                {
+                    shrink++;
+                    bottomRec.Size = new Size(this.Width - 2 * (shrink), 20);
+                    bottomRec.Location = new Point(0 + shrink, this.Height - 20);
+                    ball.xSpeed -= 1;
+                    ball.ySpeed -= 1;
+                    if (ballRec.IntersectsWith(bottomRec))
+                    {
+                        ball.y = bottomRec.Y - ball.size;
+                        ball.ySpeed *= -1;
+                    }
+                    foreach (Ball b in freakyBalls)
+                    {
+                        freakyball = new RectangleF(b.x, b.y, b.size, b.size);
+                        if (freakyball.IntersectsWith(bottomRec))
+                        {
+                            b.y = bottomRec.Y - b.size;
+                            b.ySpeed *= -1;
+                        }
+                    }
+                }
+                else
+                {
+                    pDuration6 = 0;
+                    pU6 = false;
+                    shrink = 0;
+                    ball.xSpeed = xSpeed;
+                    ball.ySpeed = ySpeed;
+                }
+            }
+            if (pU7)
+            {
+                //ball.xSpeed = 0;
+                //ball.ySpeed = 0;
+                pDuration7++;
+                if (pDuration7 < 800)
+                {
+                    int middleOfScreenX = this.Width / 2;
+                    int middleOfScreenY = this.Height / 2;
+
+                    double magnatude = Math.Sqrt(Math.Pow(middleOfScreenY - ball.y, 2) + Math.Pow(middleOfScreenX - ball.x, 2));
+
+                    double diffX = middleOfScreenX - ball.x;
+                    double diffY = middleOfScreenY - ball.y;
+                    const int SPEEDCAP = 4;
+                    if (Math.Abs(diffY) >= Math.Abs(diffX)) //multiply down y
+                    {
+                        double scaler = Math.Abs(SPEEDCAP / diffY);
+                        diffX *= scaler;
+                        diffY *= scaler;
+                    }
+                    else
+                    {
+                        double scaler = Math.Abs(SPEEDCAP / diffX);
+                        diffX *= scaler;
+                        diffY *= scaler;
+                    }
+                    ball.xSpeed = (float)diffX;
+                    ball.ySpeed = (float)diffY;
+                    if (pDuration7 > 150)
+                    {
+                        ball.size = (float)pDuration7 - 50;
+                        ball.x = (this.Width / 2) - (ball.size / 2);
+                        ball.y = (this.Height / 2) - (ball.size / 2);
+                    }
+                }
+                else
+                {
+                    pDuration7 = 0;
+                    pU7 = false;
+                    ball.size = ballSize;
+                    ball.xSpeed = xSpeed;
+                    ball.xSpeed = ySpeed;
+                    mouseMoving = false;
+                    paddle.x = (this.Width / 2) - (int)(paddle.width / 2) - 20;
+                    updateCurve();
+                    isCaught = true;
+                    trackPos = true;
+                    blocks.Clear();
+                    Refresh();
+                }
+
+            }
 
             #endregion
-
 
 
             brickTime--;
@@ -905,42 +1075,46 @@ namespace BrickBreaker
 
         public void catchMove()
         {
-            int yComponent = (int)Math.Abs(paddle.y - ball.y);
-            int xComponent = (int)Math.Abs(paddle.x - ball.x);
-
-            int magnitude = (int)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
-
-            if (magnitude < catchDistance || isCaught)
+            if (pU5)
             {
-                ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
-                ball.y = paddle.y - 25;
-                ball.xSpeed = paddle.x;
-                ball.ySpeed = paddle.y;
-                isCaught = true;
-                trackPos = true;
+                int yComponent = (int)Math.Abs(paddle.y - ball.y);
+                int xComponent = (int)Math.Abs(paddle.x - ball.x);
+
+                int magnitude = (int)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
+
+                if (magnitude < catchDistance || isCaught)
+                {
+                    ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
+                    ball.y = paddle.y - 25;
+                    ball.xSpeed = paddle.x;
+                    ball.ySpeed = paddle.y;
+                    isCaught = true;
+                    trackPos = true;
+                }
             }
+
         }
         public void throwMove()
         {
-                float yComponent = (float)Math.Abs(Math.Abs(0) - Math.Abs(ball.y));
-                float xComponent = (float)Math.Abs(Math.Abs(TopXPos) - Math.Abs(ball.x));
+            float yComponent = (float)Math.Abs(Math.Abs(0) - Math.Abs(ball.y));
+            float xComponent = (float)Math.Abs(Math.Abs(TopXPos) - Math.Abs(ball.x));
 
-                float magnitude = (float)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
-                float scale = (yComponent + xComponent);
-                float scaleX = (xComponent / magnitude) / scale;
-                float scaleY = (yComponent / magnitude) / scale;
-                if (TopXPos < ball.x)
-                {
-                    ball.xSpeed = (magnitude * scaleX + 9) * -1;
-                    ball.ySpeed = (magnitude * scaleY + 9) * -1;
-                }
-                else
-                {
-                    ball.xSpeed = (magnitude * scaleX + 9);
-                    ball.ySpeed = (magnitude * scaleY + 9) * -1;
-                }
+            float magnitude = (float)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
+            float scale = (yComponent + xComponent);
+            float scaleX = (xComponent / magnitude) / scale;
+            float scaleY = (yComponent / magnitude) / scale;
+            if (TopXPos < ball.x)
+            {
+                ball.xSpeed = (magnitude * scaleX + 12) * -1;
+                ball.ySpeed = (magnitude * scaleY + 12) * -1;
+            }
+            else
+            {
+                ball.xSpeed = (magnitude * scaleX + 12);
+                ball.ySpeed = (magnitude * scaleY + 12) * -1;
+            }
 
-                trackPos = false;
+            trackPos = false;
             isCaught = false;
         }
         public void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -1045,6 +1219,11 @@ namespace BrickBreaker
                 e.Graphics.FillRegion(paddleBrush, mirroredRightPaddleRegion);
             }
 
+            if (pU6)
+            {
+                e.Graphics.FillRectangle(Brushes.White, bottomRec);
+            }
+
             UIPaint.PaintTextRotate(e.Graphics, score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width / 2, (int)textSize.Height / 2));
 
             //Tracking position of ball when caught
@@ -1078,7 +1257,7 @@ namespace BrickBreaker
             }
 
             // test
-            e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
+            // e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
             //foreach (Block block in blocks)
             //{
             //    e.Graphics.DrawRectangle(Pens.RoyalBlue, block.hitBox);

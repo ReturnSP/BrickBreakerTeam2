@@ -127,6 +127,7 @@ namespace BrickBreaker
             loadedLevel.Load(fullPath);
             List<Block> blockList = BlockListCreator(loadedLevel, screenSize);
 
+
             return blockList;
         }
 
