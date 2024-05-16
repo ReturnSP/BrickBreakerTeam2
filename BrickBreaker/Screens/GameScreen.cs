@@ -99,7 +99,7 @@ namespace BrickBreaker
 
         int mirroredPaddleX;
 
-       public static int duration1, duration2, duration3, duration4, duration5;
+        public static int duration1, duration2, duration3, duration4, duration5;
         int vineLocatoin = 130;
         int grow;
 
@@ -136,7 +136,7 @@ namespace BrickBreaker
 
         //powerup durations 
 
-       public static int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5, pDuration6, pDuration7;
+        public static int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5, pDuration6, pDuration7;
 
         //bottom rectangle
 
@@ -152,6 +152,9 @@ namespace BrickBreaker
 
         float xSpeed, ySpeed;
 
+        //newSize
+
+        const float NEWSIZE = 5;
 
 
 
@@ -168,8 +171,8 @@ namespace BrickBreaker
         public void OnStart()
         {
             //pU1 = true;
-            //pU2 = true;
-            //pU3 = true;
+            // pU2 = true;
+            //  pU3 = true;
             //pU4 = true;
             //pU5 = true;
             //pU6 = true;
@@ -195,7 +198,7 @@ namespace BrickBreaker
             int speedMod = 2;
             xSpeed = 15 * speedMod;
             ySpeed = -3 * speedMod;
-             ballSize = 20;
+            ballSize = 20;
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
             updateBallStorage();
 
@@ -932,7 +935,7 @@ namespace BrickBreaker
                 //ball.xSpeed = 0;
                 //ball.ySpeed = 0;
                 pDuration7++;
-                if (pDuration7 < 800)
+                if (pDuration7 < 400)
                 {
                     int middleOfScreenX = this.Width / 2;
                     int middleOfScreenY = this.Height / 2;
@@ -956,11 +959,36 @@ namespace BrickBreaker
                     }
                     ball.xSpeed = (float)diffX;
                     ball.ySpeed = (float)diffY;
+
+                   
                     if (pDuration7 > 150)
                     {
-                        ball.size = (float)pDuration7 - 50;
+                        ball.size += NEWSIZE;
                         ball.x = (this.Width / 2) - (ball.size / 2);
                         ball.y = (this.Height / 2) - (ball.size / 2);
+
+                        foreach (Block b in blocks)
+                        {
+                            magnatude = Math.Sqrt(Math.Pow(middleOfScreenY - b.hitBox.Y, 2) + Math.Pow(middleOfScreenX - b.hitBox.X, 2));
+
+                            diffX = middleOfScreenX - b.hitBox.X;
+                            diffY = middleOfScreenY - b.hitBox.Y;
+                            const int SPEEDCAPBLOCK = 1;
+                            if (Math.Abs(diffY) >= Math.Abs(diffX)) //multiply down y
+                            {
+                                double scaler = Math.Abs(SPEEDCAP / diffY);
+                                diffX *= scaler;
+                                diffY *= scaler;
+                            }
+                            else
+                            {
+                                double scaler = Math.Abs(SPEEDCAP / diffX);
+                                diffX *= scaler;
+                                diffY *= scaler;
+                            }
+                            b.hitBox = new Rectangle(b.hitBox.X + (int)diffX, b.hitBox.Y + (int)diffY, b.hitBox.Width, b.hitBox.Height);
+                            ball.ySpeed = (float)diffY;
+                        }
                     }
                 }
                 else
