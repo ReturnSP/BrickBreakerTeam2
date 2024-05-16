@@ -26,7 +26,7 @@ namespace BrickBreaker
 
         // Game values
         int lives;
-        int levelNumber = 0;
+        int levelNumber = 1;
         Score score;
         List<string> comboAdds = new List<string>();
         int scoreAngle = 0;
@@ -36,6 +36,7 @@ namespace BrickBreaker
         // Paddle and Ball objects
         Paddle paddle = new Paddle(0, 0, 0, 0, 0, Color.White);
         Ball ball;
+        float paddleWidth = 80;
 
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
@@ -56,16 +57,25 @@ namespace BrickBreaker
 
         Region[] checkRegions = new Region[] { null, null, null, null };
 
-        bool restartLevel = false;
+        bool isCaught = true;
 
         //cursor Pos
 
         public static int lastCursorX;
 
 
-        // slow mode (testing)
+        //slow mode (testing)
 
         bool slow;
+
+        int TopXPos = 0;
+        int turnCount = 0;
+
+        bool moveRight = false;
+        bool moveLeft = false;
+
+        bool trackPos = true;
+
 
         //mouse move
         bool mouseMoving = false;
@@ -103,7 +113,7 @@ namespace BrickBreaker
         //whiteboy
         PictureBox whiteBoy = new PictureBox();
 
-        List<PictureBox> debuff1 = new List<PictureBox>();
+        List<PictureBox> pictureDebuff = new List<PictureBox>();
 
         // list of balls
 
@@ -119,9 +129,30 @@ namespace BrickBreaker
 
         PictureBox evilSkullMan = new PictureBox();
 
+        int catchDistance = 100;
 
+       public static bool pU1, pU2, pU3, pU4, pU5;
 
-    
+        //powerup durations 
+
+        int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5;
+
+        //Grady
+        System.Windows.Media.MediaPlayer[] music =
+        {
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer(),
+            new System.Windows.Media.MediaPlayer()
+        };
+        List<System.Windows.Media.MediaPlayer> sounds = new List<System.Windows.Media.MediaPlayer>();
         #endregion
 
         public GameScreen()
@@ -129,11 +160,144 @@ namespace BrickBreaker
             InitializeComponent();
             blocks = Block.LevelChanger(levelNumber, new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height));
             OnStart();
+
+            music[0].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic1.wav"));
+            music[1].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic2.wav"));
+            music[2].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic3.wav"));
+            music[3].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic4.wav"));
+            music[4].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic5.wav"));
+            music[5].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic6.wav"));
+            music[6].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic7.wav"));
+            music[7].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic8.wav"));
+            music[8].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic9.wav"));
+            music[9].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic10.wav"));
+            music[10].Open(new Uri(Application.StartupPath + "\\Resources\\Idlemusic11.wav"));
+
+            music[0].MediaEnded += new EventHandler(music0);
+            music[1].MediaEnded += new EventHandler(music1);
+            music[2].MediaEnded += new EventHandler(music2);
+            music[3].MediaEnded += new EventHandler(music3);
+            music[4].MediaEnded += new EventHandler(music4);
+            music[5].MediaEnded += new EventHandler(music5);
+            music[6].MediaEnded += new EventHandler(music6);
+            music[7].MediaEnded += new EventHandler(music7);
+            music[8].MediaEnded += new EventHandler(music8);
+            music[9].MediaEnded += new EventHandler(music9);
+            music[10].MediaEnded += new EventHandler(music10);
         }
 
+        private void music0(object sender, EventArgs e)
+        {
+            music[0].Stop();
+
+
+            music[0].Play();
+        }
+        private void music1(object sender, EventArgs e)
+        {
+            music[1].Stop();
+
+
+            music[1].Play();
+        }
+        private void music2(object sender, EventArgs e)
+        {
+            music[2].Stop();
+
+
+            music[2].Play();
+        }
+        private void music3(object sender, EventArgs e)
+        {
+            music[3].Stop();
+
+
+            music[3].Play();
+        }
+        private void music4(object sender, EventArgs e)
+        {
+            music[4].Stop();
+
+
+            music[4].Play();
+        }
+        private void music5(object sender, EventArgs e)
+        {
+            music[5].Stop();
+
+
+            music[5].Play();
+        }
+        private void music6(object sender, EventArgs e)
+        {
+            music[6].Stop();
+
+
+            music[6].Play();
+        }
+        private void music7(object sender, EventArgs e)
+        {
+            music[7].Stop();
+
+
+            music[7].Play();
+        }
+        private void music8(object sender, EventArgs e)
+        {
+            music[8].Stop();
+
+
+            music[8].Play();
+        }
+        private void music9(object sender, EventArgs e)
+        {
+            music[9].Stop();
+
+
+            music[9].Play();
+        }
+        private void music10(object sender, EventArgs e)
+        {
+            music[10].Stop();
+
+
+            music[10].Play();
+        }
+        void PlayMusic()
+        {
+            //Hi Mr. T! Private Contractor Grady Here!
+            TurnMusicOff();
+            int indexer = levelNumber % 10;
+            music[indexer].Play();
+        }
+
+        void TurnMusicOff()
+        {
+            for (int i = 0; i < music.Length; i++)
+            {
+                music[i].Stop();
+            }
+        }
+
+        public void PlaySound(String startUp)
+        {
+
+            var sound = new System.Windows.Media.MediaPlayer();
+
+            sound.Open(new Uri(Application.StartupPath + startUp));
+
+            sounds.Add(sound);
+
+            sounds[sounds.Count - 1].Play();
+
+        }
 
         public void OnStart()
         {
+            //pU2 = true;
+            //pU1 = true;
+            //pU3 = true;
+            pU4 = true;
             Cursor.Hide();
             //set life counter
             lives = 4;
@@ -143,7 +307,7 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
 
             // setup starting paddle values and create paddle object
-            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 20, 30, Color.White);
+            paddle = new Paddle((this.Width / 2) - ((int)paddle.width / 2), this.Height - paddle.height - 60, paddleWidth, 20, 30, Color.White);
 
             updateCurve();
 
@@ -172,7 +336,7 @@ namespace BrickBreaker
             dB4 = false;
             dB5 = false;
 
-
+            PlayMusic();
             gameTimer.Enabled = true;
 
         }
@@ -191,10 +355,14 @@ namespace BrickBreaker
                 case Keys.K:
                     slow = true;
                     break;
+                case Keys.C:
+                    catchMove();
+                    break;
                 case Keys.Space:
-                    if (!restartLevel)
+                    if (isCaught)
                     {
-                        restartLevel = true;
+                        throwMove();
+                        isCaught = false;
                     }
                     break;
                 //testing
@@ -241,7 +409,10 @@ namespace BrickBreaker
             if (blocks.Count() == 0)
             {
                 levelNumber++;
-                blocks = Block.LevelChanger(levelNumber, this.Size);
+                blocks =  Block.LevelChanger(levelNumber, this.Size);
+                TurnMusicOff();
+                PlayMusic();
+                sounds.Clear();
             }
             Point mouse = this.PointToClient(Cursor.Position);
 
@@ -263,28 +434,29 @@ namespace BrickBreaker
             //mouse movement
             if (!mouseMoving)
             {
-                Cursor.Position = this.PointToScreen(new Point(paddle.x + (paddle.width / 2), paddle.y + (paddle.height / 2)));
+                Cursor.Position = this.PointToScreen(new Point(paddle.x + ((int)paddle.width / 2), paddle.y + (paddle.height / 2)));
             }
             else
             {
-                paddle.x = mouse.X - (paddle.width / 2);
+                paddle.x = mouse.X - ((int)paddle.width / 2);
                 updateCurve();
 
                 if (mouse.X < paddle.width / 2 + 20)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(0 + paddle.width / 2 + 20, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(0 + (int)paddle.width / 2 + 20, paddle.y + paddle.height / 2));
                 }
 
                 if (mouse.X > this.Width - paddle.width / 2 - 20)
                 {
-                    Cursor.Position = this.PointToScreen(new Point(this.Width - paddle.width / 2 - 20, paddle.y + paddle.height / 2));
+                    Cursor.Position = this.PointToScreen(new Point(this.Width - (int)paddle.width / 2 - 20, paddle.y + paddle.height / 2));
                 }
             }
 
-            if (!restartLevel)
+            if (isCaught)
             {
                 ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
                 ball.y = paddle.y - 25;
+
             }
             else //game running loop
             {
@@ -300,6 +472,12 @@ namespace BrickBreaker
 
 
                 // Check for collision with top and side walls
+                String check = ball.WallCollision(this);
+                if (check != "")
+                {
+                    PlaySound(check);
+                }
+                
                 foreach (Ball b in freakyBalls)
                 {
                     b.WallCollision(this);
@@ -311,13 +489,17 @@ namespace BrickBreaker
 
                 if (ball.BottomCollision(this))
                 {
+                    ball.ySpeed *= -1;
+                    lives--;
+                    PlaySound("\\Resources\\Minecraft Damage (Oof) - Sound Effect (HD).wav");
                     // SoundPlayer lifesubtracted = new SoundPlayer(Properties.Resources.lifesubtracted);
                     score.RemoveCombo();
                     scoreSize = 50;
 
                     ball.ySpeed *= -1;
                     lives--;
-                    restartLevel = false;
+                    isCaught = true;
+                    trackPos = true;
                     //lifesubtracted.Play();
 
                     freakyBalls.Clear();
@@ -366,66 +548,11 @@ namespace BrickBreaker
                 }
                 if (rightCircleCollision)
                 {
-                    float momentumPercent = 1 - (slope / 100) - (paddle.speed / 2);
+                    float momentumPercent = 1 + (slope / 100) - (paddle.speed / 2);
                     float yMultiplier = 1 - momentumPercent;
                     ball.ySpeed += -1 * yMultiplier;
                     ball.xSpeed += -1 * momentumPercent;
                 }
-                //attempt at using angle between vectors to calculate new vector
-                /*
-                //calculates angle between ball vector and derivative using dot product of vectors
-                if (leftCircleCollision || rightCircleCollision)
-                {
-                    PointF newDirection = new PointF();
-                    double taco = Math.Acos((ball.xSpeed + (ball.ySpeed * slope)) / (Math.Sqrt(Math.Pow(ball.xSpeed, 2) + Math.Pow(ball.ySpeed, 2)) * Math.Sqrt(Math.Pow(slope, 2) + 1)));
-                    double theta = Math.Atan2(ball.ySpeed - slope, ball.xSpeed - 1);
-
-                    if (theta > 90)
-                    {
-                        theta = 180 - theta;
-                    }
-                    theta *= Math.PI / 180;
-                    float colX = ball.x + ball.size - paddle.x;
-                    float colY = (float)Math.Sqrt(400 - Math.Pow(colX, 2));
-
-                    if (leftCircleCollision) //left collision
-                    {
-                        if (ball.xSpeed > 0 && ball.ySpeed > 0)
-                        {
-                            if (theta < Math.PI / 2)
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate cc
-                            else
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate ccw
-                        }
-                        else if (ball.xSpeed < 0 && ball.ySpeed > 0)
-                        {
-                            if (theta < Math.PI / 2)
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate cc
-                            else
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate ccw
-                        }
-                    }
-                    else //rotate clocklwise
-                    {
-                        if (ball.xSpeed < 0 && ball.ySpeed > 0)
-                        {
-                            if (theta < Math.PI / 2)
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate cc
-                            else
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate ccw
-                        }
-                        else if (ball.xSpeed > 0 && ball.ySpeed > 0)
-                        {
-                            if (theta < Math.PI / 2)
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 360 - (2 * theta)); //rotate cc
-                            else
-                                newDirection = Block.RotatePoint(prevPosition, new PointF(colX, colY), 2 * theta); //rotate ccw
-                        }
-                    }
-                    ball.xSpeed = -(newDirection.X - colX);
-                    ball.ySpeed = -(newDirection.Y - colY);
-                }
-                */
 
                 //speed capping code
                 const float MAXSPEED = 15;
@@ -464,6 +591,12 @@ namespace BrickBreaker
 
 
                 // Check for collision of ball with paddle, (incl. paddle movement)
+                 check = ball.PaddleCollision(paddle);
+                if (check != "")
+                {
+                    PlaySound(check);
+                }
+             
                 foreach (Ball b in freakyBalls)
                 {
                     b.PaddleCollision(paddle);
@@ -472,8 +605,6 @@ namespace BrickBreaker
                 ball.PaddleCollision(paddle);
 
                 // SoundPlayer brickbroken = new SoundPlayer(Properties.Resources.brickbroken);
-
-
                 // Check if ball has collided with any blocks
                 foreach (Block b in blocks)
                 {
@@ -481,37 +612,43 @@ namespace BrickBreaker
                     {
                         if (ball.BlockCollision(b))
                         {
+                            PlaySound("\\Resources\\Brick impact debris  _ Sound Effect.wav");
                             comboAdds.Add(100 * score.comboCounter + "");
                             score.AddToScore(100);
                             scoreSize += 1;
-
                             b.hp--;
                             if (b.hp == 0)
                             {
                                 blocks.Remove(b);
+
+                                if(pU3)
+                                {
+                                    blocks.RemoveAll(Block => b.hitBox.Y == Block.hitBox.Y);
+                                }
+                                
                                 int chance = 40;
 
                                 if (rand.Next(1, 100) <= chance)
                                 {
-                                    int check = rand.Next(1, 100);
+                                    int cCheck = rand.Next(1, 100);
                                     int o = 0;
 
-                                    if (check > 10 && check < 20)
+                                    if (cCheck > 10 && cCheck < 20)
                                     {
                                         o = 1;
                                         debuffColor = Color.Green;
                                     }
-                                    else if (check > 20 && check < 50)
+                                    else if (cCheck > 20 && cCheck < 50)
                                     {
                                         o = 2;
                                         debuffColor = Color.Pink;
                                     }
-                                    else if (check == 50)
+                                    else if (cCheck == 50)
                                     {
                                         o = 3;
                                         debuffColor = Color.Black;
                                     }
-                                    else if (check > 51 && check < 62)
+                                    else if (cCheck > 51 && cCheck < 62)
                                     {
                                         o = 4;
                                         debuffColor = Color.White;
@@ -522,7 +659,7 @@ namespace BrickBreaker
                                         debuffColor = Color.Silver;
                                     }
 
-                                    Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
+                                    Debuff newDebuff = new Debuff(3, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
 
                                     debuffs.Add(newDebuff);
                                 }
@@ -532,6 +669,7 @@ namespace BrickBreaker
                                 b.currentTexture++;
                                 b.texture = b.textures[b.currentTexture];
                             }
+
                             brickTime = 20;
 
                             if (blocks.Count == 0)
@@ -589,6 +727,9 @@ namespace BrickBreaker
             }
 
             //debuffs
+            float widthScale = (float)Screen.PrimaryScreen.Bounds.Width / 1448;
+            float heightScale = (float)Screen.PrimaryScreen.Bounds.Height / 700;
+            float initalSize = 100 * widthScale;
 
             if (dB1)
             {
@@ -602,30 +743,30 @@ namespace BrickBreaker
                     vines.Image = Properties.Resources.IvyVine;
                     //vines.BackColor = Color.Transparent;
                     vines.BringToFront();
-                    debuff1.Add(vines);
-                    vineLocatoin += 100;
+                    pictureDebuff.Add(vines);
+                    vineLocatoin += (int)initalSize;
                 }
                 else if (duration1 < 100)
                 {
-                    foreach (PictureBox p in debuff1)
+                    foreach (PictureBox p in pictureDebuff)
                     {
-                        p.Size = new Size(100, grow);
+                        p.Size = new Size((int)initalSize, grow);
                     }
                     grow += 10;
                 }
                 else if (duration1 < 200)
                 {
                     grow -= 10;
-                    foreach (PictureBox p in debuff1)
+                    foreach (PictureBox p in pictureDebuff)
                     {
-                        p.Size = new Size(100, grow);
+                        p.Size = new Size((int)initalSize, grow);
                     }
                 }
                 else
                 {
                     duration1 = 0;
                     dB1 = false;
-                    debuff1.Clear();
+                    pictureDebuff.Clear();
                     vineLocatoin = 130;
                 }
 
@@ -670,14 +811,14 @@ namespace BrickBreaker
             {
                 //send to game over screen in future
                 duration3++;
-                
+
                 if (duration3 > 60 && duration3 < 100)
                 {
                     evilSkullMan.Parent = this;
                     evilSkullMan.Location = new Point((this.Width - evilSkullMan.Width) / 2, (this.Height - evilSkullMan.Height) / 2);
                     evilSkullMan.SizeMode = PictureBoxSizeMode.StretchImage;
                     evilSkullMan.Image = Properties.Resources.evilFace;
-                    evilSkullMan.Size = new Size(700, 700);
+                    evilSkullMan.Size = new Size((int)(700 * widthScale), (int)(700 * heightScale));
                     evilSkullMan.BringToFront();
                 }
                 else if (duration3 > 100)
@@ -686,7 +827,7 @@ namespace BrickBreaker
                     dB3 = false;
                     Application.Exit();
                 }
-                
+
             }
 
             if (dB4)
@@ -705,21 +846,21 @@ namespace BrickBreaker
                 else if (duration4 < 40 && duration4 > 20)
                 {
                     whiteBoy.Visible = true;
-                    whiteBoy.Size = new Size(100, 100);
+                    whiteBoy.Size = new Size((int)(100 * widthScale), (int)(100 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
                 }
                 else if (duration4 < 200 && duration4 > 180)
                 {
                     whiteBoy.Visible = true;
-                    whiteBoy.Size = new Size(200, 200);
+                    whiteBoy.Size = new Size((int)(200 * widthScale), (int)(200 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
                 }
                 else if (duration4 < 400 && duration4 > 380)
                 {
                     whiteBoy.Visible = true;
-                    whiteBoy.Size = new Size(700, 700);
+                    whiteBoy.Size = new Size((int)(700 * widthScale), (int)(700 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
                 }
@@ -745,7 +886,7 @@ namespace BrickBreaker
                     //mirror ball
                     mirroredBallX = this.Width - ball.x - ball.size;
                     //mirror paddle
-                    mirroredPaddleX = this.Width - paddle.x - paddle.width;
+                    mirroredPaddleX = this.Width - paddle.x - (int)paddle.width;
 
                     #region regions
                     mirroredPaddleCircle.Reset();
@@ -759,8 +900,8 @@ namespace BrickBreaker
                     mirroredRightPaddleRegion.Dispose();
                     mirroredPaddleCircle.AddEllipse(mirroredPaddleX + paddle.width - 20, paddle.y, 40, 40);
                     mirroredRightPaddleRegion = new Region(mirroredPaddleCircle);
-                    mirroredRightPaddleRegion.Exclude(new Rectangle(mirroredPaddleX + paddle.width - 20, paddle.y + 20, 40, 20));
-                    mirroredRightPaddleRegion.Exclude(new Rectangle(mirroredPaddleX + paddle.width - 20, paddle.y, 20, 20));
+                    mirroredRightPaddleRegion.Exclude(new Rectangle(mirroredPaddleX + (int)paddle.width - 20, paddle.y + 20, 40, 20));
+                    mirroredRightPaddleRegion.Exclude(new Rectangle(mirroredPaddleX + (int)paddle.width - 20, paddle.y, 20, 20));
                     #endregion
                 }
                 else
@@ -773,6 +914,68 @@ namespace BrickBreaker
 
 
             #endregion
+
+            #region Power Up Area
+
+            if(pU1)
+            {
+                pDuration1++;
+                if (pDuration1 < 2)
+                {
+                    paddle.width = paddleWidth * 3;
+                }
+                else if (pDuration1 < 500)
+                {
+                    paddle.width -= (float)160/500;
+                }
+                else
+                {
+                    paddle.width = paddleWidth;
+                    pU1 = false;
+                    pDuration1 = 0;
+                }
+            }
+            
+            if(pU2)
+            {
+                pDuration2++;
+                if(pDuration2 > 250)
+                {
+                    pU2 = false;
+                    pDuration2 = 0;
+                }
+            }
+
+            if (pU3)
+            {
+                pDuration3++;
+                if (pDuration3 > 250)
+                {
+                    pU3 = false;
+                    pDuration3 = 0;
+                }
+            }
+
+            if (pU4)
+            {
+                pDuration4++;
+                if (pDuration4 < 250)
+                {
+                    ball.size = 30;
+                }
+                else
+                {
+                    ball.size = 20;
+                    pU4 = false;
+                    pDuration4= 0;
+                }
+            }
+
+
+
+            #endregion
+
+
 
             brickTime--;
 
@@ -832,8 +1035,8 @@ namespace BrickBreaker
             rightPaddleRegion.Dispose();
             paddleCircle.AddEllipse(paddle.x + paddle.width - 20, paddle.y, 40, 40);
             rightPaddleRegion = new Region(paddleCircle);
-            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 20, paddle.y + 20, 40, 20));
-            rightPaddleRegion.Exclude(new Rectangle(paddle.x + paddle.width - 20, paddle.y, 20, 20));
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + (int)paddle.width - 20, paddle.y + 20, 40, 20));
+            rightPaddleRegion.Exclude(new Rectangle(paddle.x + (int)paddle.width - 20, paddle.y, 20, 20));
         }
 
         public void updateBallStorage()
@@ -847,6 +1050,7 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            TurnMusicOff();
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
@@ -856,7 +1060,6 @@ namespace BrickBreaker
             Cursor.Show();
             form.Controls.Add(ps);
             form.Controls.Remove(this);
-
         }
 
         private void GameScreen_MouseDown(object sender, MouseEventArgs e)
@@ -864,6 +1067,46 @@ namespace BrickBreaker
             mouseMoving = true;
         }
 
+        public void catchMove()
+        {
+            int yComponent = (int)Math.Abs(paddle.y - ball.y);
+            int xComponent = (int)Math.Abs(paddle.x - ball.x);
+
+            int magnitude = (int)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
+
+            if (magnitude < catchDistance || isCaught)
+            {
+                ball.x = paddle.x + (paddle.width / 2) - (ball.size / 2);
+                ball.y = paddle.y - 25;
+                ball.xSpeed = paddle.x;
+                ball.ySpeed = paddle.y;
+                isCaught = true;
+                trackPos = true;
+            }
+        }
+        public void throwMove()
+        {
+                float yComponent = (float)Math.Abs(Math.Abs(0) - Math.Abs(ball.y));
+                float xComponent = (float)Math.Abs(Math.Abs(TopXPos) - Math.Abs(ball.x));
+
+                float magnitude = (float)Math.Abs(Math.Sqrt(Math.Pow(yComponent, 2) + Math.Pow(xComponent, 2)));
+                float scale = (yComponent + xComponent);
+                float scaleX = (xComponent / magnitude) / scale;
+                float scaleY = (yComponent / magnitude) / scale;
+                if (TopXPos < ball.x)
+                {
+                    ball.xSpeed = (magnitude * scaleX + 9) * -1;
+                    ball.ySpeed = (magnitude * scaleY + 9) * -1;
+                }
+                else
+                {
+                    ball.xSpeed = (magnitude * scaleX + 9);
+                    ball.ySpeed = (magnitude * scaleY + 9) * -1;
+                }
+
+                trackPos = false;
+            isCaught = false;
+        }
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
@@ -935,7 +1178,8 @@ namespace BrickBreaker
             {
                 if (d.y < this.Bottom)
                 {
-                    e.Graphics.DrawRectangle(Pens.White, d.x, d.y, 10, 10);
+                    Pen whitePen = new Pen(Color.White, 3);
+                    e.Graphics.DrawRectangle(whitePen, d.x, d.y, 10, 10);
                     Brush brush = new SolidBrush(d.color);
                     e.Graphics.FillRectangle(brush, d.x, d.y, 10, 10);
                 }
@@ -967,13 +1211,38 @@ namespace BrickBreaker
 
             UIPaint.PaintTextRotate(e.Graphics, score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width / 2, (int)textSize.Height / 2));
 
+            //Tracking position of ball when caught
+            if (trackPos)
+            {
+                if (turnCount % 2 == 0)
+                {
+                    moveRight = true;
+                }
+                if (moveRight == true)
+                {
+                    TopXPos += 40;
+                    if (TopXPos > this.Width)
+                    {
+                        turnCount += 1;
+                        moveRight = false;
+                    }
+                }
+                else
+                {
+                    TopXPos -= 40;
+                    if (TopXPos < 0)
+                    {
+                        turnCount += 1;
+                        moveRight = true;
+                    }
+
+                }
+
+                e.Graphics.DrawLine(Pens.Red, ball.x + (ball.size / 2), ball.y + (ball.size / 2), TopXPos, 0);
+            }
 
             // test
-            // e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
-
-
-            //testing
-
+            //e.Graphics.DrawRectangle(Pens.White, ball.x, ball.y, ball.size, ball.size);
             //foreach (Block block in blocks)
             //{
             //    e.Graphics.DrawRectangle(Pens.RoyalBlue, block.hitBox);
