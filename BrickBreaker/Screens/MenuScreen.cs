@@ -14,6 +14,7 @@ namespace BrickBreaker
     {
         public MenuScreen()
         {
+            Cursor.Show();
             InitializeComponent();
         }
 
@@ -40,11 +41,6 @@ namespace BrickBreaker
         private void MenuScreen_Load(object sender, EventArgs e)
         {
             Cursor.Show();
-        }
-
-        private void MenuScreen_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

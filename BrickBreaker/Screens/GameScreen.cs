@@ -28,7 +28,7 @@ namespace BrickBreaker
         int lives;
         int levelNumber = 0;
         Score score;
-        List<string> comboAdds = new List<string>();
+        List<MiniScores> comboAdds = new List<MiniScores>();
         int scoreAngle = 0;
         int scoreDirection = 1;
         int scoreSize = 50;
@@ -143,7 +143,7 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
 
             // setup starting paddle values and create paddle object
-            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 20, 30, Color.White);
+            paddle = new Paddle((this.Width / 2) - (paddle.width / 2), this.Height - paddle.height - 60, 80, 20, 25, Color.White);
 
             updateCurve();
 
@@ -428,8 +428,8 @@ namespace BrickBreaker
                 */
 
                 //speed capping code
-                const float MAXSPEED = 15;
-                const float MINSPEED = 5;
+                const float MAXSPEED = 20;
+                const float MINSPEED = 10;
 
                 if (Math.Abs(ball.xSpeed) < MINSPEED && Math.Abs(ball.ySpeed) < MINSPEED) //makes really slow balls less slow
                 {
@@ -481,9 +481,11 @@ namespace BrickBreaker
                     {
                         if (ball.BlockCollision(b))
                         {
-                            comboAdds.Add(100 * score.comboCounter + "");
+                            
+                            comboAdds.Add(new MiniScores(100 * score.comboCounter + "", new Point((int)paddle.x + rand.Next(-50, 50), (int)paddle.y - 50 + rand.Next(-50, 50)), 255));
                             score.AddToScore(100);
                             scoreSize += 1;
+
 
                             b.hp--;
                             if (b.hp == 0)
@@ -541,10 +543,7 @@ namespace BrickBreaker
                             }
                             break;
                         }
-                        //comment
-
                     }
-
                 }
             }
 
@@ -900,10 +899,7 @@ namespace BrickBreaker
             UIPaint.PaintText(e.Graphics, lives + "", 24, new Point(this.Width - 55, 50), Color.Red);
             Font myFont = new Font("Chiller", scoreSize, FontStyle.Bold);
             SizeF textSize = e.Graphics.MeasureString(score.score + "", myFont);
-            foreach (string i in comboAdds)
-            {
-
-            }
+            
             if (scoreDirection == 1)
             {
                 scoreAngle++;
@@ -988,6 +984,20 @@ namespace BrickBreaker
             ////Rectangle bRr = new Rectangle(Convert.ToInt16(ball.x) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.y) + 10, 1, Convert.ToInt16(ball.size) - 10);
             ////Rectangle bRt = new Rectangle(Convert.ToInt16(ball.x) + 10, Convert.ToInt16(ball.y), Convert.ToInt16(ball.size) - 10, 1);
             ////Rectangle bRb = new Rectangle(Convert.ToInt16(ball.x) + 10, Convert.ToInt16(ball.y) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.size) - 10, 1);
+            ///
+
+            for (int i = 0; i < comboAdds.Count(); i++)
+            {
+                if (comboAdds.Count() != 0)
+                {
+                    UIPaint.PaintTextTrans(e.Graphics, comboAdds[i].text, 30, comboAdds[i].drawPoint, Color.Red, comboAdds[i].transparency);
+                    comboAdds[i].transparency -= 7;
+                    if (comboAdds[i].transparency <= 0)
+                    {
+                        comboAdds.Remove(comboAdds[i]);
+                    }
+                }
+            }
         }
     }
 }
