@@ -59,6 +59,14 @@
             this.p3RemoveButton = new System.Windows.Forms.Button();
             this.p4RemoveButton = new System.Windows.Forms.Button();
             this.p5RemoveButton = new System.Windows.Forms.Button();
+            this.PU1Button = new System.Windows.Forms.Button();
+            this.PU2Button = new System.Windows.Forms.Button();
+            this.PU3Button = new System.Windows.Forms.Button();
+            this.PU4Button = new System.Windows.Forms.Button();
+            this.PU5Button = new System.Windows.Forms.Button();
+            this.PU6Button = new System.Windows.Forms.Button();
+            this.PU7Button = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lowPShelfLabel
@@ -324,6 +332,78 @@
             this.p5RemoveButton.TabIndex = 20;
             this.p5RemoveButton.UseVisualStyleBackColor = true;
             // 
+            // PU1Button
+            // 
+            this.PU1Button.Location = new System.Drawing.Point(460, 125);
+            this.PU1Button.Name = "PU1Button";
+            this.PU1Button.Size = new System.Drawing.Size(75, 23);
+            this.PU1Button.TabIndex = 21;
+            this.PU1Button.Text = "Buy";
+            this.PU1Button.UseVisualStyleBackColor = true;
+            // 
+            // PU2Button
+            // 
+            this.PU2Button.Location = new System.Drawing.Point(650, 125);
+            this.PU2Button.Name = "PU2Button";
+            this.PU2Button.Size = new System.Drawing.Size(75, 23);
+            this.PU2Button.TabIndex = 22;
+            this.PU2Button.Text = "Buy";
+            this.PU2Button.UseVisualStyleBackColor = true;
+            // 
+            // PU3Button
+            // 
+            this.PU3Button.Location = new System.Drawing.Point(841, 125);
+            this.PU3Button.Name = "PU3Button";
+            this.PU3Button.Size = new System.Drawing.Size(75, 23);
+            this.PU3Button.TabIndex = 23;
+            this.PU3Button.Text = "Buy";
+            this.PU3Button.UseVisualStyleBackColor = true;
+            // 
+            // PU4Button
+            // 
+            this.PU4Button.Location = new System.Drawing.Point(1055, 127);
+            this.PU4Button.Name = "PU4Button";
+            this.PU4Button.Size = new System.Drawing.Size(75, 23);
+            this.PU4Button.TabIndex = 24;
+            this.PU4Button.Text = "Buy";
+            this.PU4Button.UseVisualStyleBackColor = true;
+            // 
+            // PU5Button
+            // 
+            this.PU5Button.Location = new System.Drawing.Point(460, 320);
+            this.PU5Button.Name = "PU5Button";
+            this.PU5Button.Size = new System.Drawing.Size(75, 23);
+            this.PU5Button.TabIndex = 25;
+            this.PU5Button.Text = "Buy";
+            this.PU5Button.UseVisualStyleBackColor = true;
+            // 
+            // PU6Button
+            // 
+            this.PU6Button.Location = new System.Drawing.Point(650, 320);
+            this.PU6Button.Name = "PU6Button";
+            this.PU6Button.Size = new System.Drawing.Size(75, 23);
+            this.PU6Button.TabIndex = 26;
+            this.PU6Button.Text = "Buy";
+            this.PU6Button.UseVisualStyleBackColor = true;
+            // 
+            // PU7Button
+            // 
+            this.PU7Button.Location = new System.Drawing.Point(841, 320);
+            this.PU7Button.Name = "PU7Button";
+            this.PU7Button.Size = new System.Drawing.Size(75, 23);
+            this.PU7Button.TabIndex = 27;
+            this.PU7Button.Text = "Buy";
+            this.PU7Button.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(1055, 320);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 28;
+            this.button8.Text = "Buy";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
             // ShopScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,6 +412,14 @@
             this.BackgroundImage = global::BrickBreaker.Properties.Resources.barrrr;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.PU7Button);
+            this.Controls.Add(this.PU6Button);
+            this.Controls.Add(this.PU5Button);
+            this.Controls.Add(this.PU4Button);
+            this.Controls.Add(this.PU3Button);
+            this.Controls.Add(this.PU2Button);
+            this.Controls.Add(this.PU1Button);
             this.Controls.Add(this.lowP1Button);
             this.Controls.Add(this.lowP2Button);
             this.Controls.Add(this.lowP3Button);
@@ -405,5 +493,13 @@
         private System.Windows.Forms.Button p3RemoveButton;
         private System.Windows.Forms.Button p4RemoveButton;
         private System.Windows.Forms.Button p5RemoveButton;
+        private System.Windows.Forms.Button PU1Button;
+        private System.Windows.Forms.Button PU2Button;
+        private System.Windows.Forms.Button PU3Button;
+        private System.Windows.Forms.Button PU4Button;
+        private System.Windows.Forms.Button PU5Button;
+        private System.Windows.Forms.Button PU6Button;
+        private System.Windows.Forms.Button PU7Button;
+        private System.Windows.Forms.Button button8;
     }
 }

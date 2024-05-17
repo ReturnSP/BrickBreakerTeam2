@@ -17,7 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace BrickBreaker
 {
-    public partial class GameScreen : UserControl
+    public partial class GameScreen : System.Windows.Forms.UserControl
     {
         #region global values
 
@@ -26,7 +26,7 @@ namespace BrickBreaker
 
         // Game values
         int lives;
-        int levelNumber = 0;
+        public static int levelNumber = 0;
         Score score;
         List<string> comboAdds = new List<string>();
         int scoreAngle = 0;
@@ -137,6 +137,8 @@ namespace BrickBreaker
         //powerup durations 
 
         public static int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5, pDuration6, pDuration7;
+
+        public static int x1, x2, x3, x4, x5, x6, x7;
 
         //bottom rectangle
 
@@ -376,6 +378,8 @@ namespace BrickBreaker
             GameScreen.pU3 = false;
             GameScreen.pU4 = false;
             GameScreen.pU5 = false;
+            GameScreen.pU6 = false;
+            GameScreen.pU7 = false;
 
             GameScreen.pDuration1 = 0;
             GameScreen.pDuration2 = 0;
@@ -463,9 +467,46 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            if (realShopScreen.SSPU1 && x1 == 0)
+            {
+                pU1 = true;
+                x1 = 1;
+            }
+            if (realShopScreen.SSPU2 && x2 == 0)
+            {
+                pU2 = true;
+                x2 = 1;
+            }
+            if (realShopScreen.SSPU3 && x3 == 0)
+            {
+                pU3 = true;
+                x3 = 1;
+            }
+            if (realShopScreen.SSPU4 && x4 == 0)
+            {
+                pU4 = true;
+                x4 = 1;
+            }
+            if (realShopScreen.SSPU5 && x5 == 0)
+            {
+                pU5 = true;
+                x5 = 1;
+            }
+            if (realShopScreen.SSPU6 && x6 == 0)
+            {
+                pU6 = true;
+                x6 = 1;
+            }
+            if (realShopScreen.SSPU7 && x7 == 0)
+            {
+                pU7 = true;
+                x7 = 1;
+            }
+
             if (blocks.Count() == 0)
             {
                 levelNumber++;
+                Form1.ChangeScreen(this, new realShopScreen());
                 blocks =  Block.LevelChanger(levelNumber, this.Size);
                 TurnMusicOff();
                 PlayMusic();
@@ -1351,7 +1392,7 @@ namespace BrickBreaker
             }
             UIPaint.PaintText(e.Graphics, lives + "", 24, new Point(this.Width - 55, 50), Color.Red);
             Font myFont = new Font("Chiller", scoreSize, FontStyle.Bold);
-            SizeF textSize = e.Graphics.MeasureString(score.score + "", myFont);
+            SizeF textSize = e.Graphics.MeasureString(Score.score + "", myFont);
             foreach (string i in comboAdds)
             {
 
@@ -1423,7 +1464,7 @@ namespace BrickBreaker
                 e.Graphics.FillRectangle(Brushes.White, bottomRec);
             }
 
-            UIPaint.PaintTextRotate(e.Graphics, score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width / 2, (int)textSize.Height / 2));
+            UIPaint.PaintTextRotate(e.Graphics, Score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width / 2, (int)textSize.Height / 2));
 
             //Tracking position of ball when caught
             if (trackPos)
