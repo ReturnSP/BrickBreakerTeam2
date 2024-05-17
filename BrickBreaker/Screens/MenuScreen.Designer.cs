@@ -69,8 +69,8 @@
             this.playButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.playButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.playButton.Font = new System.Drawing.Font("Chiller", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.ForeColor = System.Drawing.Color.White;
+            this.playButton.Font = new System.Drawing.Font("Chiller", 46.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playButton.ForeColor = System.Drawing.Color.Gold;
             this.playButton.Image = ((System.Drawing.Image)(resources.GetObject("playButton.Image")));
             this.playButton.Location = new System.Drawing.Point(762, 312);
             this.playButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -362,14 +362,14 @@
             // name
             // 
             this.name.BackColor = System.Drawing.Color.Transparent;
-            this.name.Font = new System.Drawing.Font("Chiller", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.name.Font = new System.Drawing.Font("Chiller", 55.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.name.ForeColor = System.Drawing.Color.Gold;
-            this.name.Location = new System.Drawing.Point(544, 0);
+            this.name.Location = new System.Drawing.Point(516, 0);
             this.name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(696, 182);
+            this.name.Size = new System.Drawing.Size(749, 195);
             this.name.TabIndex = 20;
-            this.name.Text = "Freaky Frenzy: \r\nBrick Breaking Bonanza";
+            this.name.Text = "Freaky Frenzy\r\nBrick Breaking Bonanza";
             this.name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // fireLabel
@@ -424,7 +424,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(1708, 960);
-            this.Load += new System.EventHandler(this.MenuScreen_Load_1);
             this.ResumeLayout(false);
 
         }

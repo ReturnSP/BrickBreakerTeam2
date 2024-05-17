@@ -35,8 +35,8 @@ namespace BrickBreaker
             hp = _hp;
             vines = _vines;
             textures = _textures;
-            texture = _textures[0];
-            currentTexture = 0;
+            texture = _textures[textures.Count() - _hp];
+            currentTexture = textures.Count() - _hp;
             //byte[] imageBytes = Convert.FromBase64String(image);
             //
             //// Create a memory stream from the byte array
