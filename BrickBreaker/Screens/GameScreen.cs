@@ -138,8 +138,6 @@ namespace BrickBreaker
 
         public static int pDuration1, pDuration2, pDuration3, pDuration4, pDuration5, pDuration6, pDuration7;
 
-        public static int x1, x2, x3, x4, x5, x6, x7;
-
         //bottom rectangle
 
         Rectangle bottomRec;
@@ -428,6 +426,55 @@ namespace BrickBreaker
                 case Keys.G:
                     pU7 = true;
                     break;
+                case Keys.D1:
+                    if (realShopScreen.SSPU1 > 0 && !pU1)
+                    {
+                        pU1 = true;
+                        realShopScreen.SSPU1--;
+                    }
+                    break;
+                case Keys.D2:
+                    if (realShopScreen.SSPU2 > 0 && !pU2)
+                    {
+                        pU2 = true;
+                        realShopScreen.SSPU2--;
+                    }
+                    break;
+                case Keys.D3:
+                    if (realShopScreen.SSPU3 > 0 && !pU3)
+                    {
+                        pU3 = true;
+                        realShopScreen.SSPU3--;
+                    }
+                    break;
+                case Keys.D4:
+                    if (realShopScreen.SSPU4 > 0 && !pU4)
+                    {
+                        pU4 = true;
+                        realShopScreen.SSPU4--;
+                    }
+                    break;
+                case Keys.D5:
+                    if (realShopScreen.SSPU5 > 0 && !pU5)
+                    {
+                        pU5 = true;
+                        realShopScreen.SSPU5--;
+                    }
+                    break;
+                case Keys.D6:
+                    if (realShopScreen.SSPU6 > 0 && !pU6)
+                    {
+                        pU6 = true;
+                        realShopScreen.SSPU6--;
+                    }
+                    break;
+                case Keys.D7:
+                    if (realShopScreen.SSPU7 > 0 && !pU7)
+                    {
+                        pU7 = true;
+                        realShopScreen.SSPU7--;
+                    }
+                    break;
                 default:
                     break;
             }
@@ -465,48 +512,12 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            if (realShopScreen.SSPU1 && x1 == 0)
-            {
-                pU1 = true;
-                x1 = 1;
-            }
-            if (realShopScreen.SSPU2 && x2 == 0)
-            {
-                pU2 = true;
-                x2 = 1;
-            }
-            if (realShopScreen.SSPU3 && x3 == 0)
-            {
-                pU3 = true;
-                x3 = 1;
-            }
-            if (realShopScreen.SSPU4 && x4 == 0)
-            {
-                pU4 = true;
-                x4 = 1;
-            }
-            if (realShopScreen.SSPU5 && x5 == 0)
-            {
-                pU5 = true;
-                x5 = 1;
-            }
-            if (realShopScreen.SSPU6 && x6 == 0)
-            {
-                pU6 = true;
-                x6 = 1;
-            }
-            if (realShopScreen.SSPU7 && x7 == 0)
-            {
-                pU7 = true;
-                x7 = 1;
-            }
-
             if (blocks.Count() == 0)
             {
                 gameTimer.Stop();
                 levelNumber++;
                 Form1.ChangeScreen(this, new realShopScreen());
-                blocks =  Block.LevelChanger(levelNumber, this.Size);
+                blocks = Block.LevelChanger(levelNumber, this.Size);
                 TurnMusicOff();
                 PlayMusic();
                 sounds.Clear();
@@ -574,7 +585,7 @@ namespace BrickBreaker
                 {
                     PlaySound(check);
                 }
-                
+
                 foreach (Ball b in freakyBalls)
                 {
                     b.WallCollision(this);
@@ -684,12 +695,12 @@ namespace BrickBreaker
 
 
                 // Check for collision of ball with paddle, (incl. paddle movement)
-                 check = ball.PaddleCollision(paddle);
+                check = ball.PaddleCollision(paddle);
                 if (check != "")
                 {
                     PlaySound(check);
                 }
-             
+
                 foreach (Ball b in freakyBalls)
                 {
                     b.PaddleCollision(paddle);
@@ -706,7 +717,7 @@ namespace BrickBreaker
                         if (ball.BlockCollision(b))
                         {
 
-                            
+
                             comboAdds.Add(new MiniScores(100 * score.comboCounter + "", new Point((int)paddle.x + rand.Next(-50, 50), (int)paddle.y - 50 + rand.Next(-50, 50)), 255));
                             score.AddToScore(100);
                             scoreSize += 1;
@@ -754,13 +765,13 @@ namespace BrickBreaker
                                         debuffColor = Color.Silver;
                                     }
 
-                                    if(!pU7)
+                                    if (!pU7)
                                     {
                                         Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
 
                                         debuffs.Add(newDebuff);
                                     }
-                                    
+
                                 }
                             }
                             else
@@ -1162,7 +1173,7 @@ namespace BrickBreaker
                     ball.xSpeed = (float)diffX;
                     ball.ySpeed = (float)diffY;
 
-                   
+
                     if (pDuration7 > 150)
                     {
                         ball.size += NEWSIZE;
@@ -1191,7 +1202,7 @@ namespace BrickBreaker
                             b.hitBox = new Rectangle(b.hitBox.X + (int)diffX, b.hitBox.Y + (int)diffY, b.hitBox.Width, b.hitBox.Height);
                             ball.ySpeed = (float)diffY;
 
-                            
+
 
                         }
                     }
@@ -1483,7 +1494,11 @@ namespace BrickBreaker
 
                 }
 
-                e.Graphics.DrawLine(Pens.Red, ball.x + (ball.size / 2), ball.y + (ball.size / 2), TopXPos, 0);
+                try
+                {
+                    e.Graphics.DrawLine(Pens.Red, ball.x + (ball.size / 2), ball.y + (ball.size / 2), TopXPos, 0);
+                }
+                catch {}
             }
 
             // test
