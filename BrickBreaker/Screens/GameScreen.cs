@@ -329,7 +329,7 @@ namespace BrickBreaker
             //= true;
             Cursor.Hide();
             //set life counter
-            score = new Score(0, 1);
+            score = new Score((int)Score.score, 1);
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
