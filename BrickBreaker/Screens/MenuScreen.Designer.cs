@@ -70,10 +70,10 @@
             this.playButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.playButton.Font = new System.Drawing.Font("Chiller", 46.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.ForeColor = System.Drawing.Color.Gold;
+            this.playButton.ForeColor = System.Drawing.Color.White;
             this.playButton.Image = ((System.Drawing.Image)(resources.GetObject("playButton.Image")));
             this.playButton.Location = new System.Drawing.Point(762, 312);
-            this.playButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.playButton.Margin = new System.Windows.Forms.Padding(4);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(242, 96);
             this.playButton.TabIndex = 0;
@@ -91,7 +91,7 @@
             this.exitButton.ForeColor = System.Drawing.Color.White;
             this.exitButton.Image = ((System.Drawing.Image)(resources.GetObject("exitButton.Image")));
             this.exitButton.Location = new System.Drawing.Point(762, 684);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(4);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(242, 96);
             this.exitButton.TabIndex = 1;
@@ -421,7 +421,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.fireLabel);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(1708, 960);
             this.ResumeLayout(false);
