@@ -5,10 +5,11 @@ namespace BrickBreaker
 {
     public class Paddle
     {
-        public int x, y, width, height, speed;
+        public int x, y, height, speed;
+        public float width;
         public Color colour;
 
-        public Paddle(int _x, int _y, int _width, int _height, int _speed, Color _colour)
+        public Paddle(int _x, int _y, float _width, int _height, int _speed, Color _colour)
         {
             x = _x;
             y = _y;
