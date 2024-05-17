@@ -156,6 +156,15 @@ namespace BrickBreaker
 
         const float NEWSIZE = 5;
 
+        //timeriemriem
+        double timerDuration1 = 500;
+        double timerDuration2 = 250;
+        double timerDuration3 = 250;
+        double timerDuration4 = 250;
+        double timerDuration5 = 500;
+        double timerDuration6 = 1500;
+        double timerDuration7 = 250;
+
 
 
         //Grady
@@ -174,6 +183,13 @@ namespace BrickBreaker
             new System.Windows.Media.MediaPlayer()
         };
         List<System.Windows.Media.MediaPlayer> sounds = new List<System.Windows.Media.MediaPlayer>();
+
+        //sound (minor)
+        SoundPlayer evilFace = new SoundPlayer(Properties.Resources.Aztec_Death_Whistle);
+        SoundPlayer whiteBoySound = new SoundPlayer(Properties.Resources.WhiteBoy1);
+
+
+
         #endregion
 
         public GameScreen()
@@ -602,6 +618,7 @@ namespace BrickBreaker
                     // SoundPlayer lifesubtracted = new SoundPlayer(Properties.Resources.lifesubtracted);
                     score.RemoveCombo();
                     scoreSize = 50;
+
                     isCaught = true;
                     trackPos = true;
                     //lifesubtracted.Play();
@@ -617,8 +634,6 @@ namespace BrickBreaker
                         gameTimer.Enabled = false;
                         OnEnd();
                     }
-
-
                 }
 
                 for (int i = freakyBalls.Count; i > 0; i--)
@@ -732,7 +747,7 @@ namespace BrickBreaker
                                     blocks.RemoveAll(Block => b.hitBox.Y == Block.hitBox.Y);
                                 }
 
-                                int chance = 40;
+                                int chance = 101;
 
                                 if (rand.Next(1, 100) <= chance)
                                 {
@@ -767,7 +782,7 @@ namespace BrickBreaker
 
                                     if (!pU7)
                                     {
-                                        Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
+                                        Debuff newDebuff = new Debuff(3, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
 
                                         debuffs.Add(newDebuff);
                                     }
@@ -919,8 +934,14 @@ namespace BrickBreaker
                 //send to game over screen in future
                 duration3++;
 
-                if (duration3 > 60 && duration3 < 100)
+                if (duration3 > 60 && duration3 < 80)
                 {
+                    evilFace.Play();
+                    Refresh();
+                }
+                else if (duration3 > 80 && duration3 > 130)
+                {
+
                     evilSkullMan.Parent = this;
                     evilSkullMan.Location = new Point((this.Width - evilSkullMan.Width) / 2, (this.Height - evilSkullMan.Height) / 2);
                     evilSkullMan.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -928,7 +949,7 @@ namespace BrickBreaker
                     evilSkullMan.Size = new Size((int)(700 * widthScale), (int)(700 * heightScale));
                     evilSkullMan.BringToFront();
                 }
-                else if (duration3 > 100)
+                else if (duration3 > 150)
                 {
                     duration3 = 0;
                     dB3 = false;
@@ -942,34 +963,41 @@ namespace BrickBreaker
                 duration4++;
                 if (duration4 < 3)
                 {
-
+                    whiteBoySound.Play();
                     whiteBoy.Parent = this;
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     whiteBoy.SizeMode = PictureBoxSizeMode.StretchImage;
                     whiteBoy.Image = Properties.Resources.WhiteBoy;
                     whiteBoy.BringToFront();
                     //play sound
+
                 }
                 else if (duration4 < 40 && duration4 > 20)
                 {
+                    whiteBoySound.Play();
                     whiteBoy.Visible = true;
                     whiteBoy.Size = new Size((int)(100 * widthScale), (int)(100 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
+
                 }
                 else if (duration4 < 200 && duration4 > 180)
                 {
+                    whiteBoySound.Play();
                     whiteBoy.Visible = true;
                     whiteBoy.Size = new Size((int)(200 * widthScale), (int)(200 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
+
                 }
                 else if (duration4 < 400 && duration4 > 380)
                 {
+                    whiteBoySound.Play();
                     whiteBoy.Visible = true;
                     whiteBoy.Size = new Size((int)(700 * widthScale), (int)(700 * heightScale));
                     whiteBoy.Location = new Point((this.Width - whiteBoy.Width) / 2, (this.Height - whiteBoy.Height) / 2);
                     //play sound
+
                 }
                 else
                 {
@@ -1026,12 +1054,12 @@ namespace BrickBreaker
 
             if (pU1)
             {
-                pDuration1++;
-                if (pDuration1 < 2)
+                pDuration1--;
+                if (pDuration1 > 498)
                 {
                     paddle.width = paddleWidth * 5;
                 }
-                else if (pDuration1 < 500)
+                else if (pDuration1 > 0)
                 {
                     paddle.width -= (float)320 / 500;
                 }
@@ -1039,17 +1067,17 @@ namespace BrickBreaker
                 {
                     paddle.width = paddleWidth;
                     pU1 = false;
-                    pDuration1 = 0;
+                    pDuration1 = 500;
                 }
             }
 
             if (pU2)
             {
-                pDuration2++;
-                if (pDuration2 > 250)
+                pDuration2--;
+                if (pDuration2 < 0)
                 {
                     pU2 = false;
-                    pDuration2 = 0;
+                    pDuration2 = 250;
                 }
             }
 
@@ -1059,14 +1087,14 @@ namespace BrickBreaker
                 if (pDuration3 > 25000)
                 {
                     pU3 = false;
-                    pDuration3 = 0;
+                    pDuration3 = 250;
                 }
             }
 
             if (pU4)
             {
-                pDuration4++;
-                if (pDuration4 < 250)
+                pDuration4--;
+                if (pDuration4 > 0)
                 {
                     ball.size = 30;
                 }
@@ -1074,26 +1102,26 @@ namespace BrickBreaker
                 {
                     ball.size = 20;
                     pU4 = false;
-                    pDuration4 = 0;
+                    pDuration4 = 250;
                 }
             }
 
             if (pU5)
             {
-                pDuration5++;
-                if (pDuration5 > 500)
+                pDuration5--;
+                if (pDuration5 < 0)
                 {
                     pU5 = false;
-                    pDuration5 = 0;
+                    pDuration5 = 500;
                 }
             }
 
             if (pU6)
             {
-                pDuration6++;
+                pDuration6--;
                 bottomRec = new Rectangle(0, this.Height - 20, this.Width, 20);
                 ballRec = new RectangleF(ball.x, ball.y, ball.size, ball.size);
-                if (pDuration6 < 800)
+                if (pDuration6 > 800)
                 {
                     ball.xSpeed *= 2;
                     ball.ySpeed *= 2;
@@ -1112,7 +1140,7 @@ namespace BrickBreaker
                         }
                     }
                 }
-                else if (pDuration6 < 1500)
+                else if (pDuration6 < 0)
                 {
                     shrink++;
                     bottomRec.Size = new Size(this.Width - 2 * (shrink), 20);
@@ -1136,7 +1164,7 @@ namespace BrickBreaker
                 }
                 else
                 {
-                    pDuration6 = 0;
+                    pDuration6 = 1500;
                     pU6 = false;
                     shrink = 0;
                     ball.xSpeed = xSpeed;
@@ -1147,13 +1175,11 @@ namespace BrickBreaker
             {
                 //ball.xSpeed = 0;
                 //ball.ySpeed = 0;
-                pDuration7++;
-                if (pDuration7 < 250)
+                pDuration7--;
+                if (pDuration7 > 0)
                 {
                     int middleOfScreenX = this.Width / 2;
                     int middleOfScreenY = this.Height / 2;
-
-                    double magnatude = Math.Sqrt(Math.Pow(middleOfScreenY - ball.y, 2) + Math.Pow(middleOfScreenX - ball.x, 2));
 
                     double diffX = middleOfScreenX - ball.x;
                     double diffY = middleOfScreenY - ball.y;
@@ -1173,7 +1199,6 @@ namespace BrickBreaker
                     ball.xSpeed = (float)diffX;
                     ball.ySpeed = (float)diffY;
 
-
                     if (pDuration7 > 150)
                     {
                         ball.size += NEWSIZE;
@@ -1182,7 +1207,7 @@ namespace BrickBreaker
 
                         foreach (Block b in blocks)
                         {
-                            magnatude = Math.Sqrt(Math.Pow(middleOfScreenY - b.hitBox.Y, 2) + Math.Pow(middleOfScreenX - b.hitBox.X, 2));
+
 
                             diffX = middleOfScreenX - b.hitBox.X;
                             diffY = middleOfScreenY - b.hitBox.Y;
@@ -1209,7 +1234,7 @@ namespace BrickBreaker
                 }
                 else
                 {
-                    pDuration7 = 0;
+                    pDuration7 = 250;
                     pU7 = false;
                     ball.size = ballSize;
                     ball.xSpeed = xSpeed;
@@ -1226,6 +1251,30 @@ namespace BrickBreaker
             }
 
             #endregion
+
+            #region PowerUp Timers
+
+            const int TIMERWIDTH = 100;
+
+            int t1percent = (int)((float)(pDuration1 / timerDuration1) * TIMERWIDTH);
+            int t2percent = (int)((float)(pDuration2 / timerDuration2) * TIMERWIDTH);
+            int t3percent = (int)((float)(pDuration3 / timerDuration3) * TIMERWIDTH);
+            int t4percent = (int)((float)(pDuration4 / timerDuration4) * TIMERWIDTH);
+            int t5percent = (int)((float)(pDuration5 / timerDuration5) * TIMERWIDTH);
+            int t6percent = (int)((float)(pDuration6 / timerDuration6) * TIMERWIDTH);
+            int t7percent = (int)((float)(pDuration7 / timerDuration7) * TIMERWIDTH);
+
+            powerUp1Timer.Size = new Size(t1percent, 10);
+            powerUp2Timer.Size = new Size(t2percent, 10);
+            powerUp3Timer.Size = new Size(t3percent, 10);
+            powerUp4Timer.Size = new Size(t4percent, 10);
+            powerUp5Timer.Size = new Size(t5percent, 10);
+            powerUp6Timer.Size = new Size(t6percent, 10);
+            powerUp7Timer.Size = new Size(t7percent, 10);
+
+
+            #endregion
+
 
 
             brickTime--;
