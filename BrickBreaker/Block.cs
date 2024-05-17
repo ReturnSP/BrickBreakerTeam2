@@ -127,6 +127,7 @@ namespace BrickBreaker
             loadedLevel.Load(fullPath);
             List<Block> blockList = BlockListCreator(loadedLevel, screenSize);
 
+
             return blockList;
         }
 
@@ -139,8 +140,15 @@ namespace BrickBreaker
                 Bitmap displayImage = new Bitmap(block.texture);
 
                 Bitmap resizedBitmap = new Bitmap(displayImage, hitbox.Width, hitbox.Height);
+                if (hitbox.X > 10000000 || hitbox.Y > 10000000 || hitbox.Y < -100000000 || hitbox.X < -1000000000)
+                {
 
-                e.DrawImage(resizedBitmap, new Point(hitbox.X, hitbox.Y));
+                }
+                else
+                {
+                    e.DrawImage(resizedBitmap, new Point(hitbox.X, hitbox.Y));
+                }
+                
                 displayImage.Dispose();
                 resizedBitmap.Dispose();
             }
