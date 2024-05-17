@@ -450,9 +450,6 @@ namespace BrickBreaker
                 case Keys.P:
                     gameTimer.Enabled = true;
                     break;
-                case Keys.G:
-                    pU7 = false;
-                    break;
                 default:
                     break;
             }
