@@ -8,7 +8,7 @@ namespace BrickBreaker
 {
     internal class Score
     {
-        public double score { get; set; }
+        public static double score { get; set; }
         public double comboCounter { get; set; }
 
         public Score(int initialScore, double initialCombo)
@@ -19,7 +19,7 @@ namespace BrickBreaker
 
         public void AddToScore(int scoreNumb)
         {
-            score += scoreNumb * comboCounter;
+            score += (int)scoreNumb * (int)comboCounter;
             AddToCombo(0.1);
         }
 

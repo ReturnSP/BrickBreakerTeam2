@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace BrickBreaker
 {
-    public partial class MenuScreen : UserControl
+    public partial class MenuScreen : System.Windows.Forms.UserControl
     {
         System.Windows.Media.MediaPlayer menuMusic = new System.Windows.Media.MediaPlayer();
         public MenuScreen()
         {
+            Cursor.Show();
             InitializeComponent();
             menuMusic.Open(new Uri(Application.StartupPath + "\\Resources\\Wasteland 2 Soundtrack - Desert Nomads.wav"));
             menuMusic.MediaEnded += new EventHandler(menuMusicEnded);
@@ -37,13 +38,16 @@ namespace BrickBreaker
         private void playButton_Click(object sender, EventArgs e)
         {
             Cursor.Hide();
+            GameScreen.lives = 4;
+            GameScreen.levelNumber = 0;
+            Score.score = 0;
             // Goes to the game screen
             GameScreen gs = new GameScreen();
             Form form = this.FindForm();
 
             form.Controls.Add(gs);
             form.Controls.Remove(this);
-
+            
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
             menuMusic.Stop();
         }
@@ -53,11 +57,6 @@ namespace BrickBreaker
         private void MenuScreen_Load(object sender, EventArgs e)
         {
             Cursor.Show();
-        }
-
-        private void MenuScreen_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -75,12 +75,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiniScores.cs" />
     <Compile Include="Paddle.cs" />
     <Compile Include="pauseScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pauseScreen.Designer.cs">
       <DependentUpon>pauseScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="realShopScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="realShopScreen.Designer.cs">
+      <DependentUpon>realShopScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="scareScreen.cs">
       <SubType>Form</SubType>
@@ -123,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pauseScreen.resx">
       <DependentUpon>pauseScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="realShopScreen.resx">
+      <DependentUpon>realShopScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="scareScreen.resx">
       <DependentUpon>scareScreen.cs</DependentUpon>
@@ -444,6 +454,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WhiteBoy.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\level2.xml" />
+    <Content Include="Resources\level3.xml" />
+    <Content Include="Resources\level4.xml" />
+    <Content Include="Resources\level5.xml" />
+    <Content Include="Resources\level6.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

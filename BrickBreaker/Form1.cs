@@ -26,7 +26,7 @@ namespace BrickBreaker
             ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
         }
 
-        public static void ChangeScreen(object sender, UserControl next)
+        public static void ChangeScreen(object sender, System.Windows.Forms.UserControl next)
         {
             Form f; // will either be the sender or parent of sender
 
@@ -36,7 +36,7 @@ namespace BrickBreaker
             }
             else
             {
-                UserControl current = (UserControl)sender;  //create UserControl from sender
+                System.Windows.Forms.UserControl current = (System.Windows.Forms.UserControl)sender;  //create UserControl from sender
                 f = current.FindForm();                     //find Form UserControl is on
                 f.Controls.Remove(current);                 //remove current UserControl
             }

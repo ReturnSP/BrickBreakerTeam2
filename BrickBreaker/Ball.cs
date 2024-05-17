@@ -138,7 +138,7 @@ namespace BrickBreaker
             return ("");
         }
 
-        public String WallCollision(UserControl UC)
+        public String WallCollision(System.Windows.Forms.UserControl UC)
         {
             // Collision with left wall
             if (x < 0+130)
@@ -166,7 +166,7 @@ namespace BrickBreaker
             return ("");
         }
 
-        public bool BottomCollision(UserControl UC)
+        public bool BottomCollision(System.Windows.Forms.UserControl UC)
         {
             Boolean didCollide = false;
 
