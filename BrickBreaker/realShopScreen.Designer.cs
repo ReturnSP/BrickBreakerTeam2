@@ -71,18 +71,21 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(1061, 321);
+            this.button8.Location = new System.Drawing.Point(1415, 395);
+            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.Size = new System.Drawing.Size(100, 28);
             this.button8.TabIndex = 67;
             this.button8.Text = "Buy";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // PU7Button
             // 
-            this.PU7Button.Location = new System.Drawing.Point(847, 321);
+            this.PU7Button.Location = new System.Drawing.Point(1129, 395);
+            this.PU7Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PU7Button.Name = "PU7Button";
-            this.PU7Button.Size = new System.Drawing.Size(75, 23);
+            this.PU7Button.Size = new System.Drawing.Size(100, 28);
             this.PU7Button.TabIndex = 66;
             this.PU7Button.Text = "Buy";
             this.PU7Button.UseVisualStyleBackColor = true;
@@ -90,9 +93,10 @@
             // 
             // PU6Button
             // 
-            this.PU6Button.Location = new System.Drawing.Point(656, 321);
+            this.PU6Button.Location = new System.Drawing.Point(875, 395);
+            this.PU6Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PU6Button.Name = "PU6Button";
-            this.PU6Button.Size = new System.Drawing.Size(75, 23);
+            this.PU6Button.Size = new System.Drawing.Size(100, 28);
             this.PU6Button.TabIndex = 65;
             this.PU6Button.Text = "Buy";
             this.PU6Button.UseVisualStyleBackColor = true;
@@ -100,9 +104,10 @@
             // 
             // PU5Button
             // 
-            this.PU5Button.Location = new System.Drawing.Point(466, 321);
+            this.PU5Button.Location = new System.Drawing.Point(621, 395);
+            this.PU5Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PU5Button.Name = "PU5Button";
-            this.PU5Button.Size = new System.Drawing.Size(75, 23);
+            this.PU5Button.Size = new System.Drawing.Size(100, 28);
             this.PU5Button.TabIndex = 64;
             this.PU5Button.Text = "Buy";
             this.PU5Button.UseVisualStyleBackColor = true;
@@ -110,9 +115,10 @@
             // 
             // PU4Button
             // 
-            this.PU4Button.Location = new System.Drawing.Point(1061, 128);
+            this.PU4Button.Location = new System.Drawing.Point(1415, 158);
+            this.PU4Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PU4Button.Name = "PU4Button";
-            this.PU4Button.Size = new System.Drawing.Size(75, 23);
+            this.PU4Button.Size = new System.Drawing.Size(100, 28);
             this.PU4Button.TabIndex = 63;
             this.PU4Button.Text = "Buy";
             this.PU4Button.UseVisualStyleBackColor = true;
@@ -120,9 +126,10 @@
             // 
             // PU3Button
             // 
-            this.PU3Button.Location = new System.Drawing.Point(847, 126);
+            this.PU3Button.Location = new System.Drawing.Point(1129, 155);
+            this.PU3Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PU3Button.Name = "PU3Button";
-            this.PU3Button.Size = new System.Drawing.Size(75, 23);
+            this.PU3Button.Size = new System.Drawing.Size(100, 28);
             this.PU3Button.TabIndex = 62;
             this.PU3Button.Text = "Buy";
             this.PU3Button.UseVisualStyleBackColor = true;
@@ -130,9 +137,10 @@
             // 
             // PU2Button
             // 
-            this.PU2Button.Location = new System.Drawing.Point(656, 126);
+            this.PU2Button.Location = new System.Drawing.Point(875, 155);
+            this.PU2Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PU2Button.Name = "PU2Button";
-            this.PU2Button.Size = new System.Drawing.Size(75, 23);
+            this.PU2Button.Size = new System.Drawing.Size(100, 28);
             this.PU2Button.TabIndex = 61;
             this.PU2Button.Text = "Buy";
             this.PU2Button.UseVisualStyleBackColor = true;
@@ -140,9 +148,10 @@
             // 
             // PU1Button
             // 
-            this.PU1Button.Location = new System.Drawing.Point(466, 126);
+            this.PU1Button.Location = new System.Drawing.Point(621, 155);
+            this.PU1Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PU1Button.Name = "PU1Button";
-            this.PU1Button.Size = new System.Drawing.Size(75, 23);
+            this.PU1Button.Size = new System.Drawing.Size(100, 28);
             this.PU1Button.TabIndex = 60;
             this.PU1Button.Text = "Buy";
             this.PU1Button.UseVisualStyleBackColor = true;
@@ -150,115 +159,129 @@
             // 
             // lowP1Button
             // 
-            this.lowP1Button.Location = new System.Drawing.Point(453, 222);
+            this.lowP1Button.Location = new System.Drawing.Point(604, 273);
+            this.lowP1Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lowP1Button.Name = "lowP1Button";
-            this.lowP1Button.Size = new System.Drawing.Size(114, 93);
+            this.lowP1Button.Size = new System.Drawing.Size(152, 114);
             this.lowP1Button.TabIndex = 54;
             this.lowP1Button.UseVisualStyleBackColor = true;
             // 
             // lowP2Button
             // 
-            this.lowP2Button.Location = new System.Drawing.Point(638, 222);
+            this.lowP2Button.Location = new System.Drawing.Point(851, 273);
+            this.lowP2Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lowP2Button.Name = "lowP2Button";
-            this.lowP2Button.Size = new System.Drawing.Size(114, 93);
+            this.lowP2Button.Size = new System.Drawing.Size(152, 114);
             this.lowP2Button.TabIndex = 51;
             this.lowP2Button.UseVisualStyleBackColor = true;
             // 
             // lowP3Button
             // 
-            this.lowP3Button.Location = new System.Drawing.Point(830, 222);
+            this.lowP3Button.Location = new System.Drawing.Point(1107, 273);
+            this.lowP3Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lowP3Button.Name = "lowP3Button";
-            this.lowP3Button.Size = new System.Drawing.Size(114, 93);
+            this.lowP3Button.Size = new System.Drawing.Size(152, 114);
             this.lowP3Button.TabIndex = 52;
             this.lowP3Button.UseVisualStyleBackColor = true;
             // 
             // lowP4Button
             // 
             this.lowP4Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lowP4Button.Location = new System.Drawing.Point(1041, 222);
+            this.lowP4Button.Image = global::BrickBreaker.Properties.Resources.heart7;
+            this.lowP4Button.Location = new System.Drawing.Point(1388, 273);
+            this.lowP4Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lowP4Button.Name = "lowP4Button";
-            this.lowP4Button.Size = new System.Drawing.Size(114, 93);
+            this.lowP4Button.Size = new System.Drawing.Size(152, 114);
             this.lowP4Button.TabIndex = 53;
             this.lowP4Button.UseVisualStyleBackColor = true;
             // 
             // highP4Button
             // 
             this.highP4Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.highP4Button.Location = new System.Drawing.Point(1041, 30);
+            this.highP4Button.Location = new System.Drawing.Point(1388, 37);
+            this.highP4Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.highP4Button.Name = "highP4Button";
-            this.highP4Button.Size = new System.Drawing.Size(114, 93);
+            this.highP4Button.Size = new System.Drawing.Size(152, 114);
             this.highP4Button.TabIndex = 59;
             this.highP4Button.UseVisualStyleBackColor = true;
             // 
             // highP3Button
             // 
             this.highP3Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.highP3Button.Location = new System.Drawing.Point(830, 30);
+            this.highP3Button.Location = new System.Drawing.Point(1107, 37);
+            this.highP3Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.highP3Button.Name = "highP3Button";
-            this.highP3Button.Size = new System.Drawing.Size(114, 93);
+            this.highP3Button.Size = new System.Drawing.Size(152, 114);
             this.highP3Button.TabIndex = 55;
             this.highP3Button.UseVisualStyleBackColor = true;
             // 
             // highP2Button
             // 
             this.highP2Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.highP2Button.Location = new System.Drawing.Point(638, 30);
+            this.highP2Button.Location = new System.Drawing.Point(851, 37);
+            this.highP2Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.highP2Button.Name = "highP2Button";
-            this.highP2Button.Size = new System.Drawing.Size(114, 93);
+            this.highP2Button.Size = new System.Drawing.Size(152, 114);
             this.highP2Button.TabIndex = 56;
             this.highP2Button.UseVisualStyleBackColor = true;
             // 
             // p5RemoveButton
             // 
             this.p5RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.p5RemoveButton.Location = new System.Drawing.Point(137, 609);
+            this.p5RemoveButton.Location = new System.Drawing.Point(183, 750);
+            this.p5RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.p5RemoveButton.Name = "p5RemoveButton";
-            this.p5RemoveButton.Size = new System.Drawing.Size(23, 26);
+            this.p5RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p5RemoveButton.TabIndex = 57;
             this.p5RemoveButton.UseVisualStyleBackColor = true;
             // 
             // p4RemoveButton
             // 
             this.p4RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.p4RemoveButton.Location = new System.Drawing.Point(137, 488);
+            this.p4RemoveButton.Location = new System.Drawing.Point(183, 601);
+            this.p4RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.p4RemoveButton.Name = "p4RemoveButton";
-            this.p4RemoveButton.Size = new System.Drawing.Size(23, 26);
+            this.p4RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p4RemoveButton.TabIndex = 58;
             this.p4RemoveButton.UseVisualStyleBackColor = true;
             // 
             // p3RemoveButton
             // 
             this.p3RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.p3RemoveButton.Location = new System.Drawing.Point(137, 374);
+            this.p3RemoveButton.Location = new System.Drawing.Point(183, 460);
+            this.p3RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.p3RemoveButton.Name = "p3RemoveButton";
-            this.p3RemoveButton.Size = new System.Drawing.Size(23, 26);
+            this.p3RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p3RemoveButton.TabIndex = 49;
             this.p3RemoveButton.UseVisualStyleBackColor = true;
             // 
             // p2RemoveButton
             // 
             this.p2RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.p2RemoveButton.Location = new System.Drawing.Point(137, 255);
+            this.p2RemoveButton.Location = new System.Drawing.Point(183, 314);
+            this.p2RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.p2RemoveButton.Name = "p2RemoveButton";
-            this.p2RemoveButton.Size = new System.Drawing.Size(23, 26);
+            this.p2RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p2RemoveButton.TabIndex = 50;
             this.p2RemoveButton.UseVisualStyleBackColor = true;
             // 
             // p1RemoveButton
             // 
             this.p1RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.p1RemoveButton.Location = new System.Drawing.Point(137, 137);
+            this.p1RemoveButton.Location = new System.Drawing.Point(183, 169);
+            this.p1RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.p1RemoveButton.Name = "p1RemoveButton";
-            this.p1RemoveButton.Size = new System.Drawing.Size(23, 26);
+            this.p1RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p1RemoveButton.TabIndex = 48;
             this.p1RemoveButton.UseVisualStyleBackColor = true;
             // 
             // highP1Button
             // 
             this.highP1Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.highP1Button.Location = new System.Drawing.Point(450, 30);
+            this.highP1Button.Location = new System.Drawing.Point(600, 37);
+            this.highP1Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.highP1Button.Name = "highP1Button";
-            this.highP1Button.Size = new System.Drawing.Size(114, 93);
+            this.highP1Button.Size = new System.Drawing.Size(152, 114);
             this.highP1Button.TabIndex = 47;
             this.highP1Button.UseVisualStyleBackColor = true;
             // 
@@ -268,9 +291,10 @@
             this.continueButton.Cursor = System.Windows.Forms.Cursors.PanEast;
             this.continueButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.continueButton.Font = new System.Drawing.Font("MS Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.continueButton.Location = new System.Drawing.Point(1115, 642);
+            this.continueButton.Location = new System.Drawing.Point(1487, 790);
+            this.continueButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.continueButton.Name = "continueButton";
-            this.continueButton.Size = new System.Drawing.Size(245, 104);
+            this.continueButton.Size = new System.Drawing.Size(327, 128);
             this.continueButton.TabIndex = 45;
             this.continueButton.Text = "Continue";
             this.continueButton.UseVisualStyleBackColor = true;
@@ -279,143 +303,160 @@
             // power5Label
             // 
             this.power5Label.BackColor = System.Drawing.Color.Silver;
-            this.power5Label.Location = new System.Drawing.Point(18, 569);
+            this.power5Label.Location = new System.Drawing.Point(24, 700);
+            this.power5Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power5Label.Name = "power5Label";
-            this.power5Label.Size = new System.Drawing.Size(97, 98);
+            this.power5Label.Size = new System.Drawing.Size(129, 121);
             this.power5Label.TabIndex = 44;
             // 
             // power4Label
             // 
             this.power4Label.BackColor = System.Drawing.Color.Silver;
-            this.power4Label.Location = new System.Drawing.Point(18, 453);
+            this.power4Label.Location = new System.Drawing.Point(24, 558);
+            this.power4Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power4Label.Name = "power4Label";
-            this.power4Label.Size = new System.Drawing.Size(97, 98);
+            this.power4Label.Size = new System.Drawing.Size(129, 121);
             this.power4Label.TabIndex = 43;
             // 
             // power3Label
             // 
             this.power3Label.BackColor = System.Drawing.Color.Silver;
-            this.power3Label.Location = new System.Drawing.Point(18, 336);
+            this.power3Label.Location = new System.Drawing.Point(24, 414);
+            this.power3Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power3Label.Name = "power3Label";
-            this.power3Label.Size = new System.Drawing.Size(97, 98);
+            this.power3Label.Size = new System.Drawing.Size(129, 121);
             this.power3Label.TabIndex = 42;
             // 
             // power2Label
             // 
             this.power2Label.BackColor = System.Drawing.Color.Silver;
-            this.power2Label.Location = new System.Drawing.Point(18, 217);
+            this.power2Label.Location = new System.Drawing.Point(24, 267);
+            this.power2Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power2Label.Name = "power2Label";
-            this.power2Label.Size = new System.Drawing.Size(97, 98);
+            this.power2Label.Size = new System.Drawing.Size(129, 121);
             this.power2Label.TabIndex = 41;
             // 
             // power1Label
             // 
             this.power1Label.BackColor = System.Drawing.Color.Silver;
-            this.power1Label.Location = new System.Drawing.Point(18, 98);
+            this.power1Label.Location = new System.Drawing.Point(24, 121);
+            this.power1Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.power1Label.Name = "power1Label";
-            this.power1Label.Size = new System.Drawing.Size(97, 98);
+            this.power1Label.Size = new System.Drawing.Size(129, 121);
             this.power1Label.TabIndex = 40;
             // 
             // shopScoreLabel
             // 
             this.shopScoreLabel.BackColor = System.Drawing.Color.Silver;
             this.shopScoreLabel.Font = new System.Drawing.Font("MS Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.shopScoreLabel.Location = new System.Drawing.Point(18, 19);
+            this.shopScoreLabel.Location = new System.Drawing.Point(24, 23);
+            this.shopScoreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.shopScoreLabel.Name = "shopScoreLabel";
-            this.shopScoreLabel.Size = new System.Drawing.Size(142, 61);
+            this.shopScoreLabel.Size = new System.Drawing.Size(189, 75);
             this.shopScoreLabel.TabIndex = 39;
             // 
             // lowP4Label
             // 
             this.lowP4Label.BackColor = System.Drawing.Color.Silver;
-            this.lowP4Label.Location = new System.Drawing.Point(1041, 322);
+            this.lowP4Label.Location = new System.Drawing.Point(1388, 396);
+            this.lowP4Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lowP4Label.Name = "lowP4Label";
-            this.lowP4Label.Size = new System.Drawing.Size(115, 23);
+            this.lowP4Label.Size = new System.Drawing.Size(153, 28);
             this.lowP4Label.TabIndex = 38;
             // 
             // lowP3Label
             // 
             this.lowP3Label.BackColor = System.Drawing.Color.Silver;
-            this.lowP3Label.Location = new System.Drawing.Point(830, 322);
+            this.lowP3Label.Location = new System.Drawing.Point(1107, 396);
+            this.lowP3Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lowP3Label.Name = "lowP3Label";
-            this.lowP3Label.Size = new System.Drawing.Size(115, 23);
+            this.lowP3Label.Size = new System.Drawing.Size(153, 28);
             this.lowP3Label.TabIndex = 37;
             // 
             // lowP2Label
             // 
             this.lowP2Label.BackColor = System.Drawing.Color.Silver;
-            this.lowP2Label.Location = new System.Drawing.Point(637, 322);
+            this.lowP2Label.Location = new System.Drawing.Point(849, 396);
+            this.lowP2Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lowP2Label.Name = "lowP2Label";
-            this.lowP2Label.Size = new System.Drawing.Size(115, 23);
+            this.lowP2Label.Size = new System.Drawing.Size(153, 28);
             this.lowP2Label.TabIndex = 36;
             // 
             // lowP1Label
             // 
             this.lowP1Label.BackColor = System.Drawing.Color.Silver;
-            this.lowP1Label.Location = new System.Drawing.Point(450, 322);
+            this.lowP1Label.Location = new System.Drawing.Point(600, 396);
+            this.lowP1Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lowP1Label.Name = "lowP1Label";
-            this.lowP1Label.Size = new System.Drawing.Size(115, 23);
+            this.lowP1Label.Size = new System.Drawing.Size(153, 28);
             this.lowP1Label.TabIndex = 35;
             // 
             // highP4Label
             // 
             this.highP4Label.BackColor = System.Drawing.Color.Silver;
-            this.highP4Label.Location = new System.Drawing.Point(1038, 126);
+            this.highP4Label.Location = new System.Drawing.Point(1384, 155);
+            this.highP4Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.highP4Label.Name = "highP4Label";
-            this.highP4Label.Size = new System.Drawing.Size(118, 25);
+            this.highP4Label.Size = new System.Drawing.Size(157, 31);
             this.highP4Label.TabIndex = 34;
             // 
             // highP3Label
             // 
             this.highP3Label.BackColor = System.Drawing.Color.Silver;
-            this.highP3Label.Location = new System.Drawing.Point(827, 126);
+            this.highP3Label.Location = new System.Drawing.Point(1103, 155);
+            this.highP3Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.highP3Label.Name = "highP3Label";
-            this.highP3Label.Size = new System.Drawing.Size(118, 25);
+            this.highP3Label.Size = new System.Drawing.Size(157, 31);
             this.highP3Label.TabIndex = 33;
             // 
             // highP2Label
             // 
             this.highP2Label.BackColor = System.Drawing.Color.Silver;
-            this.highP2Label.Location = new System.Drawing.Point(637, 126);
+            this.highP2Label.Location = new System.Drawing.Point(849, 155);
+            this.highP2Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.highP2Label.Name = "highP2Label";
-            this.highP2Label.Size = new System.Drawing.Size(118, 25);
+            this.highP2Label.Size = new System.Drawing.Size(157, 31);
             this.highP2Label.TabIndex = 32;
             // 
             // highP1Label
             // 
             this.highP1Label.BackColor = System.Drawing.Color.Silver;
-            this.highP1Label.Location = new System.Drawing.Point(447, 126);
+            this.highP1Label.Location = new System.Drawing.Point(596, 155);
+            this.highP1Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.highP1Label.Name = "highP1Label";
-            this.highP1Label.Size = new System.Drawing.Size(118, 25);
+            this.highP1Label.Size = new System.Drawing.Size(157, 31);
             this.highP1Label.TabIndex = 31;
             // 
             // highPShelfLabel
             // 
             this.highPShelfLabel.BackColor = System.Drawing.Color.White;
-            this.highPShelfLabel.Location = new System.Drawing.Point(415, 20);
+            this.highPShelfLabel.Location = new System.Drawing.Point(553, 25);
+            this.highPShelfLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.highPShelfLabel.Name = "highPShelfLabel";
-            this.highPShelfLabel.Size = new System.Drawing.Size(797, 143);
+            this.highPShelfLabel.Size = new System.Drawing.Size(1063, 176);
             this.highPShelfLabel.TabIndex = 30;
             // 
             // lowPShelfLabel
             // 
             this.lowPShelfLabel.BackColor = System.Drawing.Color.White;
-            this.lowPShelfLabel.Location = new System.Drawing.Point(418, 210);
+            this.lowPShelfLabel.Location = new System.Drawing.Point(557, 258);
+            this.lowPShelfLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lowPShelfLabel.Name = "lowPShelfLabel";
-            this.lowPShelfLabel.Size = new System.Drawing.Size(794, 144);
+            this.lowPShelfLabel.Size = new System.Drawing.Size(1059, 177);
             this.lowPShelfLabel.TabIndex = 29;
             // 
             // sideBarLabel
             // 
             this.sideBarLabel.BackColor = System.Drawing.Color.White;
-            this.sideBarLabel.Location = new System.Drawing.Point(6, -4);
+            this.sideBarLabel.Location = new System.Drawing.Point(8, -5);
+            this.sideBarLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.sideBarLabel.Name = "sideBarLabel";
-            this.sideBarLabel.Size = new System.Drawing.Size(174, 776);
+            this.sideBarLabel.Size = new System.Drawing.Size(232, 955);
             this.sideBarLabel.TabIndex = 46;
             // 
             // realShopScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BrickBreaker.Properties.Resources.barrr;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -460,8 +501,9 @@
             this.Controls.Add(this.sideBarLabel);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "realShopScreen";
-            this.Size = new System.Drawing.Size(1366, 768);
+            this.Size = new System.Drawing.Size(1821, 945);
             this.ResumeLayout(false);
 
         }

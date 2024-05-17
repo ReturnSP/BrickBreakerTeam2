@@ -25,7 +25,7 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown;
 
         // Game values
-        int lives;
+        public static int lives = 4;
         public static int levelNumber = 0;
         Score score;
         List<MiniScores> comboAdds = new List<MiniScores>();
@@ -329,7 +329,6 @@ namespace BrickBreaker
             //= true;
             Cursor.Hide();
             //set life counter
-            lives = 4;
             score = new Score(0, 1);
 
             //set all button presses to false.
