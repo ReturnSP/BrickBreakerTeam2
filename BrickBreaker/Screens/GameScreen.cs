@@ -1292,14 +1292,7 @@ namespace BrickBreaker
         {
             TurnMusicOff();
             // Goes to the game over screen
-            Form form = this.FindForm();
-            MenuScreen ps = new MenuScreen();
-
-            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
-
-            Cursor.Show();
-            form.Controls.Add(ps);
-            form.Controls.Remove(this);
+            Form1.ChangeScreen(this, new GameOverScreen());
         }
 
         private void GameScreen_MouseDown(object sender, MouseEventArgs e)
