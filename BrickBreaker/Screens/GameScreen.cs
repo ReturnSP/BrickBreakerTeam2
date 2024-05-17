@@ -356,34 +356,33 @@ namespace BrickBreaker
             }
 
             #region debuffs / powerups
-            GameScreen.dB1 = false;
-            GameScreen.dB2 = false;
-            GameScreen.dB3 = false;
-            GameScreen.dB4 = false;
-            GameScreen.dB5 = false;
+            dB1 = false;
+            dB2 = false;
+            dB3 = false;
+            dB4 = false;
+            dB5 = false;
 
-            GameScreen.duration1 = 0;
-            GameScreen.duration2 = 0;
-            GameScreen.duration3 = 0;
-            GameScreen.duration4 = 0;
-            GameScreen.duration5 = 0;
+            duration1 = 0;
+            duration2 = 0;
+            duration3 = 0;
+            duration4 = 0;
+            duration5 = 0;
 
+            pU1 = false;
+            pU2 = false;
+            pU3 = false;
+            pU4 = false;
+            pU5 = false;
+            pU6 = false;
+            pU7 = false;
 
-
-
-            GameScreen.pU1 = false;
-            GameScreen.pU2 = false;
-            GameScreen.pU3 = false;
-            GameScreen.pU4 = false;
-            GameScreen.pU5 = false;
-
-            GameScreen.pDuration1 = 0;
-            GameScreen.pDuration2 = 0;
-            GameScreen.pDuration3 = 0;
-            GameScreen.pDuration4 = 0;
-            GameScreen.pDuration5 = 0;
-            GameScreen.pDuration6 = 0;
-            GameScreen.pDuration7 = 0;
+            pDuration1 = 0;
+            pDuration2 = 0;
+            pDuration3 = 0;
+            pDuration4 = 0;
+            pDuration5 = 0;
+            pDuration6 = 0;
+            pDuration7 = 0;
             #endregion
 
 
