@@ -19,7 +19,7 @@ namespace BrickBreaker
 
         public void AddToScore(int scoreNumb)
         {
-            score += scoreNumb * comboCounter;
+            score += (int)scoreNumb * (int)comboCounter;
             AddToCombo(0.1);
         }
 

@@ -28,7 +28,7 @@ namespace BrickBreaker
         int lives;
         public static int levelNumber = 0;
         Score score;
-        List<string> comboAdds = new List<string>();
+        List<MiniScores> comboAdds = new List<MiniScores>();
         int scoreAngle = 0;
         int scoreDirection = 1;
         int scoreSize = 50;
@@ -323,7 +323,10 @@ namespace BrickBreaker
             //pU4 = true;
             //pU5 = true;
             //pU6 = true;
-            //pU7 = true;
+            //
+            //
+            //
+            //= true;
             Cursor.Hide();
             //set life counter
             lives = 4;
@@ -333,7 +336,9 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
 
             // setup starting paddle values and create paddle object
+
             paddle = new Paddle((this.Width / 2) - ((int)paddle.width / 2), this.Height - paddle.height - 60, paddleWidth, 20, 30, Color.White);
+
 
             updateCurve();
 
@@ -358,36 +363,33 @@ namespace BrickBreaker
             }
 
             #region debuffs / powerups
-            GameScreen.dB1 = false;
-            GameScreen.dB2 = false;
-            GameScreen.dB3 = false;
-            GameScreen.dB4 = false;
-            GameScreen.dB5 = false;
+            dB1 = false;
+            dB2 = false;
+            dB3 = false;
+            dB4 = false;
+            dB5 = false;
 
-            GameScreen.duration1 = 0;
-            GameScreen.duration2 = 0;
-            GameScreen.duration3 = 0;
-            GameScreen.duration4 = 0;
-            GameScreen.duration5 = 0;
+            duration1 = 0;
+            duration2 = 0;
+            duration3 = 0;
+            duration4 = 0;
+            duration5 = 0;
 
+            pU1 = false;
+            pU2 = false;
+            pU3 = false;
+            pU4 = false;
+            pU5 = false;
+            pU6 = false;
+            pU7 = false;
 
-
-
-            GameScreen.pU1 = false;
-            GameScreen.pU2 = false;
-            GameScreen.pU3 = false;
-            GameScreen.pU4 = false;
-            GameScreen.pU5 = false;
-            GameScreen.pU6 = false;
-            GameScreen.pU7 = false;
-
-            GameScreen.pDuration1 = 0;
-            GameScreen.pDuration2 = 0;
-            GameScreen.pDuration3 = 0;
-            GameScreen.pDuration4 = 0;
-            GameScreen.pDuration5 = 0;
-            GameScreen.pDuration6 = 0;
-            GameScreen.pDuration7 = 0;
+            pDuration1 = 0;
+            pDuration2 = 0;
+            pDuration3 = 0;
+            pDuration4 = 0;
+            pDuration5 = 0;
+            pDuration6 = 0;
+            pDuration7 = 0;
             #endregion
 
 
@@ -454,9 +456,6 @@ namespace BrickBreaker
                 //testing
                 case Keys.P:
                     gameTimer.Enabled = true;
-                    break;
-                case Keys.G:
-                    pU7 = false;
                     break;
                 default:
                     break;
@@ -653,8 +652,8 @@ namespace BrickBreaker
                 }
 
                 //speed capping code
-                const float MAXSPEED = 15;
-                const float MINSPEED = 5;
+                const float MAXSPEED = 20;
+                const float MINSPEED = 10;
 
                 if (Math.Abs(ball.xSpeed) < MINSPEED && Math.Abs(ball.ySpeed) < MINSPEED) //makes really slow balls less slow
                 {
@@ -710,10 +709,12 @@ namespace BrickBreaker
                     {
                         if (ball.BlockCollision(b))
                         {
-                            PlaySound("\\Resources\\Brick impact debris  _ Sound Effect.wav");
-                            comboAdds.Add(100 * score.comboCounter + "");
+
+                            
+                            comboAdds.Add(new MiniScores(100 * score.comboCounter + "", new Point((int)paddle.x + rand.Next(-50, 50), (int)paddle.y - 50 + rand.Next(-50, 50)), 255));
                             score.AddToScore(100);
                             scoreSize += 1;
+
                             b.hp--;
                             if (b.hp == 0)
                             {
@@ -781,10 +782,7 @@ namespace BrickBreaker
                             }
                             break;
                         }
-                        //comment
-
                     }
-
                 }
             }
 
@@ -1181,7 +1179,7 @@ namespace BrickBreaker
 
                             diffX = middleOfScreenX - b.hitBox.X;
                             diffY = middleOfScreenY - b.hitBox.Y;
-                            const int SPEEDCAPBLOCK = 1;
+                            const int SPEEDCAPBLOCK = 2;
                             if (Math.Abs(diffY) >= Math.Abs(diffX)) //multiply down y
                             {
                                 double scaler = Math.Abs(SPEEDCAP / diffY);
@@ -1392,11 +1390,7 @@ namespace BrickBreaker
             }
             UIPaint.PaintText(e.Graphics, lives + "", 24, new Point(this.Width - 55, 50), Color.Red);
             Font myFont = new Font("Chiller", scoreSize, FontStyle.Bold);
-            SizeF textSize = e.Graphics.MeasureString(Score.score + "", myFont);
-            foreach (string i in comboAdds)
-            {
-
-            }
+            SizeF textSize = e.Graphics.MeasureString(score.score + "", myFont);
             if (scoreDirection == 1)
             {
                 scoreAngle++;
@@ -1512,6 +1506,20 @@ namespace BrickBreaker
             ////Rectangle bRr = new Rectangle(Convert.ToInt16(ball.x) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.y) + 10, 1, Convert.ToInt16(ball.size) - 10);
             ////Rectangle bRt = new Rectangle(Convert.ToInt16(ball.x) + 10, Convert.ToInt16(ball.y), Convert.ToInt16(ball.size) - 10, 1);
             ////Rectangle bRb = new Rectangle(Convert.ToInt16(ball.x) + 10, Convert.ToInt16(ball.y) + Convert.ToInt16(ball.size), Convert.ToInt16(ball.size) - 10, 1);
+            ///
+
+            for (int i = 0; i < comboAdds.Count(); i++)
+            {
+                if (comboAdds.Count() != 0)
+                {
+                    UIPaint.PaintTextTrans(e.Graphics, comboAdds[i].text, 30, comboAdds[i].drawPoint, Color.Red, comboAdds[i].transparency);
+                    comboAdds[i].transparency -= 7;
+                    if (comboAdds[i].transparency <= 0)
+                    {
+                        comboAdds.Remove(comboAdds[i]);
+                    }
+                }
+            }
         }
     }
 }

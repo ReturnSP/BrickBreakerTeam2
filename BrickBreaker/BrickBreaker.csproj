@@ -75,6 +75,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiniScores.cs" />
     <Compile Include="Paddle.cs" />
     <Compile Include="pauseScreen.cs">
       <SubType>Form</SubType>
@@ -450,6 +451,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mirrorMode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\level2.xml" />
+    <Content Include="Resources\level3.xml" />
+    <Content Include="Resources\level4.xml" />
+    <Content Include="Resources\level5.xml" />
+    <Content Include="Resources\level6.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
