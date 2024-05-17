@@ -619,7 +619,6 @@ namespace BrickBreaker
 
                             
                             comboAdds.Add(new MiniScores(100 * score.comboCounter + "", new Point((int)paddle.x + rand.Next(-50, 50), (int)paddle.y - 50 + rand.Next(-50, 50)), 255));
-
                             score.AddToScore(100);
                             scoreSize += 1;
 
