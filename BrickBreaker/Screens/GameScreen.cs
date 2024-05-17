@@ -26,7 +26,7 @@ namespace BrickBreaker
 
         // Game values
         int lives;
-        int levelNumber = 0;
+        int levelNumber = 3;
         Score score;
         List<MiniScores> comboAdds = new List<MiniScores>();
         int scoreAngle = 0;
