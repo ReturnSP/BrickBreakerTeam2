@@ -13,7 +13,6 @@ namespace BrickBreaker
     public partial class realShopScreen : UserControl
     {
         public static bool SSPU1, SSPU2, SSPU3, SSPU4, SSPU5, SSPU6, SSPU7;
-        double buyingPower;
 
         public realShopScreen()
         {
@@ -40,69 +39,98 @@ namespace BrickBreaker
             GameScreen.dB4 = false;
             GameScreen.dB5 = false;
 
-            Cursor.Show();
-            buyingPower = Score.score;
-            shopScoreLabel.Text = buyingPower.ToString();
+            resetCursor();
+            shopScoreLabel.Text = Score.score.ToString();
+        }
 
+        private void resetCursor()
+        {
+            Cursor.Show();
+            Cursor.Position = this.PointToScreen(new Point(this.Width / 2, this.Height / 2));
         }
 
         private void PU1Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 1000)
+            if(Score.score > 10000)
             {
                 SSPU1 = true;
+                Score.score -= 10000;
+                shopScoreLabel.Text = Score.score.ToString();
             }
         }
 
         private void PU2Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 2000)
+            if(Score.score > 15000)
             {
                 SSPU2 = true;
+                Score.score -= 15000;
+                shopScoreLabel.Text = Score.score.ToString();
             }
 
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (Score.score > 5000)
+            {
+                GameScreen.lives += 1;
+                Score.score -= 5000;
+                shopScoreLabel.Text = Score.score.ToString();
+            }
+        }
+
         private void PU3Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 3000)
+            if(Score.score > 20000)
             {
                 SSPU3 = true;
+                Score.score -= 20000;
+                shopScoreLabel.Text = Score.score.ToString();
             }
 
         }
 
         private void PU4Button_Click(object sender, EventArgs e)
         {
-            if (buyingPower > 4000)
+            if (Score.score > 7000)
             {
                 SSPU4 = true;
+                Score.score -= 7000;
+                shopScoreLabel.Text = Score.score.ToString();
             }
         }
 
         private void PU5Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 5000)
+            //one time purchase
+            if(Score.score > 40000)
             {
                 SSPU5 = true;
+                Score.score -= 40000;
+                shopScoreLabel.Text = Score.score.ToString();
             }
 
         }
 
         private void PU6Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 6000)
+            if(Score.score > 35000)
             {
                 SSPU6 = true;
+                Score.score -= 35000;
+                shopScoreLabel.Text = Score.score.ToString();
             }
 
         }
 
         private void PU7Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 7000)
+            if(Score.score > 150000)
             {
                 SSPU7 = true;
+                Score.score -= 100000;
+                shopScoreLabel.Text = Score.score.ToString();
             }
 
         }
