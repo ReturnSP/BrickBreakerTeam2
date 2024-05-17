@@ -12,10 +12,21 @@ namespace BrickBreaker
 {
     public partial class MenuScreen : UserControl
     {
+        System.Windows.Media.MediaPlayer menuMusic = new System.Windows.Media.MediaPlayer();
         public MenuScreen()
         {
             Cursor.Show();
             InitializeComponent();
+            menuMusic.Open(new Uri(Application.StartupPath + "\\Resources\\Wasteland 2 Soundtrack - Desert Nomads.wav"));
+            menuMusic.MediaEnded += new EventHandler(menuMusicEnded);
+            menuMusic.Play();
+        }
+
+        private void menuMusicEnded(object sender, EventArgs e)
+        {
+            menuMusic.Stop();
+            menuMusic.Play();
+            Cursor.Show();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -34,6 +45,7 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+            menuMusic.Stop();
         }
 
   
