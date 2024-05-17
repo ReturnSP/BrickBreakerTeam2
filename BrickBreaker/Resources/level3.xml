@@ -10,8 +10,8 @@
   </alltextures>
   <brick>
     <rectangle>
-      <x>590</x>
-      <y>330</y>
+      <x>526</x>
+      <y>525</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
@@ -21,8 +21,8 @@
   </brick>
   <brick>
     <rectangle>
-      <x>590</x>
-      <y>372</y>
+      <x>526</x>
+      <y>567</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
@@ -33,18 +33,7 @@
   <brick>
     <rectangle>
       <x>462</x>
-      <y>245</y>
-      <width>68</width>
-      <hight>45</hight>
-    </rectangle>
-    <hp>2</hp>
-    <brickType>0</brickType>
-    <vines>False</vines>
-  </brick>
-  <brick>
-    <rectangle>
-      <x>462</x>
-      <y>290</y>
+      <y>406</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
@@ -55,7 +44,18 @@
   <brick>
     <rectangle>
       <x>526</x>
-      <y>290</y>
+      <y>366</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>2</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>526</x>
+      <y>332</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
@@ -76,52 +76,8 @@
   </brick>
   <brick>
     <rectangle>
-      <x>655</x>
-      <y>199</y>
-      <width>68</width>
-      <hight>45</hight>
-    </rectangle>
-    <hp>3</hp>
-    <brickType>0</brickType>
-    <vines>False</vines>
-  </brick>
-  <brick>
-    <rectangle>
-      <x>462</x>
-      <y>202</y>
-      <width>68</width>
-      <hight>45</hight>
-    </rectangle>
-    <hp>3</hp>
-    <brickType>0</brickType>
-    <vines>False</vines>
-  </brick>
-  <brick>
-    <rectangle>
-      <x>719</x>
-      <y>290</y>
-      <width>68</width>
-      <hight>45</hight>
-    </rectangle>
-    <hp>3</hp>
-    <brickType>0</brickType>
-    <vines>False</vines>
-  </brick>
-  <brick>
-    <rectangle>
-      <x>462</x>
-      <y>119</y>
-      <width>68</width>
-      <hight>45</hight>
-    </rectangle>
-    <hp>3</hp>
-    <brickType>0</brickType>
-    <vines>False</vines>
-  </brick>
-  <brick>
-    <rectangle>
-      <x>719</x>
-      <y>199</y>
+      <x>526</x>
+      <y>247</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
@@ -132,50 +88,6 @@
   <brick>
     <rectangle>
       <x>526</x>
-      <y>330</y>
-      <width>68</width>
-      <hight>45</hight>
-    </rectangle>
-    <hp>2</hp>
-    <brickType>0</brickType>
-    <vines>False</vines>
-  </brick>
-  <brick>
-    <rectangle>
-      <x>655</x>
-      <y>330</y>
-      <width>68</width>
-      <hight>45</hight>
-    </rectangle>
-    <hp>2</hp>
-    <brickType>0</brickType>
-    <vines>False</vines>
-  </brick>
-  <brick>
-    <rectangle>
-      <x>783</x>
-      <y>247</y>
-      <width>68</width>
-      <hight>45</hight>
-    </rectangle>
-    <hp>2</hp>
-    <brickType>0</brickType>
-    <vines>False</vines>
-  </brick>
-  <brick>
-    <rectangle>
-      <x>397</x>
-      <y>247</y>
-      <width>68</width>
-      <hight>45</hight>
-    </rectangle>
-    <hp>3</hp>
-    <brickType>0</brickType>
-    <vines>False</vines>
-  </brick>
-  <brick>
-    <rectangle>
-      <x>655</x>
       <y>290</y>
       <width>68</width>
       <hight>45</hight>
@@ -186,12 +98,155 @@
   </brick>
   <brick>
     <rectangle>
-      <x>397</x>
+      <x>462</x>
+      <y>290</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>3</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>591</x>
+      <y>33</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>3</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>462</x>
+      <y>33</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>3</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>526</x>
+      <y>-9</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>3</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>591</x>
+      <y>366</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>2</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>462</x>
+      <y>525</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>2</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>591</x>
+      <y>525</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>2</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>526</x>
+      <y>33</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>2</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>526</x>
+      <y>445</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>3</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>591</x>
+      <y>245</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>4</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>591</x>
+      <y>485</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>3</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>526</x>
+      <y>406</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>3</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>526</x>
       <y>202</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
     <hp>3</hp>
+    <brickType>0</brickType>
+    <vines>False</vines>
+  </brick>
+  <brick>
+    <rectangle>
+      <x>591</x>
+      <y>406</y>
+      <width>68</width>
+      <hight>45</hight>
+    </rectangle>
+    <hp>4</hp>
     <brickType>0</brickType>
     <vines>False</vines>
   </brick>
@@ -208,8 +263,8 @@
   </brick>
   <brick>
     <rectangle>
-      <x>591</x>
-      <y>119</y>
+      <x>462</x>
+      <y>74</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
@@ -230,8 +285,8 @@
   </brick>
   <brick>
     <rectangle>
-      <x>332</x>
-      <y>245</y>
+      <x>462</x>
+      <y>485</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
@@ -252,8 +307,8 @@
   </brick>
   <brick>
     <rectangle>
-      <x>655</x>
-      <y>161</y>
+      <x>591</x>
+      <y>74</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
@@ -274,8 +329,8 @@
   </brick>
   <brick>
     <rectangle>
-      <x>719</x>
-      <y>245</y>
+      <x>526</x>
+      <y>485</y>
       <width>68</width>
       <hight>45</hight>
     </rectangle>
