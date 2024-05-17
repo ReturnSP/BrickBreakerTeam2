@@ -26,7 +26,9 @@ namespace BrickBreaker
 
         // Game values
         int lives;
+
         int levelNumber = 1;
+
         Score score;
         List<MiniScores> comboAdds = new List<MiniScores>();
         int scoreAngle = 0;
@@ -309,6 +311,7 @@ namespace BrickBreaker
             // setup starting paddle values and create paddle object
 
             paddle = new Paddle((this.Width / 2) - ((int)paddle.width / 2), this.Height - paddle.height - 60, paddleWidth, 20, 30, Color.White);
+
 
             updateCurve();
 
