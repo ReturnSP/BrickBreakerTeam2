@@ -162,7 +162,6 @@ namespace BrickBreaker
                 y = 0;
                 ySpeed *= -1;
                 return ("\\Resources\\Wallhitsound.wav");
-
             }
             return ("");
         }
