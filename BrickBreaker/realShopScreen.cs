@@ -12,26 +12,11 @@ namespace BrickBreaker
 {
     public partial class realShopScreen : UserControl
     {
-        public static bool SSPU1, SSPU2, SSPU3, SSPU4, SSPU5, SSPU6, SSPU7;
+        public static int SSPU1 = 0, SSPU2 = 0, SSPU3 = 0, SSPU4 = 0, SSPU5 = 0, SSPU6 = 0, SSPU7 = 0;
 
         public realShopScreen()
         {
             InitializeComponent();
-            GameScreen.x1 = 0;
-            GameScreen.x2 = 0;
-            GameScreen.x3 = 0;
-            GameScreen.x4 = 0;
-            GameScreen.x5 = 0;
-            GameScreen.x6 = 0;
-            GameScreen.x7 = 0;
-
-            SSPU1 = false;
-            SSPU2 = false;
-            SSPU3 = false;
-            SSPU4 = false;
-            SSPU5 = false;
-            SSPU6 = false;
-            SSPU7 = false;
 
             GameScreen.dB1 = false;
             GameScreen.dB2 = false;
@@ -53,7 +38,7 @@ namespace BrickBreaker
         {
             if(Score.score > 10000)
             {
-                SSPU1 = true;
+                SSPU1++;
                 Score.score -= 10000;
                 shopScoreLabel.Text = Score.score.ToString();
             }
@@ -63,7 +48,7 @@ namespace BrickBreaker
         {
             if(Score.score > 15000)
             {
-                SSPU2 = true;
+                SSPU2++;
                 Score.score -= 15000;
                 shopScoreLabel.Text = Score.score.ToString();
             }
@@ -84,7 +69,7 @@ namespace BrickBreaker
         {
             if(Score.score > 20000)
             {
-                SSPU3 = true;
+                SSPU3++;
                 Score.score -= 20000;
                 shopScoreLabel.Text = Score.score.ToString();
             }
@@ -95,7 +80,7 @@ namespace BrickBreaker
         {
             if (Score.score > 7000)
             {
-                SSPU4 = true;
+                SSPU4++;
                 Score.score -= 7000;
                 shopScoreLabel.Text = Score.score.ToString();
             }
@@ -106,7 +91,7 @@ namespace BrickBreaker
             //one time purchase
             if(Score.score > 40000)
             {
-                SSPU5 = true;
+                SSPU5++;
                 Score.score -= 40000;
                 shopScoreLabel.Text = Score.score.ToString();
             }
@@ -117,7 +102,7 @@ namespace BrickBreaker
         {
             if(Score.score > 35000)
             {
-                SSPU6 = true;
+                SSPU6++;
                 Score.score -= 35000;
                 shopScoreLabel.Text = Score.score.ToString();
             }
@@ -128,7 +113,7 @@ namespace BrickBreaker
         {
             if(Score.score > 150000)
             {
-                SSPU7 = true;
+                SSPU7++;
                 Score.score -= 100000;
                 shopScoreLabel.Text = Score.score.ToString();
             }
