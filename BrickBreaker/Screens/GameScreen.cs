@@ -326,7 +326,10 @@ namespace BrickBreaker
             //pU4 = true;
             //pU5 = true;
             //pU6 = true;
-            //pU7 = true;
+            //
+            //
+            //
+            //= true;
             Cursor.Hide();
             //set life counter
             lives = 4;
@@ -1142,7 +1145,7 @@ namespace BrickBreaker
 
                             diffX = middleOfScreenX - b.hitBox.X;
                             diffY = middleOfScreenY - b.hitBox.Y;
-                            const int SPEEDCAPBLOCK = 1;
+                            const int SPEEDCAPBLOCK = 2;
                             if (Math.Abs(diffY) >= Math.Abs(diffX)) //multiply down y
                             {
                                 double scaler = Math.Abs(SPEEDCAP / diffY);
