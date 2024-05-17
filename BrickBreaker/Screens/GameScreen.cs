@@ -554,9 +554,13 @@ namespace BrickBreaker
                                         debuffColor = Color.Silver;
                                     }
 
-                                    Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
+                                    if(!pU7)
+                                    {
+                                        Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
 
-                                    debuffs.Add(newDebuff);
+                                        debuffs.Add(newDebuff);
+                                    }
+                                    
                                 }
                             }
                             else
@@ -935,7 +939,7 @@ namespace BrickBreaker
                 //ball.xSpeed = 0;
                 //ball.ySpeed = 0;
                 pDuration7++;
-                if (pDuration7 < 400)
+                if (pDuration7 < 250)
                 {
                     int middleOfScreenX = this.Width / 2;
                     int middleOfScreenY = this.Height / 2;
@@ -988,6 +992,9 @@ namespace BrickBreaker
                             }
                             b.hitBox = new Rectangle(b.hitBox.X + (int)diffX, b.hitBox.Y + (int)diffY, b.hitBox.Width, b.hitBox.Height);
                             ball.ySpeed = (float)diffY;
+
+                            
+
                         }
                     }
                 }
