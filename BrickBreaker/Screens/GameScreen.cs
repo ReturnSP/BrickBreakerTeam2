@@ -504,6 +504,7 @@ namespace BrickBreaker
 
             if (blocks.Count() == 0)
             {
+                gameTimer.Stop();
                 levelNumber++;
                 Form1.ChangeScreen(this, new realShopScreen());
                 blocks =  Block.LevelChanger(levelNumber, this.Size);
@@ -586,15 +587,11 @@ namespace BrickBreaker
 
                 if (ball.BottomCollision(this))
                 {
-                    ball.ySpeed *= -1;
                     lives--;
                     PlaySound("\\Resources\\Minecraft Damage (Oof) - Sound Effect (HD).wav");
                     // SoundPlayer lifesubtracted = new SoundPlayer(Properties.Resources.lifesubtracted);
                     score.RemoveCombo();
                     scoreSize = 50;
-
-                    ball.ySpeed *= -1;
-                    lives--;
                     isCaught = true;
                     trackPos = true;
                     //lifesubtracted.Play();
@@ -652,8 +649,8 @@ namespace BrickBreaker
                 }
 
                 //speed capping code
-                const float MAXSPEED = 20;
-                const float MINSPEED = 10;
+                const float MAXSPEED = 18;
+                const float MINSPEED = 8;
 
                 if (Math.Abs(ball.xSpeed) < MINSPEED && Math.Abs(ball.ySpeed) < MINSPEED) //makes really slow balls less slow
                 {
@@ -1049,7 +1046,7 @@ namespace BrickBreaker
             if (pU3)
             {
                 pDuration3++;
-                if (pDuration3 > 250)
+                if (pDuration3 > 25000)
                 {
                     pU3 = false;
                     pDuration3 = 0;
@@ -1390,7 +1387,7 @@ namespace BrickBreaker
             }
             UIPaint.PaintText(e.Graphics, lives + "", 24, new Point(this.Width - 55, 50), Color.Red);
             Font myFont = new Font("Chiller", scoreSize, FontStyle.Bold);
-            SizeF textSize = e.Graphics.MeasureString(score.score + "", myFont);
+            SizeF textSize = e.Graphics.MeasureString(Score.score + "", myFont);
             if (scoreDirection == 1)
             {
                 scoreAngle++;

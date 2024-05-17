@@ -40,15 +40,20 @@ namespace BrickBreaker
             GameScreen.dB4 = false;
             GameScreen.dB5 = false;
 
-            Cursor.Show();
+            resetCursor();
             buyingPower = Score.score;
             shopScoreLabel.Text = buyingPower.ToString();
+        }
 
+        private void resetCursor()
+        {
+            Cursor.Show();
+            Cursor.Position = this.PointToScreen(new Point(this.Width / 2, this.Height / 2));
         }
 
         private void PU1Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 1000)
+            if(buyingPower > 10000)
             {
                 SSPU1 = true;
             }
@@ -56,7 +61,7 @@ namespace BrickBreaker
 
         private void PU2Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 2000)
+            if(buyingPower > 15000)
             {
                 SSPU2 = true;
             }
@@ -65,7 +70,7 @@ namespace BrickBreaker
 
         private void PU3Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 3000)
+            if(buyingPower > 20000)
             {
                 SSPU3 = true;
             }
@@ -74,7 +79,7 @@ namespace BrickBreaker
 
         private void PU4Button_Click(object sender, EventArgs e)
         {
-            if (buyingPower > 4000)
+            if (buyingPower > 7000)
             {
                 SSPU4 = true;
             }
@@ -82,7 +87,8 @@ namespace BrickBreaker
 
         private void PU5Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 5000)
+            //one time purchase
+            if(buyingPower > 40000)
             {
                 SSPU5 = true;
             }
@@ -91,7 +97,7 @@ namespace BrickBreaker
 
         private void PU6Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 6000)
+            if(buyingPower > 35000)
             {
                 SSPU6 = true;
             }
@@ -100,7 +106,7 @@ namespace BrickBreaker
 
         private void PU7Button_Click(object sender, EventArgs e)
         {
-            if(buyingPower > 7000)
+            if(buyingPower > 150000)
             {
                 SSPU7 = true;
             }
