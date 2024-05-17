@@ -83,6 +83,12 @@
     <Compile Include="pauseScreen.Designer.cs">
       <DependentUpon>pauseScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="realShopScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="realShopScreen.Designer.cs">
+      <DependentUpon>realShopScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="scareScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pauseScreen.resx">
       <DependentUpon>pauseScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="realShopScreen.resx">
+      <DependentUpon>realShopScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="scareScreen.resx">
       <DependentUpon>scareScreen.cs</DependentUpon>

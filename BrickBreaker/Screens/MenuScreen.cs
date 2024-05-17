@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace BrickBreaker
 {
-    public partial class MenuScreen : UserControl
+    public partial class MenuScreen : System.Windows.Forms.UserControl
     {
         System.Windows.Media.MediaPlayer menuMusic = new System.Windows.Media.MediaPlayer();
         public MenuScreen()
