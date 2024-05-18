@@ -36,6 +36,7 @@ namespace BrickBreaker
             // 
             // button2
             // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.BackgroundImage = global::BrickBreaker.Properties.Resources.sideBar;
             this.button2.Font = new System.Drawing.Font("Chiller", 40.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -50,25 +51,27 @@ namespace BrickBreaker
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Chiller", 70.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Gold;
             this.label2.Location = new System.Drawing.Point(347, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(516, 136);
+            this.label2.Size = new System.Drawing.Size(511, 135);
             this.label2.TabIndex = 3;
             this.label2.Text = "You Escaped!\r\n";
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Chiller", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gold;
             this.label1.Location = new System.Drawing.Point(350, 229);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(494, 78);
+            this.label1.Size = new System.Drawing.Size(470, 76);
             this.label1.TabIndex = 4;
             this.label1.Text = "You have escaped the temple and are now free.\r\n You have won, thank you for playi" +
     "ng the game";

@@ -407,7 +407,6 @@ namespace BrickBreaker
             pDuration7 = (int)timerDuration7;
             #endregion
 
-            //Score.score = 99999999; //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// remove ////////////////////
             PlayMusic();
             gameTimer.Enabled = true;
 
@@ -489,7 +488,14 @@ namespace BrickBreaker
                 case Keys.J:
                     gameTimer.Stop();
                     levelNumber++;
-                    Form1.ChangeScreen(this, new realShopScreen());
+                    if (levelNumber == 13)
+                    {
+                        Form1.ChangeScreen(this, new WinScreen());
+                    }
+                    else
+                    {
+                        Form1.ChangeScreen(this, new realShopScreen());
+                    }
                     break;
                 default:
                     break;
@@ -541,7 +547,10 @@ namespace BrickBreaker
                 {
                     Form1.ChangeScreen(this, new WinScreen());
                 }
-                Form1.ChangeScreen(this, new realShopScreen());
+                else
+                {
+                    Form1.ChangeScreen(this, new realShopScreen());
+                }
                 blocks = Block.LevelChanger(levelNumber, this.Size);
                 TurnMusicOff();
                 PlayMusic();
