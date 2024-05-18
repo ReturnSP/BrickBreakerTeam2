@@ -471,6 +471,9 @@
     <None Include="Resources\mirrorMode.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\WhiteBoy.wav" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Resources\level2.xml" />
     <Content Include="Resources\level3.xml" />
     <Content Include="Resources\level4.xml" />

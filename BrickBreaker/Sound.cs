@@ -18,6 +18,10 @@ namespace BrickBreaker
 {
     internal class Sound
     {
+
+        
+
+
         public void Main(string[] args, object sender, Block b, Paddle p, Ball ball, List<Block> blocks)
         {
 
@@ -36,6 +40,8 @@ namespace BrickBreaker
             audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic9));
             audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic10));
             audioClips.Add(new SoundPlayer(Properties.Resources.Idlemusic11));
+
+            
 
 
             // When booting up a new level
@@ -99,35 +105,48 @@ namespace BrickBreaker
             menuidle.Play();
         }
 
+        public static void WhiteBoy()
+        {
+            
+            
+        }
+
+
+        public static void EvilFace()
+        {
+            
+            
+        }
+
         // Powerups collected
 
         // Ask Logan - why is the Debuff not present?
-        void Powerups(Paddle p, Debuff d)
-        {
-            // If whiteboy
-            if (d.debuff == 1)
-            {
-                SoundPlayer crakka = new SoundPlayer(Properties.Resources.crakka);
-                crakka.Play();
-            }
-            // if hindupeace
-            if (d.debuff == 1)
-            {
-                SoundPlayer swirleffect = new SoundPlayer(Properties.Resources.swirleffect);
-                swirleffect.Play();
-            }
-            // If freaky
-            if (d.debuff == 1)
-            {
-                SoundPlayer freaky = new SoundPlayer(Properties.Resources.freaky);
-                freaky.Play();
-            }
-            // If blessingofwar (Use it for what it's for)
-            if (d.debuff == 1)
-            {
-                SoundPlayer pantera = new SoundPlayer(Properties.Resources.pantera);
-                pantera.Play();
-            }
-        }
+        //void Powerups(Paddle p, Debuff d)
+        //{
+        //    // If whiteboy
+        //    if (d.debuff == 1)
+        //    {
+        //        SoundPlayer crakka = new SoundPlayer(Properties.Resources.crakka);
+        //        crakka.Play();
+        //    }
+        //    // if hindupeace
+        //    if (d.debuff == 1)
+        //    {
+        //        SoundPlayer swirleffect = new SoundPlayer(Properties.Resources.swirleffect);
+        //        swirleffect.Play();
+        //    }
+        //    // If freaky
+        //    if (d.debuff == 1)
+        //    {
+        //        SoundPlayer freaky = new SoundPlayer(Properties.Resources.freaky);
+        //        freaky.Play();
+        //    }
+        //    // If blessingofwar (Use it for what it's for)
+        //    if (d.debuff == 1)
+        //    {
+        //        SoundPlayer pantera = new SoundPlayer(Properties.Resources.pantera);
+        //        pantera.Play();
+        //    }
+        //}
     }
 }
