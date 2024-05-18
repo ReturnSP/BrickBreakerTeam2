@@ -8,10 +8,10 @@ namespace BrickBreaker
 {
     internal class Score
     {
-        public static int score { get; set; }
+        public static long score { get; set; }
         public double comboCounter { get; set; }
 
-        public Score(int initialScore, double initialCombo)
+        public Score(long initialScore, double initialCombo)
         {
             score = initialScore;
             comboCounter = initialCombo;

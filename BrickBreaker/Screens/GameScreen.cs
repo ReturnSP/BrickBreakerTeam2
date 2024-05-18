@@ -410,7 +410,7 @@ namespace BrickBreaker
             pDuration7 = (int)timerDuration7;
             #endregion
 
-            Score.score = 99999999;
+            //Score.score = 99999999; //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// remove ////////////////////
             PlayMusic();
             gameTimer.Enabled = true;
 
@@ -801,7 +801,6 @@ namespace BrickBreaker
                             if (blocks.Count == 0)
                             {
                                 gameTimer.Enabled = false;
-                                OnEnd();
                             }
                             break;
                         }
@@ -1084,8 +1083,8 @@ namespace BrickBreaker
 
             if (pU3)
             {
-                pDuration3++;
-                if (pDuration3 > 25000)
+                pDuration3--;
+                if (pDuration3 < 0)
                 {
                     pU3 = false;
                     pDuration3 = 250;
@@ -1198,8 +1197,6 @@ namespace BrickBreaker
 
                         foreach (Block b in blocks)
                         {
-
-
                             diffX = middleOfScreenX - b.hitBox.X;
                             diffY = middleOfScreenY - b.hitBox.Y;
                             const int SPEEDCAPBLOCK = 2;
