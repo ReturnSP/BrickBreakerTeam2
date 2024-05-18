@@ -308,7 +308,7 @@ namespace BrickBreaker
         }
         void PlayMusic()
         {
-            //Hi Mr. T! Private Contractor Grady Here!
+            //Hi Mr. T! Private Contractor Grady Here! (he is DJ music man - Logan)
             TurnMusicOff();
             int indexer = levelNumber % 10;
             music[indexer].Play();
@@ -722,7 +722,6 @@ namespace BrickBreaker
 
                 ball.PaddleCollision(paddle);
 
-                // SoundPlayer brickbroken = new SoundPlayer(Properties.Resources.brickbroken);
                 // Check if ball has collided with any blocks
                 foreach (Block b in blocks)
                 {
@@ -741,6 +740,14 @@ namespace BrickBreaker
 
                                 if (pU3)
                                 {
+                                    for (int i = 0; i < blocks.Count; i++)
+                                    {
+                                        if (b.hitBox.Y == blocks[i].hitBox.Y) {
+                                            blocks.RemoveAt(i);
+                                            score.AddToScore(100);
+                                            score.AddToCombo(0.1);
+                                        }
+                                    }
                                     blocks.RemoveAll(Block => b.hitBox.Y == Block.hitBox.Y);
                                 }
 
@@ -803,7 +810,6 @@ namespace BrickBreaker
                     }
                 }
             }
-
 
             #region Debuff Area
             foreach (Debuff d in debuffs)
@@ -1208,7 +1214,7 @@ namespace BrickBreaker
                                 diffX *= scaler;
                                 diffY *= scaler;
                             }
-                            b.hitBox = new Rectangle(b.hitBox.X + (int)diffX, b.hitBox.Y + (int)diffY, b.hitBox.Width, b.hitBox.Height);
+                            //b.hitBox = new Rectangle(b.hitBox.X + (int)diffX, b.hitBox.Y + (int)diffY, b.hitBox.Width, b.hitBox.Height);
                             ball.ySpeed = (float)diffY;
                         }
                     }
@@ -1255,8 +1261,6 @@ namespace BrickBreaker
 
 
             #endregion
-
-
 
             brickTime--;
 
