@@ -542,6 +542,7 @@ namespace BrickBreaker
             }
             if (blocks.Count() == 0)
             {
+
                 gameTimer.Stop();
                 levelNumber++;
                 if (levelNumber == 13)

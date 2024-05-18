@@ -47,10 +47,12 @@ namespace BrickBreaker
             //}
         }
 
-        static public List<Block> BlockListCreator (XmlDocument level, Size screenSize)
+        static public List<Block> BlockListCreator (XmlDocument level, Size screenSize, int levelNumb)
         {
             List<Block> bricks = new List<Block>();
-            List<List<Image>> textureApendix = TextureApendixCreator(level);
+            List<List<Image>> textureApendix = TextureApendixCreator(level, levelNumb);
+
+
             XmlNodeList blockStrings = level.SelectNodes("//brick");
             XmlNodeList hitboxStrings = level.SelectNodes("//rectangle");
             List<Rectangle> hitboxes = new List<Rectangle>(); 
@@ -84,7 +86,7 @@ namespace BrickBreaker
             return bricks;
         }
 
-        static public List<List<Image>> TextureApendixCreator (XmlDocument level)
+        static public List<List<Image>> TextureApendixCreator (XmlDocument level, int levelNumb)
         {
             List<List<Image>> TextureApendix = new List<List<Image>>();
             XmlNodeList textureNodeListOfLists = level.SelectNodes("//textures");
@@ -95,6 +97,10 @@ namespace BrickBreaker
                 foreach (XmlNode texture in textureNodeList)
                 {
                     textureList.Add(String64ToImage(texture.InnerText));
+                }
+                if (levelNumb >= 2 && levelNumb != 11)
+                {
+                    textureList.Reverse();
                 }
                 TextureApendix.Add(textureList);
             }
@@ -114,7 +120,7 @@ namespace BrickBreaker
             return (finalImage);
         }
 
-        static public List<Block> LoadLevel(string levelName, Size screenSize)
+        static public List<Block> LoadLevel(string levelName, Size screenSize, int levelNumb)
         {
             XmlDocument loadedLevel = new XmlDocument();
             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -125,7 +131,7 @@ namespace BrickBreaker
 
             string fullPath = Path.Combine(parent3, "Resources", levelName + ".xml");
             loadedLevel.Load(fullPath);
-            List<Block> blockList = BlockListCreator(loadedLevel, screenSize);
+            List<Block> blockList = BlockListCreator(loadedLevel, screenSize, levelNumb);
 
 
             return blockList;
@@ -165,7 +171,7 @@ namespace BrickBreaker
 
 
 
-            Block scaledBlock = new Block((int)((float)screenSize.Width * percentDiffX), (int)((float)screenSize.Height * percentDiffY), (int)((float)screenSize.Width * percentDiffWidth), (int)((float)screenSize.Height * percentDiffHeight), block.hp, block.vines, block.textures);
+            Block scaledBlock = new Block((int)((float)(screenSize.Width * percentDiffX) + 150), (int)((float)screenSize.Height * percentDiffY), (int)((float)screenSize.Width * percentDiffWidth), (int)((float)screenSize.Height * percentDiffHeight), block.hp, block.vines, block.textures);
 
             return scaledBlock;
         }
@@ -196,7 +202,7 @@ namespace BrickBreaker
 
         public static List<Block> LevelChanger(int levelNumber, Size screenSize)
         {
-            return LoadLevel("level" + levelNumber, screenSize);
+            return LoadLevel("level" + levelNumber, screenSize, levelNumber);
         }
 
     }
