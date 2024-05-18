@@ -61,6 +61,15 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Aztec_Death_Whistle {
+            get {
+                return ResourceManager.GetStream("Aztec_Death_Whistle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap bar {
@@ -605,6 +614,15 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("WhiteBoy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream WhiteBoy1 {
+            get {
+                return ResourceManager.GetStream("WhiteBoy1", resourceCulture);
             }
         }
     }
