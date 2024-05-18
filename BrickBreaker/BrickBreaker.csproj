@@ -75,6 +75,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameOverScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GameOverScreen.Designer.cs">
+      <DependentUpon>GameOverScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstructionsScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InstructionsScreen.Designer.cs">
+      <DependentUpon>InstructionsScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiniScores.cs" />
     <Compile Include="Paddle.cs" />
     <Compile Include="pauseScreen.cs">
@@ -127,6 +139,12 @@
     <Compile Include="Vector.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameOverScreen.resx">
+      <DependentUpon>GameOverScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstructionsScreen.resx">
+      <DependentUpon>InstructionsScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pauseScreen.resx">
       <DependentUpon>pauseScreen.cs</DependentUpon>
