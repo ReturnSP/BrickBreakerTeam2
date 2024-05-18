@@ -157,7 +157,7 @@ namespace BrickBreaker
             if(Score.score > 150000)
             {
                 SSPU7++;
-                Score.score -= 100000;
+                Score.score -= 150000;
                 shopScoreLabel.Text = Score.score.ToString();
                 p7Amount.Text = $"x{SSPU7}";
             }

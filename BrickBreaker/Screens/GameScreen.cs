@@ -407,7 +407,6 @@ namespace BrickBreaker
             pDuration7 = (int)timerDuration7;
             #endregion
 
-            //Score.score = 99999999; //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// remove ////////////////////
             PlayMusic();
             gameTimer.Enabled = true;
 
@@ -1394,6 +1393,23 @@ namespace BrickBreaker
             trackPos = false;
             isCaught = false;
         }
+
+        void resetGame()
+        {
+            gameTimer.Stop();
+            levelNumber = 1;
+            realShopScreen.SSPU1 = 0;
+            realShopScreen.SSPU2 = 0;
+            realShopScreen.SSPU3 = 0;
+            realShopScreen.SSPU4 = 0;
+            realShopScreen.SSPU5 = false;
+            realShopScreen.SSPU6 = 0;
+            realShopScreen.SSPU7 = 0;
+            Score.score = 25000;
+            lives = 4;
+            blocks = new List<Block>();
+        }
+
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
