@@ -736,6 +736,7 @@ namespace BrickBreaker
                             b.hp--;
                             if (b.hp == 0)
                             {
+                                score.AddToScore(100);
                                 blocks.Remove(b);
 
                                 if (pU3)
@@ -745,7 +746,7 @@ namespace BrickBreaker
                                         if (b.hitBox.Y == blocks[i].hitBox.Y) {
                                             blocks.RemoveAt(i);
                                             score.AddToScore(100);
-                                            score.AddToCombo(0.1);
+                                            score.AddToCombo(0.25);
                                         }
                                     }
                                     blocks.RemoveAll(Block => b.hitBox.Y == Block.hitBox.Y);
@@ -1214,7 +1215,12 @@ namespace BrickBreaker
                                 diffX *= scaler;
                                 diffY *= scaler;
                             }
-                            //b.hitBox = new Rectangle(b.hitBox.X + (int)diffX, b.hitBox.Y + (int)diffY, b.hitBox.Width, b.hitBox.Height);
+                            if (b.hitBox.IntersectsWith(new Rectangle((int)ball.x, (int)ball.y, (int)ball.size, (int)ball.size)))
+                            {
+                                blocks.Remove(b);
+                                break;
+                            }
+                            b.hitBox = new Rectangle(b.hitBox.X + (int)diffX, b.hitBox.Y + (int)diffY, b.hitBox.Width, b.hitBox.Height);
                             ball.ySpeed = (float)diffY;
                         }
                     }
