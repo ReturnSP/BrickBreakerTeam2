@@ -535,6 +535,10 @@ namespace BrickBreaker
         {
             if (blocks.Count() == 0)
             {
+                if(levelNumber == 0)
+                {
+                    Form1.ChangeScreen(this, new WinScreen());
+                }
                 gameTimer.Stop();
                 levelNumber++;
                 Form1.ChangeScreen(this, new realShopScreen());
@@ -1210,8 +1214,6 @@ namespace BrickBreaker
 
                         foreach (Block b in blocks)
                         {
-
-
                             diffX = middleOfScreenX - b.hitBox.X;
                             diffY = middleOfScreenY - b.hitBox.Y;
                             const int SPEEDCAPBLOCK = 2;
@@ -1229,9 +1231,6 @@ namespace BrickBreaker
                             }
                             b.hitBox = new Rectangle(b.hitBox.X + (int)diffX, b.hitBox.Y + (int)diffY, b.hitBox.Width, b.hitBox.Height);
                             ball.ySpeed = (float)diffY;
-
-
-
                         }
                     }
                 }
