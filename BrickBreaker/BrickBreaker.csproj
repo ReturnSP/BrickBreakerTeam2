@@ -474,6 +474,11 @@
     <None Include="Resources\WhiteBoy.wav" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\paddleExtensionImg.png" />
+    <None Include="Resources\warGodImg.png" />
+    <None Include="Resources\blackHoleImg.png" />
+    <None Include="Resources\largeBallImg.png" />
+    <None Include="Resources\controlStrikeImg.png" />
     <Content Include="Resources\level2.xml" />
     <Content Include="Resources\level3.xml" />
     <Content Include="Resources\level4.xml" />

@@ -17,6 +17,8 @@ namespace BrickBreaker
         public realShopScreen()
         {
             InitializeComponent();
+            highPShelfLabel.BackColor = Color.FromArgb(80, 0, 0, 0);
+            lowPShelfLabel.BackColor = Color.FromArgb(80, 0, 0, 0);
 
             GameScreen.dB1 = false;
             GameScreen.dB2 = false;
