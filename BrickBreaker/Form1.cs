@@ -28,7 +28,7 @@ namespace BrickBreaker
 
         public static void ChangeScreen(object sender, System.Windows.Forms.UserControl next)
         {
-            Form f; // will either be the sender or parent of sender
+            Form f = new Form(); // will either be the sender or parent of sender
 
             if (sender is Form)
             {

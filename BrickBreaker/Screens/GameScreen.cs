@@ -21,6 +21,9 @@ namespace BrickBreaker
     {
         #region global values
 
+        //activate cheats
+        bool cheatmode = true;
+
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown;
 
@@ -334,16 +337,6 @@ namespace BrickBreaker
 
         public void OnStart()
         {
-            //pU1 = true;
-            // pU2 = true;
-            //  pU3 = true;
-            //pU4 = true;
-            //pU5 = true;
-            //pU6 = true;
-            //
-            //
-            //
-            //= true;
             //set life counter
             score = new Score(Score.score, 1);
 
@@ -351,10 +344,7 @@ namespace BrickBreaker
             leftArrowDown = rightArrowDown = false;
 
             // setup starting paddle values and create paddle object
-
             paddle = new Paddle((this.Width / 2) - ((int)paddle.width / 2), this.Height - paddle.height - 60, paddleWidth, 20, 30, Color.White);
-
-
             updateCurve();
 
             // setup starting ball values
@@ -369,15 +359,14 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, Convert.ToInt16(xSpeed), Convert.ToInt16(ySpeed), ballSize);
             updateBallStorage();
 
-            // start the game engine loop
-
-
+            //clears debuffs
             if (debuffs.Count != 0)
             {
                 debuffs.Clear();
             }
 
             #region debuffs / powerups
+            //resets each powerup and debuff
             dB1 = false;
             dB2 = false;
             dB3 = false;
@@ -407,6 +396,7 @@ namespace BrickBreaker
             pDuration7 = (int)timerDuration7;
             #endregion
 
+            //start music and level
             PlayMusic();
             gameTimer.Enabled = true;
 
@@ -424,7 +414,10 @@ namespace BrickBreaker
                     rightArrowDown = true;
                     break;
                 case Keys.K:
-                    slow = true;
+                    if (cheatmode)
+                    {
+                        slow = true;
+                    }
                     break;
                 case Keys.C:
                     catchMove();
@@ -441,7 +434,10 @@ namespace BrickBreaker
                     gameTimer.Enabled = false;
                     break;
                 case Keys.G:
-                    pU7 = true;
+                    if (cheatmode)
+                    {
+                        pU7 = true;
+                    }
                     break;
                 case Keys.D1:
                     if (realShopScreen.SSPU1 > 0 && !pU1)
@@ -486,16 +482,19 @@ namespace BrickBreaker
                     }
                     break;
                 case Keys.J:
-                    gameTimer.Stop();
-                    levelNumber++;
-                    if (levelNumber == 13)
+                    if (cheatmode)
                     {
-                        resetGame();
-                        Form1.ChangeScreen(this, new WinScreen());
-                    }
-                    else
-                    {
-                        Form1.ChangeScreen(this, new realShopScreen());
+                        gameTimer.Stop();
+                        levelNumber++;
+                        if (levelNumber == 13)
+                        {
+                            resetGame();
+                            Form1.ChangeScreen(this, new WinScreen());
+                        }
+                        else
+                        {
+                            Form1.ChangeScreen(this, new realShopScreen());
+                        }
                     }
                     break;
                 default:
@@ -531,33 +530,12 @@ namespace BrickBreaker
             }
         }
 
-        //  RectangleF prevPosition;
-
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             if (realShopScreen.SSPU5)
             {
                 pU5 = true;
                 powerUp5Timer.BackColor = Color.Lime;
-            }
-            if (blocks.Count() == 0)
-            {
-
-                gameTimer.Stop();
-                levelNumber++;
-                if (levelNumber == 13)
-                {
-                    resetGame();
-                    Form1.ChangeScreen(this, new WinScreen());
-                }
-                else
-                {
-                    Form1.ChangeScreen(this, new realShopScreen());
-                }
-                blocks = Block.LevelChanger(levelNumber, this.Size);
-                TurnMusicOff();
-                PlayMusic();
-                sounds.Clear();
             }
             Point mouse = this.PointToClient(Cursor.Position);
 
@@ -1281,6 +1259,25 @@ namespace BrickBreaker
 
 
             brickTime--;
+
+            if (blocks.Count() == 0)
+            {
+                levelNumber++;
+                if (levelNumber == 13)
+                {
+                    resetGame();
+                    Form1.ChangeScreen(this, new WinScreen());
+                }
+                else
+                {
+                    Form1.ChangeScreen(this, new realShopScreen());
+                }
+                TurnMusicOff();
+                PlayMusic();
+                sounds.Clear();
+                blocks = Block.LevelChanger(levelNumber, this.Size);
+                gameTimer.Stop();
+            }
 
             Refresh();
         }

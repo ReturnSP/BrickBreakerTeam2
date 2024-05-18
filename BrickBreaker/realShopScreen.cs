@@ -67,7 +67,7 @@ namespace BrickBreaker
 
         private void PU1Button_Click(object sender, EventArgs e)
         {
-            if(Score.score > 2000)
+            if(Score.score >= 2000)
             {
                 SSPU1++;
                 Score.score -= 2000;
@@ -78,7 +78,7 @@ namespace BrickBreaker
 
         private void PU2Button_Click(object sender, EventArgs e)
         {
-            if(Score.score > 10000)
+            if(Score.score >= 10000)
             {
                 SSPU2++;
                 Score.score -= 10000;
@@ -90,7 +90,7 @@ namespace BrickBreaker
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (Score.score > 5000)
+            if (Score.score >= 5000)
             {
                 GameScreen.lives += 1;
                 Score.score -= 5000;
@@ -107,7 +107,7 @@ namespace BrickBreaker
 
         private void PU3Button_Click(object sender, EventArgs e)
         {
-            if(Score.score > 15000)
+            if(Score.score >= 15000)
             {
                 SSPU3++;
                 Score.score -= 15000;
@@ -119,7 +119,7 @@ namespace BrickBreaker
 
         private void PU4Button_Click(object sender, EventArgs e)
         {
-            if (Score.score > 1000)
+            if (Score.score >= 1000)
             {
                 SSPU4++;
                 Score.score -= 1000;
@@ -131,7 +131,7 @@ namespace BrickBreaker
         private void PU5Button_Click(object sender, EventArgs e)
         {
             //one time purchase
-            if(Score.score > 40000)
+            if(Score.score >= 40000)
             {
                 p5Active.Text = "Active";
                 PU5Button.BackColor = Color.DarkGray;
@@ -144,7 +144,7 @@ namespace BrickBreaker
 
         private void PU6Button_Click(object sender, EventArgs e)
         {
-            if(Score.score > 30000)
+            if(Score.score >= 30000)
             {
                 SSPU6++;
                 Score.score -= 30000;
@@ -156,7 +156,7 @@ namespace BrickBreaker
 
         private void PU7Button_Click(object sender, EventArgs e)
         {
-            if(Score.score > 150000)
+            if(Score.score >= 150000)
             {
                 SSPU7++;
                 Score.score -= 150000;
