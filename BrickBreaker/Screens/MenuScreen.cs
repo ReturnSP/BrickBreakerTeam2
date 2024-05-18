@@ -61,6 +61,7 @@ namespace BrickBreaker
 
         private void instructionsButton_Click(object sender, EventArgs e)
         {
+            realShopScreen.duringGame = false;
             Form1.ChangeScreen(this, new InstructionsScreen());
         }
     }

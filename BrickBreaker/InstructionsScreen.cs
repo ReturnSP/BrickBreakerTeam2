@@ -24,7 +24,14 @@ namespace BrickBreaker
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            Form1.ChangeScreen(this, new MenuScreen());
+            if (realShopScreen.duringGame)
+            {
+                Form1.ChangeScreen(this, new realShopScreen());
+            }
+            else
+            {
+                Form1.ChangeScreen(this, new MenuScreen());
+            }
         }
 
         private void controls_Click(object sender, EventArgs e)
