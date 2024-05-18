@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
-            this.power1Label = new System.Windows.Forms.Label();
-            this.power2Label = new System.Windows.Forms.Label();
-            this.power3Label = new System.Windows.Forms.Label();
-            this.power4Label = new System.Windows.Forms.Label();
-            this.power5Label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.powerUp1Timer = new System.Windows.Forms.Label();
             this.powerUp3Timer = new System.Windows.Forms.Label();
@@ -51,51 +46,6 @@
             this.gameTimer.Interval = 10;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
-            // power1Label
-            // 
-            this.power1Label.BackColor = System.Drawing.Color.Silver;
-            this.power1Label.Location = new System.Drawing.Point(4, 114);
-            this.power1Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.power1Label.Name = "power1Label";
-            this.power1Label.Size = new System.Drawing.Size(102, 96);
-            this.power1Label.TabIndex = 6;
-            // 
-            // power2Label
-            // 
-            this.power2Label.BackColor = System.Drawing.Color.Silver;
-            this.power2Label.Location = new System.Drawing.Point(4, 264);
-            this.power2Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.power2Label.Name = "power2Label";
-            this.power2Label.Size = new System.Drawing.Size(102, 96);
-            this.power2Label.TabIndex = 6;
-            // 
-            // power3Label
-            // 
-            this.power3Label.BackColor = System.Drawing.Color.Silver;
-            this.power3Label.Location = new System.Drawing.Point(4, 406);
-            this.power3Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.power3Label.Name = "power3Label";
-            this.power3Label.Size = new System.Drawing.Size(102, 96);
-            this.power3Label.TabIndex = 6;
-            // 
-            // power4Label
-            // 
-            this.power4Label.BackColor = System.Drawing.Color.Silver;
-            this.power4Label.Location = new System.Drawing.Point(4, 552);
-            this.power4Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.power4Label.Name = "power4Label";
-            this.power4Label.Size = new System.Drawing.Size(102, 96);
-            this.power4Label.TabIndex = 6;
-            // 
-            // power5Label
-            // 
-            this.power5Label.BackColor = System.Drawing.Color.Silver;
-            this.power5Label.Location = new System.Drawing.Point(4, 702);
-            this.power5Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.power5Label.Name = "power5Label";
-            this.power5Label.Size = new System.Drawing.Size(102, 96);
-            this.power5Label.TabIndex = 6;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -108,9 +58,9 @@
             // 
             // powerUp1Timer
             // 
-            this.powerUp1Timer.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.powerUp1Timer.BackColor = System.Drawing.Color.Lime;
             this.powerUp1Timer.ForeColor = System.Drawing.Color.Lime;
-            this.powerUp1Timer.Location = new System.Drawing.Point(1571, 571);
+            this.powerUp1Timer.Location = new System.Drawing.Point(1591, 569);
             this.powerUp1Timer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.powerUp1Timer.Name = "powerUp1Timer";
             this.powerUp1Timer.Size = new System.Drawing.Size(166, 21);
@@ -121,7 +71,7 @@
             // 
             this.powerUp3Timer.BackColor = System.Drawing.Color.Lime;
             this.powerUp3Timer.ForeColor = System.Drawing.Color.Lime;
-            this.powerUp3Timer.Location = new System.Drawing.Point(1571, 692);
+            this.powerUp3Timer.Location = new System.Drawing.Point(1591, 690);
             this.powerUp3Timer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.powerUp3Timer.Name = "powerUp3Timer";
             this.powerUp3Timer.Size = new System.Drawing.Size(166, 21);
@@ -132,7 +82,7 @@
             // 
             this.powerUp2Timer.BackColor = System.Drawing.Color.Lime;
             this.powerUp2Timer.ForeColor = System.Drawing.Color.Lime;
-            this.powerUp2Timer.Location = new System.Drawing.Point(1571, 629);
+            this.powerUp2Timer.Location = new System.Drawing.Point(1591, 627);
             this.powerUp2Timer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.powerUp2Timer.Name = "powerUp2Timer";
             this.powerUp2Timer.Size = new System.Drawing.Size(166, 21);
@@ -143,7 +93,7 @@
             // 
             this.powerUp5Timer.BackColor = System.Drawing.Color.Lime;
             this.powerUp5Timer.ForeColor = System.Drawing.Color.Lime;
-            this.powerUp5Timer.Location = new System.Drawing.Point(1571, 812);
+            this.powerUp5Timer.Location = new System.Drawing.Point(1591, 810);
             this.powerUp5Timer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.powerUp5Timer.Name = "powerUp5Timer";
             this.powerUp5Timer.Size = new System.Drawing.Size(166, 21);
@@ -154,7 +104,7 @@
             // 
             this.powerUp6Timer.BackColor = System.Drawing.Color.Lime;
             this.powerUp6Timer.ForeColor = System.Drawing.Color.Lime;
-            this.powerUp6Timer.Location = new System.Drawing.Point(1571, 876);
+            this.powerUp6Timer.Location = new System.Drawing.Point(1591, 874);
             this.powerUp6Timer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.powerUp6Timer.Name = "powerUp6Timer";
             this.powerUp6Timer.Size = new System.Drawing.Size(166, 21);
@@ -165,7 +115,7 @@
             // 
             this.powerUp4Timer.BackColor = System.Drawing.Color.Lime;
             this.powerUp4Timer.ForeColor = System.Drawing.Color.Lime;
-            this.powerUp4Timer.Location = new System.Drawing.Point(1571, 755);
+            this.powerUp4Timer.Location = new System.Drawing.Point(1591, 753);
             this.powerUp4Timer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.powerUp4Timer.Name = "powerUp4Timer";
             this.powerUp4Timer.Size = new System.Drawing.Size(166, 21);
@@ -176,7 +126,7 @@
             // 
             this.powerUp7Timer.BackColor = System.Drawing.Color.Lime;
             this.powerUp7Timer.ForeColor = System.Drawing.Color.Lime;
-            this.powerUp7Timer.Location = new System.Drawing.Point(1571, 941);
+            this.powerUp7Timer.Location = new System.Drawing.Point(1591, 939);
             this.powerUp7Timer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.powerUp7Timer.Name = "powerUp7Timer";
             this.powerUp7Timer.Size = new System.Drawing.Size(166, 21);
@@ -197,13 +147,8 @@
             this.Controls.Add(this.powerUp3Timer);
             this.Controls.Add(this.powerUp1Timer);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.power5Label);
-            this.Controls.Add(this.power4Label);
-            this.Controls.Add(this.power3Label);
-            this.Controls.Add(this.power2Label);
-            this.Controls.Add(this.power1Label);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(1708, 960);
             this.Load += new System.EventHandler(this.GameScreen_Load);
@@ -219,11 +164,6 @@
         #endregion
 
         private System.Windows.Forms.Timer gameTimer;
-        private System.Windows.Forms.Label power1Label;
-        private System.Windows.Forms.Label power2Label;
-        private System.Windows.Forms.Label power3Label;
-        private System.Windows.Forms.Label power4Label;
-        private System.Windows.Forms.Label power5Label;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label powerUp1Timer;
         private System.Windows.Forms.Label powerUp3Timer;

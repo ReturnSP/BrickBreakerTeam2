@@ -1412,7 +1412,29 @@ namespace BrickBreaker
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(this.Width - 128, 0, 128, this.Height), 50);
 
-            UIPaint.PaintText(e.Graphics, "Level 0", 24, new Point(this.Width - 120, 90), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, $"Level {levelNumber}", 24, new Point(this.Width - 120, 90), Color.Goldenrod);
+
+            UIPaint.PaintText(e.Graphics, "Magnum", 14, new Point(4, 550), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU1}", 24, new Point(this.Width - 86, 523), Color.Goldenrod);
+
+            UIPaint.PaintText(e.Graphics, "Piercing Strike", 14, new Point(4, 610), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU2}", 24, new Point(this.Width - 86, 585), Color.Goldenrod);
+
+            UIPaint.PaintText(e.Graphics, "Construction", 14, new Point(4, 670), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU3}", 24, new Point(this.Width - 86, 647), Color.Goldenrod);
+
+            UIPaint.PaintText(e.Graphics, "Growth Elixer", 14, new Point(4, 730), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU4}", 24, new Point(this.Width - 86, 711), Color.Goldenrod);
+
+            UIPaint.PaintText(e.Graphics, "Control Strike", 14, new Point(4, 790), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU5}", 24, new Point(this.Width - 86, 773), Color.Goldenrod);
+
+            UIPaint.PaintText(e.Graphics, "War God", 14, new Point(4, 850), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU6}", 24, new Point(this.Width - 86, 835), Color.Goldenrod);
+
+            UIPaint.PaintText(e.Graphics, "Final Gift", 14, new Point(4, 910), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU3}", 24, new Point(this.Width - 86, 896), Color.Goldenrod);
+
             Image heartImage = Properties.Resources.heart1;
             Point lifePos = new Point(this.Width - heartImage.Width - 25, 25);
             switch (lives)
