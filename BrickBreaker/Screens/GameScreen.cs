@@ -348,7 +348,7 @@ namespace BrickBreaker
             //
             //= true;
             //set life counter
-            score = new Score((int)Score.score, 1);
+            score = new Score(Score.score, 1);
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -1510,7 +1510,8 @@ namespace BrickBreaker
                 e.Graphics.FillRectangle(Brushes.White, bottomRec);
             }
 
-            UIPaint.PaintTextRotate(e.Graphics, Score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width / 2, (int)textSize.Height / 2));
+            UIPaint.PaintTextRotate(e.Graphics, score.comboCounter + "x " + Score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width, (int)textSize.Height));
+
 
             //Tracking position of ball when caught
             if (trackPos)
