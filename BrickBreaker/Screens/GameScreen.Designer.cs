@@ -91,7 +91,7 @@
             // 
             // powerUp5Timer
             // 
-            this.powerUp5Timer.BackColor = System.Drawing.Color.Lime;
+            this.powerUp5Timer.BackColor = System.Drawing.Color.Gray;
             this.powerUp5Timer.ForeColor = System.Drawing.Color.Lime;
             this.powerUp5Timer.Location = new System.Drawing.Point(1591, 810);
             this.powerUp5Timer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

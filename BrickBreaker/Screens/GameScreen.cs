@@ -348,7 +348,7 @@ namespace BrickBreaker
             //
             //= true;
             //set life counter
-            score = new Score((int)Score.score, 1);
+            score = new Score(Score.score, 1);
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -410,7 +410,7 @@ namespace BrickBreaker
             pDuration7 = (int)timerDuration7;
             #endregion
 
-
+            Score.score = 99999999;
             PlayMusic();
             gameTimer.Enabled = true;
 
@@ -475,13 +475,6 @@ namespace BrickBreaker
                         realShopScreen.SSPU4--;
                     }
                     break;
-                case Keys.D5:
-                    if (realShopScreen.SSPU5 > 0 && !pU5)
-                    {
-                        pU5 = true;
-                        realShopScreen.SSPU5--;
-                    }
-                    break;
                 case Keys.D6:
                     if (realShopScreen.SSPU6 > 0 && !pU6)
                     {
@@ -533,6 +526,11 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            if (realShopScreen.SSPU5)
+            {
+                pU5 = true;
+                powerUp5Timer.BackColor = Color.Lime;
+            }
             if (blocks.Count() == 0)
             {
                 gameTimer.Stop();
@@ -1109,16 +1107,6 @@ namespace BrickBreaker
                 }
             }
 
-            if (pU5)
-            {
-                pDuration5--;
-                if (pDuration5 < 0)
-                {
-                    pU5 = false;
-                    pDuration5 = 500;
-                }
-            }
-
             if (pU6)
             {
                 pDuration6--;
@@ -1414,6 +1402,7 @@ namespace BrickBreaker
 
             UIPaint.PaintText(e.Graphics, $"Level {levelNumber}", 24, new Point(this.Width - 120, 90), Color.Goldenrod);
 
+            //creates the graphics for powerups
             UIPaint.PaintText(e.Graphics, "Magnum", 14, new Point(4, 550), Color.Goldenrod);
             UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU1}", 24, new Point(this.Width - 86, 523), Color.Goldenrod);
 
@@ -1427,13 +1416,16 @@ namespace BrickBreaker
             UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU4}", 24, new Point(this.Width - 86, 711), Color.Goldenrod);
 
             UIPaint.PaintText(e.Graphics, "Control Strike", 14, new Point(4, 790), Color.Goldenrod);
-            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU5}", 24, new Point(this.Width - 86, 773), Color.Goldenrod);
+            if (realShopScreen.SSPU5)
+                UIPaint.PaintText(e.Graphics, $"Active", 20, new Point(this.Width - 94, 775), Color.Goldenrod);
+            else
+                UIPaint.PaintText(e.Graphics, $"Inactive", 20, new Point(this.Width - 101, 775), Color.Goldenrod);
 
             UIPaint.PaintText(e.Graphics, "War God", 14, new Point(4, 850), Color.Goldenrod);
             UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU6}", 24, new Point(this.Width - 86, 835), Color.Goldenrod);
 
             UIPaint.PaintText(e.Graphics, "Final Gift", 14, new Point(4, 910), Color.Goldenrod);
-            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU3}", 24, new Point(this.Width - 86, 896), Color.Goldenrod);
+            UIPaint.PaintText(e.Graphics, $"x{realShopScreen.SSPU7}", 24, new Point(this.Width - 86, 896), Color.Goldenrod);
 
             Image heartImage = Properties.Resources.heart1;
             Point lifePos = new Point(this.Width - heartImage.Width - 25, 25);
@@ -1532,7 +1524,8 @@ namespace BrickBreaker
                 e.Graphics.FillRectangle(Brushes.White, bottomRec);
             }
 
-            UIPaint.PaintTextRotate(e.Graphics, Score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width / 2, (int)textSize.Height / 2));
+            UIPaint.PaintTextRotate(e.Graphics, score.comboCounter + "x " + Score.score + "", scoreSize, new Point(this.Width / 2, this.Height / 2 - 360), Color.Red, scoreAngle, new Point((int)textSize.Width, (int)textSize.Height));
+
 
             //Tracking position of ball when caught
             if (trackPos)
