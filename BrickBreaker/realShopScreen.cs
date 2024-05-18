@@ -166,7 +166,6 @@ namespace BrickBreaker
 
         private void continueButton_Click(object sender, EventArgs e)
         {
-            GameScreen.levelNumber++;
             Form1.ChangeScreen(this,new GameScreen());
         }
     }
