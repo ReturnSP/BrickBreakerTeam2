@@ -251,6 +251,12 @@ namespace BrickBreaker
 
             music[3].Play();
         }
+
+        private void GameScreen_Load(object sender, EventArgs e)
+        {
+            Cursor.Hide();
+        }
+
         private void music4(object sender, EventArgs e)
         {
             music[4].Stop();
@@ -341,7 +347,6 @@ namespace BrickBreaker
             //
             //
             //= true;
-            Cursor.Hide();
             //set life counter
             score = new Score((int)Score.score, 1);
 
@@ -396,13 +401,13 @@ namespace BrickBreaker
             pU6 = false;
             pU7 = false;
 
-            pDuration1 = 0;
-            pDuration2 = 0;
-            pDuration3 = 0;
-            pDuration4 = 0;
-            pDuration5 = 0;
-            pDuration6 = 0;
-            pDuration7 = 0;
+            pDuration1 = (int)timerDuration1;
+            pDuration2 = (int)timerDuration2;
+            pDuration3 = (int)timerDuration3;
+            pDuration4 = (int)timerDuration4;
+            pDuration5 = (int)timerDuration5;
+            pDuration6 = (int)timerDuration6;
+            pDuration7 = (int)timerDuration7;
             #endregion
 
 
@@ -731,8 +736,6 @@ namespace BrickBreaker
                     {
                         if (ball.BlockCollision(b))
                         {
-
-
                             comboAdds.Add(new MiniScores(100 * score.comboCounter + "", new Point((int)paddle.x + rand.Next(-50, 50), (int)paddle.y - 50 + rand.Next(-50, 50)), 255));
                             score.AddToScore(100);
                             scoreSize += 1;
@@ -782,7 +785,7 @@ namespace BrickBreaker
 
                                     if (!pU7)
                                     {
-                                        Debuff newDebuff = new Debuff(3, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
+                                        Debuff newDebuff = new Debuff(o, b.hitBox.X + b.hitBox.Width / 2, b.hitBox.Y + b.hitBox.Width, debuffColor);
 
                                         debuffs.Add(newDebuff);
                                     }
@@ -1199,7 +1202,7 @@ namespace BrickBreaker
                     ball.xSpeed = (float)diffX;
                     ball.ySpeed = (float)diffY;
 
-                    if (pDuration7 > 150)
+                    if (pDuration7 < 150)
                     {
                         ball.size += NEWSIZE;
                         ball.x = (this.Width / 2) - (ball.size / 2);
