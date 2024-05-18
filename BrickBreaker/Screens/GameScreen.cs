@@ -22,7 +22,7 @@ namespace BrickBreaker
         #region global values
 
         //activate cheats
-        bool cheatmode = true;
+        bool cheatmode = false;
 
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown;
