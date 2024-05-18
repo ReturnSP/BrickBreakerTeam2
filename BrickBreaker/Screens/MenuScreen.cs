@@ -39,7 +39,7 @@ namespace BrickBreaker
         {
             Cursor.Hide();
             GameScreen.lives = 4;
-            GameScreen.levelNumber = 0;
+            GameScreen.levelNumber = 1;
             Score.score = 0;
             // Goes to the game screen
             GameScreen gs = new GameScreen();
