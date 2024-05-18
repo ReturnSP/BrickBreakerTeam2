@@ -25,7 +25,7 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown;
 
         // Game values
-        public static int lives = 4;
+        public static int lives = 6;
         public static int levelNumber = 1;
         Score score;
         List<MiniScores> comboAdds = new List<MiniScores>();
@@ -488,7 +488,15 @@ namespace BrickBreaker
                 case Keys.J:
                     gameTimer.Stop();
                     levelNumber++;
-                    Form1.ChangeScreen(this, new realShopScreen());
+                    if (levelNumber == 13)
+                    {
+                        resetGame();
+                        Form1.ChangeScreen(this, new WinScreen());
+                    }
+                    else
+                    {
+                        Form1.ChangeScreen(this, new realShopScreen());
+                    }
                     break;
                 default:
                     break;
@@ -536,7 +544,15 @@ namespace BrickBreaker
             {
                 gameTimer.Stop();
                 levelNumber++;
-                Form1.ChangeScreen(this, new realShopScreen());
+                if (levelNumber == 13)
+                {
+                    resetGame();
+                    Form1.ChangeScreen(this, new WinScreen());
+                }
+                else
+                {
+                    Form1.ChangeScreen(this, new realShopScreen());
+                }
                 blocks = Block.LevelChanger(levelNumber, this.Size);
                 TurnMusicOff();
                 PlayMusic();
@@ -1215,9 +1231,6 @@ namespace BrickBreaker
                             }
                             b.hitBox = new Rectangle(b.hitBox.X + (int)diffX, b.hitBox.Y + (int)diffY, b.hitBox.Width, b.hitBox.Height);
                             ball.ySpeed = (float)diffY;
-
-
-
                         }
                     }
                 }
@@ -1341,6 +1354,7 @@ namespace BrickBreaker
         {
             TurnMusicOff();
             // Goes to the game over screen
+            resetGame();
             Form1.ChangeScreen(this, new GameOverScreen());
         }
 
@@ -1406,8 +1420,14 @@ namespace BrickBreaker
             realShopScreen.SSPU6 = 0;
             realShopScreen.SSPU7 = 0;
             Score.score = 25000;
-            lives = 4;
+            lives = 6;
             blocks = new List<Block>();
+            dB1 = false;
+            dB2 = false;
+            dB3 = false;
+            dB4 = false;
+            dB5 = false;
+            realShopScreen.duringGame = false;
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)

@@ -38,10 +38,10 @@
             this.tipLabel.BackColor = System.Drawing.Color.Transparent;
             this.tipLabel.Font = new System.Drawing.Font("Chiller", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tipLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.tipLabel.Location = new System.Drawing.Point(693, 432);
+            this.tipLabel.Location = new System.Drawing.Point(616, 346);
             this.tipLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tipLabel.Name = "tipLabel";
-            this.tipLabel.Size = new System.Drawing.Size(708, 202);
+            this.tipLabel.Size = new System.Drawing.Size(629, 162);
             this.tipLabel.TabIndex = 3;
             this.tipLabel.Text = "Tip:\r\nYou Lost so you should win next time";
             this.tipLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -51,10 +51,10 @@
             this.pauseLabel.BackColor = System.Drawing.Color.Transparent;
             this.pauseLabel.Font = new System.Drawing.Font("Chiller", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pauseLabel.ForeColor = System.Drawing.Color.Gold;
-            this.pauseLabel.Location = new System.Drawing.Point(826, 240);
+            this.pauseLabel.Location = new System.Drawing.Point(734, 192);
             this.pauseLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pauseLabel.Name = "pauseLabel";
-            this.pauseLabel.Size = new System.Drawing.Size(463, 202);
+            this.pauseLabel.Size = new System.Drawing.Size(412, 162);
             this.pauseLabel.TabIndex = 2;
             this.pauseLabel.Text = "GIVE UP";
             this.pauseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -63,10 +63,11 @@
             // 
             this.giveUpButton.BackColor = System.Drawing.Color.Gold;
             this.giveUpButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.giveUpButton.Font = new System.Drawing.Font("Chiller", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.giveUpButton.Location = new System.Drawing.Point(969, 711);
+            this.giveUpButton.Font = new System.Drawing.Font("Chiller", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.giveUpButton.Location = new System.Drawing.Point(861, 569);
+            this.giveUpButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.giveUpButton.Name = "giveUpButton";
-            this.giveUpButton.Size = new System.Drawing.Size(166, 87);
+            this.giveUpButton.Size = new System.Drawing.Size(148, 70);
             this.giveUpButton.TabIndex = 4;
             this.giveUpButton.Text = "Give Up";
             this.giveUpButton.UseVisualStyleBackColor = false;
@@ -74,7 +75,7 @@
             // 
             // GameOverScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::BrickBreaker.Properties.Resources.pauseScreen;
@@ -83,8 +84,9 @@
             this.Controls.Add(this.tipLabel);
             this.Controls.Add(this.pauseLabel);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GameOverScreen";
-            this.Size = new System.Drawing.Size(2049, 1152);
+            this.Size = new System.Drawing.Size(1821, 922);
             this.ResumeLayout(false);
 
         }

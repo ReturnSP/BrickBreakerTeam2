@@ -117,34 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label4.Text" xml:space="preserve">
-    <value>The goal is to beat all 12 levels with the highest
-score possible! 
-Points are equivalent to credits.
-Utilize points to purchase items.
-Unlike traditional brick breaker games, the
-falling objects are debuffs, so avoid them!
-
-</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>C - When you have powerup 6 active you will 
-be able to catch and throw the ball
-
-Space Bar - Throws ball when it is caught
-
-Arrows Keys - Movement
-
-Left click - Toggles mouse movement
-
-All powerups have respective keys ranging 
-from 1 to 7 based on each power up.
-
-In order to get powerups you must buy
-them with score in the shop in between 
-levels (Yes you must beat level 1 to enter 
-shop)
-
-</value>
-  </data>
 </root>

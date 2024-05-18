@@ -23,6 +23,8 @@ namespace BrickBreaker
             lowPShelfLabel.BackColor = Color.FromArgb(80, 255, 255, 255);
             shopScoreLabel.BackColor = Color.FromArgb(80, 255, 255, 255);
             livesBackground.BackColor = Color.FromArgb(80, 255, 255, 255);
+            levelLabel.BackColor = Color.FromArgb(80, 255, 255, 255);
+            levelLabel.Text = $"Level: {GameScreen.levelNumber}";
             livesCount.Parent = livesBackground;
             livesCount.Location = new Point(0, 22);
             livesCount.Text = $"{GameScreen.lives}";
@@ -166,14 +168,7 @@ namespace BrickBreaker
 
         private void continueButton_Click(object sender, EventArgs e)
         {
-            if (GameScreen.levelNumber <= 12)
-            {
-                Form1.ChangeScreen(this, new GameScreen());
-            }
-            else //call end screen here
-            {
-
-            }
+            Form1.ChangeScreen(this, new GameScreen());
         }
     }
 }

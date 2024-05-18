@@ -10,14 +10,15 @@ using System.Windows.Forms;
 
 namespace BrickBreaker
 {
-    public partial class GameOverScreen : UserControl
+    public partial class WinScreen : UserControl
     {
-        public GameOverScreen()
+        public WinScreen()
         {
             InitializeComponent();
+            this.Size = Screen.PrimaryScreen.Bounds.Size;
         }
 
-        private void giveUpButton_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             Form1.ChangeScreen(this, new MenuScreen());
         }
