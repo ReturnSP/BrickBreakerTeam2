@@ -535,12 +535,12 @@ namespace BrickBreaker
             }
             if (blocks.Count() == 0)
             {
-                if(levelNumber == 0)
+                gameTimer.Stop();
+                levelNumber++;
+                if (levelNumber == 13)
                 {
                     Form1.ChangeScreen(this, new WinScreen());
                 }
-                gameTimer.Stop();
-                levelNumber++;
                 Form1.ChangeScreen(this, new realShopScreen());
                 blocks = Block.LevelChanger(levelNumber, this.Size);
                 TurnMusicOff();
