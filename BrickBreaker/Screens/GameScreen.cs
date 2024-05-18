@@ -630,7 +630,6 @@ namespace BrickBreaker
 
                     if (lives == 0)
                     {
-                        gameTimer.Enabled = false;
                         OnEnd();
                     }
                 }
@@ -644,7 +643,6 @@ namespace BrickBreaker
 
                         if (lives == 0)
                         {
-                            gameTimer.Enabled = false;
                             OnEnd();
                         }
                     }
@@ -942,7 +940,7 @@ namespace BrickBreaker
                     evilFace.Play();
                     Refresh();
                 }
-                else if (duration3 > 80 && duration3 > 130)
+                else if (duration3 > 80 && duration3 < 130)
                 {
 
                     evilSkullMan.Parent = this;
@@ -1361,7 +1359,6 @@ namespace BrickBreaker
         public void OnEnd()
         {
             TurnMusicOff();
-            // Goes to the game over screen
             resetGame();
             Form1.ChangeScreen(this, new GameOverScreen());
         }
