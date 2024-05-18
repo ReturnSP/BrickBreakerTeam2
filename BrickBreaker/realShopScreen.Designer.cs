@@ -72,7 +72,7 @@
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(1415, 395);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(100, 28);
             this.button8.TabIndex = 67;
@@ -83,7 +83,7 @@
             // PU7Button
             // 
             this.PU7Button.Location = new System.Drawing.Point(1129, 395);
-            this.PU7Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PU7Button.Margin = new System.Windows.Forms.Padding(4);
             this.PU7Button.Name = "PU7Button";
             this.PU7Button.Size = new System.Drawing.Size(100, 28);
             this.PU7Button.TabIndex = 66;
@@ -94,7 +94,7 @@
             // PU6Button
             // 
             this.PU6Button.Location = new System.Drawing.Point(875, 395);
-            this.PU6Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PU6Button.Margin = new System.Windows.Forms.Padding(4);
             this.PU6Button.Name = "PU6Button";
             this.PU6Button.Size = new System.Drawing.Size(100, 28);
             this.PU6Button.TabIndex = 65;
@@ -105,7 +105,7 @@
             // PU5Button
             // 
             this.PU5Button.Location = new System.Drawing.Point(621, 395);
-            this.PU5Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PU5Button.Margin = new System.Windows.Forms.Padding(4);
             this.PU5Button.Name = "PU5Button";
             this.PU5Button.Size = new System.Drawing.Size(100, 28);
             this.PU5Button.TabIndex = 64;
@@ -116,7 +116,7 @@
             // PU4Button
             // 
             this.PU4Button.Location = new System.Drawing.Point(1415, 158);
-            this.PU4Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PU4Button.Margin = new System.Windows.Forms.Padding(4);
             this.PU4Button.Name = "PU4Button";
             this.PU4Button.Size = new System.Drawing.Size(100, 28);
             this.PU4Button.TabIndex = 63;
@@ -127,7 +127,7 @@
             // PU3Button
             // 
             this.PU3Button.Location = new System.Drawing.Point(1129, 155);
-            this.PU3Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PU3Button.Margin = new System.Windows.Forms.Padding(4);
             this.PU3Button.Name = "PU3Button";
             this.PU3Button.Size = new System.Drawing.Size(100, 28);
             this.PU3Button.TabIndex = 62;
@@ -138,7 +138,7 @@
             // PU2Button
             // 
             this.PU2Button.Location = new System.Drawing.Point(875, 155);
-            this.PU2Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PU2Button.Margin = new System.Windows.Forms.Padding(4);
             this.PU2Button.Name = "PU2Button";
             this.PU2Button.Size = new System.Drawing.Size(100, 28);
             this.PU2Button.TabIndex = 61;
@@ -149,7 +149,7 @@
             // PU1Button
             // 
             this.PU1Button.Location = new System.Drawing.Point(621, 155);
-            this.PU1Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PU1Button.Margin = new System.Windows.Forms.Padding(4);
             this.PU1Button.Name = "PU1Button";
             this.PU1Button.Size = new System.Drawing.Size(100, 28);
             this.PU1Button.TabIndex = 60;
@@ -160,7 +160,7 @@
             // lowP1Button
             // 
             this.lowP1Button.Location = new System.Drawing.Point(604, 273);
-            this.lowP1Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lowP1Button.Margin = new System.Windows.Forms.Padding(4);
             this.lowP1Button.Name = "lowP1Button";
             this.lowP1Button.Size = new System.Drawing.Size(152, 114);
             this.lowP1Button.TabIndex = 54;
@@ -169,7 +169,7 @@
             // lowP2Button
             // 
             this.lowP2Button.Location = new System.Drawing.Point(851, 273);
-            this.lowP2Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lowP2Button.Margin = new System.Windows.Forms.Padding(4);
             this.lowP2Button.Name = "lowP2Button";
             this.lowP2Button.Size = new System.Drawing.Size(152, 114);
             this.lowP2Button.TabIndex = 51;
@@ -178,7 +178,7 @@
             // lowP3Button
             // 
             this.lowP3Button.Location = new System.Drawing.Point(1107, 273);
-            this.lowP3Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lowP3Button.Margin = new System.Windows.Forms.Padding(4);
             this.lowP3Button.Name = "lowP3Button";
             this.lowP3Button.Size = new System.Drawing.Size(152, 114);
             this.lowP3Button.TabIndex = 52;
@@ -189,7 +189,7 @@
             this.lowP4Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lowP4Button.Image = global::BrickBreaker.Properties.Resources.heart7;
             this.lowP4Button.Location = new System.Drawing.Point(1388, 273);
-            this.lowP4Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lowP4Button.Margin = new System.Windows.Forms.Padding(4);
             this.lowP4Button.Name = "lowP4Button";
             this.lowP4Button.Size = new System.Drawing.Size(152, 114);
             this.lowP4Button.TabIndex = 53;
@@ -199,7 +199,7 @@
             // 
             this.highP4Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.highP4Button.Location = new System.Drawing.Point(1388, 37);
-            this.highP4Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.highP4Button.Margin = new System.Windows.Forms.Padding(4);
             this.highP4Button.Name = "highP4Button";
             this.highP4Button.Size = new System.Drawing.Size(152, 114);
             this.highP4Button.TabIndex = 59;
@@ -209,7 +209,7 @@
             // 
             this.highP3Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.highP3Button.Location = new System.Drawing.Point(1107, 37);
-            this.highP3Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.highP3Button.Margin = new System.Windows.Forms.Padding(4);
             this.highP3Button.Name = "highP3Button";
             this.highP3Button.Size = new System.Drawing.Size(152, 114);
             this.highP3Button.TabIndex = 55;
@@ -219,7 +219,7 @@
             // 
             this.highP2Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.highP2Button.Location = new System.Drawing.Point(851, 37);
-            this.highP2Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.highP2Button.Margin = new System.Windows.Forms.Padding(4);
             this.highP2Button.Name = "highP2Button";
             this.highP2Button.Size = new System.Drawing.Size(152, 114);
             this.highP2Button.TabIndex = 56;
@@ -229,7 +229,7 @@
             // 
             this.p5RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.p5RemoveButton.Location = new System.Drawing.Point(183, 750);
-            this.p5RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.p5RemoveButton.Margin = new System.Windows.Forms.Padding(4);
             this.p5RemoveButton.Name = "p5RemoveButton";
             this.p5RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p5RemoveButton.TabIndex = 57;
@@ -239,7 +239,7 @@
             // 
             this.p4RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.p4RemoveButton.Location = new System.Drawing.Point(183, 601);
-            this.p4RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.p4RemoveButton.Margin = new System.Windows.Forms.Padding(4);
             this.p4RemoveButton.Name = "p4RemoveButton";
             this.p4RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p4RemoveButton.TabIndex = 58;
@@ -249,7 +249,7 @@
             // 
             this.p3RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.p3RemoveButton.Location = new System.Drawing.Point(183, 460);
-            this.p3RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.p3RemoveButton.Margin = new System.Windows.Forms.Padding(4);
             this.p3RemoveButton.Name = "p3RemoveButton";
             this.p3RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p3RemoveButton.TabIndex = 49;
@@ -259,7 +259,7 @@
             // 
             this.p2RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.p2RemoveButton.Location = new System.Drawing.Point(183, 314);
-            this.p2RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.p2RemoveButton.Margin = new System.Windows.Forms.Padding(4);
             this.p2RemoveButton.Name = "p2RemoveButton";
             this.p2RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p2RemoveButton.TabIndex = 50;
@@ -269,7 +269,7 @@
             // 
             this.p1RemoveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.p1RemoveButton.Location = new System.Drawing.Point(183, 169);
-            this.p1RemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.p1RemoveButton.Margin = new System.Windows.Forms.Padding(4);
             this.p1RemoveButton.Name = "p1RemoveButton";
             this.p1RemoveButton.Size = new System.Drawing.Size(31, 32);
             this.p1RemoveButton.TabIndex = 48;
@@ -278,8 +278,9 @@
             // highP1Button
             // 
             this.highP1Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.highP1Button.Image = global::BrickBreaker.Properties.Resources.paddleExtensionImg;
             this.highP1Button.Location = new System.Drawing.Point(600, 37);
-            this.highP1Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.highP1Button.Margin = new System.Windows.Forms.Padding(4);
             this.highP1Button.Name = "highP1Button";
             this.highP1Button.Size = new System.Drawing.Size(152, 114);
             this.highP1Button.TabIndex = 47;
@@ -292,7 +293,7 @@
             this.continueButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.continueButton.Font = new System.Drawing.Font("MS Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continueButton.Location = new System.Drawing.Point(1487, 790);
-            this.continueButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.continueButton.Margin = new System.Windows.Forms.Padding(4);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(327, 128);
             this.continueButton.TabIndex = 45;
@@ -429,7 +430,7 @@
             // 
             // highPShelfLabel
             // 
-            this.highPShelfLabel.BackColor = System.Drawing.Color.White;
+            this.highPShelfLabel.BackColor = System.Drawing.Color.SaddleBrown;
             this.highPShelfLabel.Location = new System.Drawing.Point(553, 25);
             this.highPShelfLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.highPShelfLabel.Name = "highPShelfLabel";
@@ -501,7 +502,7 @@
             this.Controls.Add(this.sideBarLabel);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "realShopScreen";
             this.Size = new System.Drawing.Size(1821, 945);
             this.ResumeLayout(false);

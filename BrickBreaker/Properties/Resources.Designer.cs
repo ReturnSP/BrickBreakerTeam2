@@ -110,6 +110,16 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blackHoleImg {
+            get {
+                object obj = ResourceManager.GetObject("blackHoleImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Brick_Break_Sound__Super_Mario_World_ {
@@ -179,6 +189,16 @@ namespace BrickBreaker.Properties {
         internal static System.IO.UnmanagedMemoryStream Concrete_pipe_falling_sound_effect__1_ {
             get {
                 return ResourceManager.GetStream("Concrete_pipe_falling_sound_effect__1_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap controlStrikeImg {
+            get {
+                object obj = ResourceManager.GetObject("controlStrikeImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -440,6 +460,16 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap largeBallImg {
+            get {
+                object obj = ResourceManager.GetObject("largeBallImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap levelBackSet1 {
             get {
                 object obj = ResourceManager.GetObject("levelBackSet1", resourceCulture);
@@ -482,6 +512,16 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap mirrorMode {
             get {
                 object obj = ResourceManager.GetObject("mirrorMode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap paddleExtensionImg {
+            get {
+                object obj = ResourceManager.GetObject("paddleExtensionImg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -604,6 +644,16 @@ namespace BrickBreaker.Properties {
         internal static System.IO.UnmanagedMemoryStream War_of_the_Worlds__Tripod_Horn {
             get {
                 return ResourceManager.GetStream("War_of_the_Worlds__Tripod_Horn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap warGodImg {
+            get {
+                object obj = ResourceManager.GetObject("warGodImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
