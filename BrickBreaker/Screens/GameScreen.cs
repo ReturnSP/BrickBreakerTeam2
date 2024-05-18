@@ -26,7 +26,7 @@ namespace BrickBreaker
 
         // Game values
         public static int lives = 4;
-        public static int levelNumber = 0;
+        public static int levelNumber = 1;
         Score score;
         List<MiniScores> comboAdds = new List<MiniScores>();
         int scoreAngle = 0;
@@ -488,6 +488,11 @@ namespace BrickBreaker
                         pU7 = true;
                         realShopScreen.SSPU7--;
                     }
+                    break;
+                case Keys.J:
+                    gameTimer.Stop();
+                    levelNumber++;
+                    Form1.ChangeScreen(this, new realShopScreen());
                     break;
                 default:
                     break;
