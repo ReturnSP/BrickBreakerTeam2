@@ -118,14 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label4.Text" xml:space="preserve">
-    <value>Points are equivalent to credits.
+    <value>The goal is to beat all 12 levels with the highest
+score possible! 
+Points are equivalent to credits.
 Utilize points to purchase items.
-Purchase debuffs to acquire points, 
-or purchase powerups to boost your gameplay.
-The images represent the powerup/debuff you 
-are about to purchase, and the numbers below 
-represent their price or the credits you gain.
-
+Unlike traditional brick breaker games, the
+falling objects are debuffs, so avoid them!
 
 </value>
   </data>

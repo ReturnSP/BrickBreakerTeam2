@@ -82,6 +82,7 @@
             this.p5Active = new System.Windows.Forms.Label();
             this.p6Amounr = new System.Windows.Forms.Label();
             this.p7Amount = new System.Windows.Forms.Label();
+            this.levelLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button8
@@ -276,12 +277,13 @@
             // shopScoreLabel
             // 
             this.shopScoreLabel.BackColor = System.Drawing.Color.Silver;
-            this.shopScoreLabel.Font = new System.Drawing.Font("MS Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shopScoreLabel.Font = new System.Drawing.Font("Chiller", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.shopScoreLabel.Location = new System.Drawing.Point(24, 23);
             this.shopScoreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.shopScoreLabel.Name = "shopScoreLabel";
             this.shopScoreLabel.Size = new System.Drawing.Size(286, 75);
             this.shopScoreLabel.TabIndex = 39;
+            this.shopScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lowP4Label
             // 
@@ -688,12 +690,24 @@
             this.p7Amount.Text = "x00";
             this.p7Amount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // levelLabel
+            // 
+            this.levelLabel.BackColor = System.Drawing.Color.Silver;
+            this.levelLabel.Font = new System.Drawing.Font("Chiller", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.levelLabel.Location = new System.Drawing.Point(1528, 23);
+            this.levelLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.levelLabel.Name = "levelLabel";
+            this.levelLabel.Size = new System.Drawing.Size(286, 75);
+            this.levelLabel.TabIndex = 95;
+            this.levelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // realShopScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BrickBreaker.Properties.Resources.barrr;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.levelLabel);
             this.Controls.Add(this.p7Amount);
             this.Controls.Add(this.p6Amounr);
             this.Controls.Add(this.p5Active);
@@ -814,5 +828,6 @@
         private System.Windows.Forms.Label p5Active;
         private System.Windows.Forms.Label p6Amounr;
         private System.Windows.Forms.Label p7Amount;
+        private System.Windows.Forms.Label levelLabel;
     }
 }

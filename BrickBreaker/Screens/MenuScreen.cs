@@ -40,13 +40,7 @@ namespace BrickBreaker
             Cursor.Hide();
             Score.score =25000;
             // Goes to the game screen
-            GameScreen gs = new GameScreen();
-            Form form = this.FindForm();
-
-            form.Controls.Add(gs);
-            form.Controls.Remove(this);
-            
-            gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+            Form1.ChangeScreen(this, new realShopScreen());
             menuMusic.Stop();
         }
 

@@ -25,7 +25,7 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown;
 
         // Game values
-        public static int lives = 4;
+        public static int lives = 6;
         public static int levelNumber = 1;
         Score score;
         List<MiniScores> comboAdds = new List<MiniScores>();
@@ -1420,7 +1420,7 @@ namespace BrickBreaker
             realShopScreen.SSPU6 = 0;
             realShopScreen.SSPU7 = 0;
             Score.score = 25000;
-            lives = 4;
+            lives = 6;
             blocks = new List<Block>();
             dB1 = false;
             dB2 = false;

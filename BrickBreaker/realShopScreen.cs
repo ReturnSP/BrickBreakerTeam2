@@ -23,6 +23,8 @@ namespace BrickBreaker
             lowPShelfLabel.BackColor = Color.FromArgb(80, 255, 255, 255);
             shopScoreLabel.BackColor = Color.FromArgb(80, 255, 255, 255);
             livesBackground.BackColor = Color.FromArgb(80, 255, 255, 255);
+            levelLabel.BackColor = Color.FromArgb(80, 255, 255, 255);
+            levelLabel.Text = $"Level: {GameScreen.levelNumber}";
             livesCount.Parent = livesBackground;
             livesCount.Location = new Point(0, 22);
             livesCount.Text = $"{GameScreen.lives}";

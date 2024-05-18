@@ -79,9 +79,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.LemonChiffon;
-            this.label4.Location = new System.Drawing.Point(57, 47);
+            this.label4.Location = new System.Drawing.Point(45, 47);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(287, 144);
+            this.label4.Size = new System.Drawing.Size(283, 112);
             this.label4.TabIndex = 7;
             this.label4.Text = resources.GetString("label4.Text");
             // 
@@ -108,7 +108,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.LemonChiffon;
-            this.label8.Location = new System.Drawing.Point(40, 463);
+            this.label8.Location = new System.Drawing.Point(40, 473);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(269, 48);
             this.label8.TabIndex = 14;
@@ -130,7 +130,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.LemonChiffon;
-            this.label11.Location = new System.Drawing.Point(40, 287);
+            this.label11.Location = new System.Drawing.Point(40, 289);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(317, 64);
             this.label11.TabIndex = 17;
@@ -152,7 +152,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.LemonChiffon;
-            this.label14.Location = new System.Drawing.Point(40, 335);
+            this.label14.Location = new System.Drawing.Point(40, 338);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(229, 64);
             this.label14.TabIndex = 20;
@@ -208,7 +208,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.LemonChiffon;
-            this.label2.Location = new System.Drawing.Point(40, 399);
+            this.label2.Location = new System.Drawing.Point(40, 405);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(259, 64);
             this.label2.TabIndex = 25;
@@ -219,7 +219,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.LemonChiffon;
-            this.label9.Location = new System.Drawing.Point(40, 511);
+            this.label9.Location = new System.Drawing.Point(40, 525);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(323, 48);
             this.label9.TabIndex = 26;
