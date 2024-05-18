@@ -38,9 +38,7 @@ namespace BrickBreaker
         private void playButton_Click(object sender, EventArgs e)
         {
             Cursor.Hide();
-            GameScreen.lives = 4;
-            GameScreen.levelNumber = 1;
-            Score.score = 0;
+            Score.score =25000;
             // Goes to the game screen
             GameScreen gs = new GameScreen();
             Form form = this.FindForm();

@@ -166,14 +166,7 @@ namespace BrickBreaker
 
         private void continueButton_Click(object sender, EventArgs e)
         {
-            if (GameScreen.levelNumber <= 12)
-            {
-                Form1.ChangeScreen(this, new GameScreen());
-            }
-            else //call end screen here
-            {
-
-            }
+            Form1.ChangeScreen(this, new GameScreen());
         }
     }
 }

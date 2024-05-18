@@ -19,7 +19,7 @@ namespace BrickBreaker
 
         private void giveUpButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Form1.ChangeScreen(this, new MenuScreen());
         }
     }
 }

@@ -490,6 +490,7 @@ namespace BrickBreaker
                     levelNumber++;
                     if (levelNumber == 13)
                     {
+                        resetGame();
                         Form1.ChangeScreen(this, new WinScreen());
                     }
                     else
@@ -545,6 +546,7 @@ namespace BrickBreaker
                 levelNumber++;
                 if (levelNumber == 13)
                 {
+                    resetGame();
                     Form1.ChangeScreen(this, new WinScreen());
                 }
                 else
@@ -1352,6 +1354,7 @@ namespace BrickBreaker
         {
             TurnMusicOff();
             // Goes to the game over screen
+            resetGame();
             Form1.ChangeScreen(this, new GameOverScreen());
         }
 
@@ -1404,6 +1407,29 @@ namespace BrickBreaker
             trackPos = false;
             isCaught = false;
         }
+
+        void resetGame()
+        {
+            gameTimer.Stop();
+            levelNumber = 1;
+            realShopScreen.SSPU1 = 0;
+            realShopScreen.SSPU2 = 0;
+            realShopScreen.SSPU3 = 0;
+            realShopScreen.SSPU4 = 0;
+            realShopScreen.SSPU5 = false;
+            realShopScreen.SSPU6 = 0;
+            realShopScreen.SSPU7 = 0;
+            Score.score = 25000;
+            lives = 4;
+            blocks = new List<Block>();
+            dB1 = false;
+            dB2 = false;
+            dB3 = false;
+            dB4 = false;
+            dB5 = false;
+            realShopScreen.duringGame = false;
+        }
+
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             UIPaint.PaintTransRectangle(e.Graphics, Color.White, new Rectangle(0, 0, 128, this.Height), 50);
