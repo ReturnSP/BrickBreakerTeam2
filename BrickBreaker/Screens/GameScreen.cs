@@ -187,9 +187,6 @@ namespace BrickBreaker
         //sound (minor)
         SoundPlayer evilFace = new SoundPlayer(Properties.Resources.Aztec_Death_Whistle);
         SoundPlayer whiteBoySound = new SoundPlayer(Properties.Resources.WhiteBoy1);
-
-
-
         #endregion
 
         public GameScreen()
