@@ -22,7 +22,9 @@ namespace BrickBreaker
         #region global values
 
         //activate cheats
+        //fortnigte
         bool cheatmode = false;
+        public static bool lost = false;
 
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown;
@@ -43,7 +45,7 @@ namespace BrickBreaker
         float paddleWidth = 80;
 
         // list of all blocks for current level
-        List<Block> blocks = new List<Block>();
+        public static List<Block> blocks = new List<Block>();
 
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
@@ -395,6 +397,11 @@ namespace BrickBreaker
             pDuration6 = (int)timerDuration6;
             pDuration7 = (int)timerDuration7;
             #endregion
+
+            if (cheatmode)
+            {
+                Score.score = 9999999;
+            }
 
             //start music and level
             PlayMusic();
@@ -750,7 +757,7 @@ namespace BrickBreaker
                                     blocks.RemoveAll(Block => b.hitBox.Y == Block.hitBox.Y);
                                 }
 
-                                int chance = 101;
+                                int chance = 40;
 
                                 if (rand.Next(1, 100) <= chance)
                                 {
@@ -1268,7 +1275,7 @@ namespace BrickBreaker
 
             brickTime--;
 
-            if (blocks.Count() == 0)
+            if (blocks.Count() == 0 && !lost)
             {
                 levelNumber++;
                 if (levelNumber == 13)
@@ -1358,6 +1365,7 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            lost = true;
             TurnMusicOff();
             resetGame();
             Form1.ChangeScreen(this, new GameOverScreen());
@@ -1417,6 +1425,7 @@ namespace BrickBreaker
         {
             gameTimer.Stop();
             levelNumber = 1;
+            blocks = new List<Block>();
             realShopScreen.SSPU1 = 0;
             realShopScreen.SSPU2 = 0;
             realShopScreen.SSPU3 = 0;
@@ -1426,7 +1435,6 @@ namespace BrickBreaker
             realShopScreen.SSPU7 = 0;
             Score.score = 25000;
             lives = 6;
-            blocks = new List<Block>();
             dB1 = false;
             dB2 = false;
             dB3 = false;

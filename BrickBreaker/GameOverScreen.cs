@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Animation;
 
 namespace BrickBreaker
 {
@@ -15,6 +16,7 @@ namespace BrickBreaker
         public GameOverScreen()
         {
             InitializeComponent();
+            GameScreen.lost = true;
         }
 
         private void giveUpButton_Click(object sender, EventArgs e)
